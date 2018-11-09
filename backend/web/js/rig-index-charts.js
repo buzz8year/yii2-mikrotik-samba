@@ -344,7 +344,7 @@ var optionsHashrate = {
                 // },
                 // display: false,
                 gridLines: {
-                    display: true,
+                    display: false,
                     color: '#eee',
                     drawBorder: mq.matches ? false : true,
                     zeroLineColor: 'transparent',
