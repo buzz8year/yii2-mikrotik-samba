@@ -77,7 +77,12 @@ class Rigs extends \yii\db\ActiveRecord
         $data = [];
 
         foreach ($this->journalRigs as $key => $journal) {
-            $data['time'][] = $journal->dtime;
+            // if ($key == 0 || $key  144) {
+            //     $data['time'][] = date("Y-m-d H:i:s", substr($journal->dtime, 0, 10));
+            // }
+            // else {
+                $data['time'][] = date("H:i:s", substr($journal->dtime, 0, 10));
+            // }
 
             foreach ( ($gpus = explode(";", $journal->rate_details)) as $key => $rate) {
                 $data['rate' . $key][] = $gpus[$key];

@@ -236,13 +236,15 @@ var optionsHashrate = {
         ],
         xAxes: [
             {
-                display: false,
+                // display: false,
                 gridLines: {
-                    display: false,
+                    // display: false,
                 },
-                // ticks: {
-                //     display: false
-                // }
+
+                ticks: {
+                    fontSize: 12,
+                    // display: false
+                }
             }
         ]
     },

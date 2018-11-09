@@ -60,7 +60,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     );
 
                     $data = [];
-                    $data[] = '<span>' . $model->rig->dayRate . '</span>'; 
+                    // $data[] = '<span>' . $model->rig->dayRate . '</span>'; 
                     $data[] = '<div class="chart-container" style="max-width: 60vw"> <canvas id="chart-hashrate-' . $model->id . '"></canvas> </div>';
                     return implode('<br/>', $data);
                 },
