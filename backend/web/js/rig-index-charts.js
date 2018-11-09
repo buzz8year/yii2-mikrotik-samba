@@ -329,6 +329,7 @@ var optionsHashrate = {
                 ticks: {
                     // display: mq.matches ? false : true,
                     fontSize: 12,
+                    fontColor: '#ccc',
                     // min: 13000,
                     // callback: function(label, index, labels) {
                     //     return label / 1000000;
@@ -345,10 +346,10 @@ var optionsHashrate = {
                 // display: false,
                 gridLines: {
                     // display: false,
-                    color: '#eaeaea',
+                    color: '#ddd',
                     // drawBorder: mq.matches ? false : true,
                     drawBorder: false,
-
+                    borderDash: [8, 4],
                     zeroLineColor: 'transparent',
                 },
             }
