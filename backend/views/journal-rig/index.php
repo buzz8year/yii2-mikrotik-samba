@@ -53,15 +53,15 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'label' => 'Data',
                 'format'    => 'raw',
-                'value'   => function ($model) {
+                'value'   => function ($model, $index) {
 
                     $this->registerJs(
-                        'rigHashrate(' . $model->rig->dayRate . ', ' . $model->id . ');' 
+                        'setTimeout(function(){ rigHashrate(' . $model->rig->dayRate . ', ' . $model->id . '); }, 1000);' 
                     );
 
                     $data = [];
                     $data[] = '<span>' . $model->rig->dayRate . '</span>'; 
-                    $data[] = '<div class="chart-container"> <canvas id="chart-hashrate-' . $model->id . '"></canvas> </div>';
+                    $data[] = '<div class="chart-container" style="max-width: 60vw"> <canvas id="chart-hashrate-' . $model->id . '"></canvas> </div>';
                     return implode('<br/>', $data);
                 },
             ],
