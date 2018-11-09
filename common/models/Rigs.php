@@ -81,7 +81,7 @@ class Rigs extends \yii\db\ActiveRecord
             //     $data['time'][] = date("Y-m-d H:i:s", substr($journal->dtime, 0, 10));
             // }
             // else {
-                $data['time'][] = date("H:i:s", substr($journal->dtime, 0, 10));
+                $data['time'][] = date("H:i", substr($journal->dtime, 0, 10));
             // }
 
             foreach ( ($gpus = explode(";", $journal->rate_details)) as $key => $rate) {
