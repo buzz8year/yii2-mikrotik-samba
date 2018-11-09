@@ -444,7 +444,7 @@ var optionsShares = {
         position: 'bottom',
     },
     animation: {
-        // duration: 0
+        duration: 0
     },
     maintainAspectRatio: false,
     // chartArea: {

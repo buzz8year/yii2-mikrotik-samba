@@ -17,6 +17,19 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
 ?>
+
+
+
+<style type="text/css">
+.table > thead > tr > th {
+    /*vertical-align: bottom;*/
+    border-bottom: 1px solid #ddd;
+}    
+</style>
+
+
+
+
 <div class="journal-rig-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
@@ -30,6 +43,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'tableOptions' => [
+            'class' => 'table table-striped',
+        ],
         'columns' => [
             // ['class' => 'yii\grid\SerialColumn'],
 
