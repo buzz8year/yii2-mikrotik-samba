@@ -344,9 +344,11 @@ var optionsHashrate = {
                 // },
                 // display: false,
                 gridLines: {
-                    display: false,
-                    color: '#eee',
-                    drawBorder: mq.matches ? false : true,
+                    // display: false,
+                    color: '#eaeaea',
+                    // drawBorder: mq.matches ? false : true,
+                    drawBorder: false,
+
                     zeroLineColor: 'transparent',
                 },
             }
@@ -355,9 +357,10 @@ var optionsHashrate = {
             {
                 // display: false,
                 gridLines: {
-                    color: '#fff',
+                    color: '#ddd',
                     zeroLineColor: 'transparent',
-                    // display: false,
+                    drawBorder: false,
+                    display: false,
                 },
 
                 ticks: {
