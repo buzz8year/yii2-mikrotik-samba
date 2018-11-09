@@ -22,6 +22,7 @@ class AppAsset extends AssetBundle
     public $js = [
         'js/chart.min.js',
         'js/miner-charts.js',
+        'js/rig-index-charts.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

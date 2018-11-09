@@ -4,12 +4,12 @@ Chart.defaults.global.defaultFontSize = 16;
 
 var mq = window.matchMedia('(min-width : 0) and (max-width : 768px)');
 
-function minerHashrate(data, kee) {
+function rigHashrate(data, kee) {
 
     console.log(data);
 
     // var ctx = document.getElementById('chart-hashrate-' + kee).getContext('2d');
-    var ctx = document.getElementById('chart-hashrate').getContext('2d');
+    var ctx = document.getElementById('chart-hashrate-' + kee).getContext('2d');
     var gradient = ctx.createLinearGradient(0, 50, 100, 300);
     var gradientBG = ctx.createLinearGradient(0, 50, 100, 300);
 
@@ -26,28 +26,27 @@ function minerHashrate(data, kee) {
         data: {
             datasets: [
                 {
-                    // backgroundColor : gradient,
-                    // backgroundColor: mq.matches ? gradientBG : gradient,
                     label: 'Current',
-                    // yAxisID: 'B',
-                    // data: data.currentHashrate ? data.currentHashrate.slice(data.currentHashrate.length - 40, data.currentHashrate.length) : [],
-                    // data: data.currentHashrate ? (mq.matches ? data.currentHashrate.slice(data.currentHashrate.length - 50, data.currentHashrate.length) : data.currentHashrate.slice(data.currentHashrate.length / 2, data.currentHashrate.length)) : [],
-                    data: data.currentHashrate,
-
-                    // backgroundColor: 'rgba(60, 200, 180, 0.6)',
-                    // backgroundColor: 'rgba(20, 130, 210, .8)',
-                    // borderWidth: mq.matches ? 4 : 1,
+                    data: data.rate0,
                     borderWidth: 1,
-                    // borderColor: 'rgba(60, 200, 180, 0.8)',
-                    // borderColor: mq.matches ? gradient : 'transparent',
-                    // borderColor: gradient,
                     pointBorderWidth: 0,
                     pointHoverBorderWidth: 1.5,
                     pointBorderColor: 'transparent',
-                    // pointBorderWidth: 2,
                     pointBackgroundColor: 'transparent',
                     pointHoverBackgroundColor: gradientBG,
-                    // pointHoverBorderColor: gradient,
+                    pointRadius: 8,
+                    pointHoverRadius: 8,
+                    borderJoinStyle: 'round',
+                },
+                {
+                    label: 'Another',
+                    data: data.rate1,
+                    borderWidth: 1,
+                    pointBorderWidth: 0,
+                    pointHoverBorderWidth: 1.5,
+                    pointBorderColor: 'transparent',
+                    pointBackgroundColor: 'transparent',
+                    pointHoverBackgroundColor: gradientBG,
                     pointRadius: 8,
                     pointHoverRadius: 8,
                     borderJoinStyle: 'round',
@@ -113,7 +112,7 @@ function minerHashrate(data, kee) {
 
 
 
-// function minerShares(data) {
+// function rigShares(data) {
 
 //     if (data.validShares) {
 //         var ctx = document.getElementById('chart-shares').getContext('2d');
@@ -424,7 +423,7 @@ var optionsShares = {
 
 
 
-function minerAccruals(data) {
+function rigAccruals(data) {
 
     if (data) {
         var ctx = document.getElementById('chart-accruals').getContext('2d');
