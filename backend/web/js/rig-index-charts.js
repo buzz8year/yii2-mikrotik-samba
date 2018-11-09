@@ -1,4 +1,4 @@
-Chart.defaults.global.defaultFontFamily = 'titillium web';
+Chart.defaults.global.defaultFontFamily = 'pt mono';
 Chart.defaults.global.defaultFontSize = 16;
 
 
@@ -302,7 +302,7 @@ var optionsHashrate = {
         position: 'bottom',
     },
     animation: {
-        // duration: 0
+        duration: 0.1
     },
     maintainAspectRatio: false,
     plugins: {

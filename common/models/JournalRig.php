@@ -90,4 +90,24 @@ class JournalRig extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Rigs::className(), ['id' => 'rig_id']);
     }
+
+    public function getTempData()
+    {
+        $data = [];
+        foreach ( ($exp = explode(";", $this->temp_speed)) as $key => $value) {
+            if ($key % 2 == 0) {
+                $data[$key / 2] = [
+                    'temp' => $value,
+                    'fanspeed' => $exp[$key + 1],
+                ];
+            }
+            else {
+                $data[($key - 1) / 2] = [
+                    'temp' => $exp[$key - 1],
+                    'fanspeed' => $value,
+                ];
+            }
+        }
+        return $data;
+    }
 }

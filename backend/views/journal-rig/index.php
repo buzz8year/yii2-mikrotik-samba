@@ -24,7 +24,10 @@ $this->params['breadcrumbs'][] = $this->title;
 .table > thead > tr > th {
     /*vertical-align: bottom;*/
     border-bottom: 1px solid #ddd;
-}    
+}
+.container {
+    width: 100%;
+}
 </style>
 
 
@@ -55,14 +58,26 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'label' => 'Data',
                 'format'    => 'raw',
+                'contentOptions' => [
+                    'style' => 'width: 200px'
+                ],
                 'value'   => function ($model) {
-                    $data = [];
-                    $data[] = '<span>' . $model->rig->hostname . '</span>';
-                    $data[] = '<small>' . $model->rig->ip . '</small>';
-                    $data[] = '<small class="bg-success">State: ' . ($model->up ? 'UP' : 'DOWN') . '</small>';
-                    $data[] = '<small class="bg-info">Runtime: ' . $model->runtime . ' min</small>';
-                    $data[] = '<small class="bg-warning">Hashrate: ' . explode(";", $model->rate_shares)[0] . ' MH/s</small>';
-                    return implode('<br/>', $data);
+                    $html = [];
+                    $html[] = '<span>' . $model->rig->hostname . '</span> &nbsp;';
+                    $html[] = '<small style="color: #ccc">' . $model->rig->ip . '</small><br/>';
+                    $html[] = '<small class="bg-success">State: ' . ($model->up ? 'UP' : 'DOWN') . '</small><br/>';
+                    $html[] = '<small class="bg-info">Runtime: ' . $model->runtime . ' min</small><br/>';
+                    $html[] = '<small class="bg-warning">Hashrate: ' . explode(";", $model->rate_shares)[0] / 1000 . ' MH/s</small><br/>';
+
+                    if (sizeof($model->tempData)) {
+                        foreach ($model->tempData as $key => $data) {
+                            $html[] = '<small style="font-size: 12px; padding: 2px 5px; margin: 0 5px 5px 0" class="bg-' . ((int)$data['temp'] > 60 ? 'danger' : 'success') . '">' . $data['temp'] . '&#176;C/' . $data['fanspeed'] . '%</small>' . (($key + 1) % 4 == 0 ? '<br/>' : '');
+                        }
+                    }
+
+                    $html[] = '<small class="bg-' . (count(explode(";", $model->rate_details)) < 8 ? 'danger' : 'success') . '">GPU quantity: ' . count(explode(";", $model->rate_details)) . '</small><br/>';
+
+                    return implode('', $html);
                 },
             ],
 

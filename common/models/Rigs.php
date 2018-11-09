@@ -85,7 +85,7 @@ class Rigs extends \yii\db\ActiveRecord
             // }
 
             foreach ( ($gpus = explode(";", $journal->rate_details)) as $key => $rate) {
-                $data['rate' . $key][] = $gpus[$key];
+                $data['rate' . $key][] = $gpus[$key] / 1000;
             }
             if ($key == (144 * $days)) break; // Getting all records within a day (1 record every 10 min) 
         }
