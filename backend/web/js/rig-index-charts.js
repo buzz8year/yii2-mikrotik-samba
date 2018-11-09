@@ -355,6 +355,8 @@ var optionsHashrate = {
             {
                 // display: false,
                 gridLines: {
+                    color: '#fff',
+                    zeroLineColor: 'transparent',
                     // display: false,
                 },
 
