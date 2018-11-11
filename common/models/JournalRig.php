@@ -91,6 +91,12 @@ class JournalRig extends \yii\db\ActiveRecord
         return $this->hasOne(Rigs::className(), ['id' => 'rig_id']);
     }
 
+    public function getTotalHashrate()
+    {
+        $exp = explode(";", $this->rate_shares);
+        return $exp[0] / 1000;
+    }
+
     public function getTempData()
     {
         $data = [];
@@ -103,8 +109,16 @@ class JournalRig extends \yii\db\ActiveRecord
             }
             else {
                 $data[($key - 1) / 2] = [
-                    'temp' => $exp[$key - 1],
-                    'fanspeed' => $value,
+                    'temp' => $exp[$key - 1] . '&#176;C',
+                    'fanspeed' => $value . '%',
+                ];
+            }
+        }
+        if (sizeof($exp) / 2 < 8) {
+            for ($i = sizeof($exp) / 2; $i < 8; $i++) { 
+                $data[$i] = [
+                    'temp' => '--&#176;C',
+                    'fanspeed' => '--%',
                 ];
             }
         }

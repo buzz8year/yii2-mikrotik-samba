@@ -72,6 +72,17 @@ class Rigs extends \yii\db\ActiveRecord
         return $this->hasMany(JournalRig::className(), ['rig_id' => 'id']);
     }
 
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getLastJournal()
+    {
+        return $this->hasOne(JournalRig::className(), ['rig_id' => 'id'])
+            ->orderBy(['id' => SORT_DESC]);
+    }
+
+
     public function getDayRate(int $days = 1)
     {
         $data = [];
@@ -84,9 +95,12 @@ class Rigs extends \yii\db\ActiveRecord
                 $data['time'][] = date("H:i", substr($journal->dtime, 0, 10));
             // }
 
-            foreach ( ($gpus = explode(";", $journal->rate_details)) as $key => $rate) {
-                $data['rate' . $key][] = $gpus[$key] / 1000;
+            // $sum = 0;
+            foreach ( ($gpus = explode(";", $journal->rate_details)) as $kee => $rate) {
+                $data['rate' . $kee][] = $gpus[$kee] / 1000;
+                // $sum = $sum + $gpus[$kee];
             }
+            // $data['rate' . count($gpus)][] = $sum / 1000;
             if ($key == (144 * $days)) break; // Getting all records within a day (1 record every 10 min) 
         }
 

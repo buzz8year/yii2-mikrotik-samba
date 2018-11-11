@@ -2,7 +2,7 @@ html,
 body {
     height: 100%;
     font-size: 16px;
-    font-family: 'pt mono';
+    font-family: 'pt mono', 'courier new';
     /*font-family: 'titillium web', trebuchet ms, tahoma;*/
 }
 
@@ -124,4 +124,12 @@ a.desc:after {
 
 .nav > li > form > button.logout:focus {
     outline: none;
+}
+
+
+.label {
+    padding: .2em .6em .15em;
+    border-radius: 2px;
+    font-weight: normal;
+    margin-right: 1px;
 }

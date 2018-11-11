@@ -2,9 +2,54 @@ Chart.defaults.global.defaultFontFamily = 'pt mono';
 Chart.defaults.global.defaultFontSize = 16;
 
 
+
 var mq = window.matchMedia('(min-width : 0) and (max-width : 768px)');
 
+
+Chart.Tooltip.positioners.custom = function(elements, position) {
+    if (!elements.length) {
+        return false;
+    }
+    var offset = 0;
+    // adjust the offset left or right depending on the event position
+    // if (elements[0]._chart.width / 2 > position.x) {
+    //     offset = 20;
+    // } else {
+    //     offset = -20;
+    // }
+    return {
+        x: 127,
+        y: -15,
+        // x: position.x + offset,
+        // y: position.y
+    }
+}
+
+
+
+var colorArray = [
+    "#0074D9", 
+    "#3D9970", 
+    "AAAAAA", 
+    "#FFDC00", 
+    "#FF4136", 
+    "#85144b",
+    "#F012BE",
+    "#B10DC9",
+];
+
+
+
+
+
+
 function rigHashrate(data, kee) {
+
+    // $(document).on('mouseover', '.chart-container', function(){
+    //     $(this).closest('.table tr').addClass('o');
+    // }).on('mouseleave', '.chart-container', function(){
+    //     $(this).closest('.table tr').removeClass('o');
+    // });
 
     console.log(data);
 
@@ -13,16 +58,7 @@ function rigHashrate(data, kee) {
     var gradient = ctx.createLinearGradient(0, 50, 100, 300);
     var gradientBG = ctx.createLinearGradient(0, 50, 100, 300);
 
-    var colorArray = [
-        "#0074D9", 
-        "#3D9970", 
-        "AAAAAA", 
-        "#FFDC00", 
-        "#FF4136", 
-        "#85144b",
-        "#F012BE",
-        "#B10DC9",
-    ];
+
 
     // gradient.addColorStop(0, 'rgba(35, 155, 145, .9)');   
     // gradient.addColorStop(1, 'rgba(45, 185, 165, .8)');
@@ -33,144 +69,145 @@ function rigHashrate(data, kee) {
     gradientBG.addColorStop(1, 'rgba(80, 100, 190, .3)');
 
     var config = {
+
         type: 'line',
         data: {
             datasets: [
                 {
-                    label: 'rate0',
+                    label: 'GPU0',
                     data: data.rate0,
                     borderWidth: 3,
                     pointBorderWidth: 0,
                     borderColor: colorArray[0] + 'AA',
-                    pointHoverBorderWidth: 1.5,
+                    pointHoverBorderWidth: 3,
                     pointBorderColor: 'transparent',
-                    pointBackgroundColor: 'transparent',
-                    pointHoverBackgroundColor: gradientBG,
+                    pointHoverBorderColor: colorArray[0] + 'AA',
+                    pointHoverBackgroundColor: '#ffffff',
                     backgroundColor: 'transparent',
-                    pointRadius: 8,
-                    pointHoverRadius: 8,
+                    pointRadius: 5,
+                    pointHoverRadius: 5,
                     borderJoinStyle: 'round',
                 },
                 {
-                    label: 'rate1',
+                    label: 'GPU1',
                     data: data.rate1,
                     borderWidth: 3,
                     pointBorderWidth: 0,
                     borderColor: colorArray[1] + 'AA',
-                    pointHoverBorderWidth: 1.5,
+                    pointHoverBorderWidth: 3,
                     pointBorderColor: 'transparent',
-                    pointBackgroundColor: 'transparent',
-                    pointHoverBackgroundColor: gradientBG,
+                    pointHoverBorderColor: colorArray[1] + 'AA',
+                    pointHoverBackgroundColor: '#ffffff',
                     backgroundColor: 'transparent',
-                    pointRadius: 8,
-                    pointHoverRadius: 8,
+                    pointRadius: 5,
+                    pointHoverRadius: 5,
                     borderJoinStyle: 'round',
                 },
                 {
-                    label: 'rate2',
+                    label: 'GPU2',
                     data: data.rate2,
                     borderWidth: 3,
                     pointBorderWidth: 0,
                     borderColor: colorArray[2] + 'AA',
-                    pointHoverBorderWidth: 1.5,
+                    pointHoverBorderWidth: 3,
                     pointBorderColor: 'transparent',
-                    pointBackgroundColor: 'transparent',
-                    pointHoverBackgroundColor: gradientBG,
+                    pointHoverBorderColor: colorArray[2] + 'AA',
+                    pointHoverBackgroundColor: '#ffffff',
                     backgroundColor: 'transparent',
-                    pointRadius: 8,
-                    pointHoverRadius: 8,
+                    pointRadius: 5,
+                    pointHoverRadius: 5,
                     borderJoinStyle: 'round',
                 },
                 {
-                    label: 'rate3',
+                    label: 'GPU3',
                     data: data.rate3,
                     borderWidth: 3,
                     pointBorderWidth: 0,
                     borderColor: colorArray[3] + 'AA',
-                    pointHoverBorderWidth: 1.5,
+                    pointHoverBorderWidth: 3,
                     pointBorderColor: 'transparent',
-                    pointBackgroundColor: 'transparent',
-                    pointHoverBackgroundColor: gradientBG,
+                    pointHoverBorderColor: colorArray[3] + 'AA',
+                    pointHoverBackgroundColor: '#ffffff',
                     backgroundColor: 'transparent',
-                    pointRadius: 8,
-                    pointHoverRadius: 8,
+                    pointRadius: 5,
+                    pointHoverRadius: 5,
                     borderJoinStyle: 'round',
                 },
                 {
-                    label: 'rate4',
+                    label: 'GPU4',
                     data: data.rate4,
                     borderWidth: 3,
                     pointBorderWidth: 0,
                     borderColor: colorArray[4] + 'AA',
-                    pointHoverBorderWidth: 1.5,
+                    pointHoverBorderWidth: 3,
                     pointBorderColor: 'transparent',
-                    pointBackgroundColor: 'transparent',
-                    pointHoverBackgroundColor: gradientBG,
+                    pointHoverBorderColor: colorArray[4] + 'AA',
+                    pointHoverBackgroundColor: '#ffffff',
                     backgroundColor: 'transparent',
-                    pointRadius: 8,
-                    pointHoverRadius: 8,
+                    pointRadius: 5,
+                    pointHoverRadius: 5,
                     borderJoinStyle: 'round',
                 },
                 {
-                    label: 'rate5',
+                    label: 'GPU5',
                     data: data.rate5,
                     borderWidth: 3,
                     pointBorderWidth: 0,
                     borderColor: colorArray[5] + 'AA',
-                    pointHoverBorderWidth: 1.5,
+                    pointHoverBorderWidth: 3,
                     pointBorderColor: 'transparent',
-                    pointBackgroundColor: 'transparent',
-                    pointHoverBackgroundColor: gradientBG,
+                    pointHoverBorderColor: colorArray[5] + 'AA',
+                    pointHoverBackgroundColor: '#ffffff',
                     backgroundColor: 'transparent',
-                    pointRadius: 8,
-                    pointHoverRadius: 8,
+                    pointRadius: 5,
+                    pointHoverRadius: 5,
                     borderJoinStyle: 'round',
                 },
                 {
-                    label: 'rate6',
+                    label: 'GPU6',
                     data: data.rate6,
                     borderWidth: 3,
                     pointBorderWidth: 0,
                     borderColor: colorArray[6] + 'AA',
-                    pointHoverBorderWidth: 1.5,
+                    pointHoverBorderWidth: 3,
                     pointBorderColor: 'transparent',
-                    pointBackgroundColor: 'transparent',
-                    pointHoverBackgroundColor: gradientBG,
+                    pointHoverBorderColor: colorArray[6] + 'AA',
+                    pointHoverBackgroundColor: '#ffffff',
                     backgroundColor: 'transparent',
-                    pointRadius: 8,
-                    pointHoverRadius: 8,
+                    pointRadius: 5,
+                    pointHoverRadius: 5,
                     borderJoinStyle: 'round',
                 },
                 {
-                    label: 'rate7',
+                    label: 'GPU7',
                     data: data.rate7,
                     borderWidth: 3,
                     pointBorderWidth: 0,
                     borderColor: colorArray[7] + 'AA',
-                    pointHoverBorderWidth: 1.5,
+                    pointHoverBorderWidth: 3,
                     pointBorderColor: 'transparent',
-                    pointBackgroundColor: 'transparent',
-                    pointHoverBackgroundColor: gradientBG,
+                    pointHoverBorderColor: colorArray[7] + 'AA',
+                    pointHoverBackgroundColor: '#ffffff',
                     backgroundColor: 'transparent',
-                    pointRadius: 8,
-                    pointHoverRadius: 8,
+                    pointRadius: 5,
+                    pointHoverRadius: 5,
                     borderJoinStyle: 'round',
                 },
-                {
-                    label: 'rate8',
-                    data: data.rate8,
-                    borderWidth: 3,
-                    pointBorderWidth: 0,
-                    borderColor: colorArray[8] + 'AA',
-                    pointHoverBorderWidth: 1.5,
-                    pointBorderColor: 'transparent',
-                    pointBackgroundColor: 'transparent',
-                    pointHoverBackgroundColor: gradientBG,
-                    backgroundColor: 'transparent',
-                    pointRadius: 8,
-                    pointHoverRadius: 8,
-                    borderJoinStyle: 'round',
-                },
+                // {
+                //     label: 'GPU8',
+                //     data: data.rate8,
+                //     borderWidth: 3,
+                //     pointBorderWidth: 0,
+                //     borderColor: colorArray[8] + 'AA',
+                //     pointHoverBorderWidth: 3,
+                //     pointBorderColor: 'transparent',
+                //     pointHoverBorderColor: colorArray[8] + 'AA',
+                //     pointHoverBackgroundColor: '#ffffff',
+                //     backgroundColor: 'transparent',
+                //     pointRadius: 5,
+                //     pointHoverRadius: 5,
+                //     borderJoinStyle: 'round',
+                // },
                 // {
                 //     label: 'Reported',
                 //     // yAxisID: 'B',
@@ -297,6 +334,7 @@ function rigHashrate(data, kee) {
 
 var optionsHashrate = {
 
+
     legend: {
         display: false,
         position: 'bottom',
@@ -312,15 +350,15 @@ var optionsHashrate = {
     },
     elements: {
         line: {
-            tension: 0,
+            tension: .3,
         }
     },
     layout: {
         padding: {
             // left: 22,
             // right: 22,
-            // bottom: 22,
-            top: 10,
+            // bottom: 50,
+            // top: 20,
         }
     },
     scales: {
@@ -358,10 +396,11 @@ var optionsHashrate = {
             {
                 // display: false,
                 gridLines: {
-                    color: '#ddd',
+                    color: 'rgba(0,0,0,0.035)',
                     zeroLineColor: 'transparent',
+                    borderDash: [4, 4],
                     drawBorder: false,
-                    display: false,
+                    // display: false,
                 },
 
                 ticks: {
@@ -373,30 +412,66 @@ var optionsHashrate = {
     },
     tooltips: {
         callbacks: {
+            labelColor: function(tooltipItem, chart) {
+                    return {
+                        borderColor: 'rgb(255, 0, 0)',
+                        backgroundColor: 'rgb(255, 0, 0)'
+                    }
+                },
             title: function(tooltipItem, data) {
-                return data['labels'][tooltipItem[0]['index']];
+                return;
+                // return data['labels'][tooltipItem[0]['index']];
             },
-            // labelTextColor:function(tooltipItem, chart){
-            //     return '#ff0000';
+            labelTextColor: function(tooltipItem, chart){
+                return colorArray[tooltipItem.datasetIndex];
+            },
+            // label: function(tooltipItem, data) {
+            //     // var multiLine = [(datasetCurrent['data'][tooltipItem['index']] / 1000000).toFixed(2) + ' MH/s'];
+            //     // multiLine.push((datasetAverage['data'][tooltipItem['index']] / 1000000).toFixed(2) + ' MH/s (Avg.)');
+            //     // multiLine.push((datasetReported['data'][tooltipItem['index']] / 1000000).toFixed(2) + ' MH/s (Reported)');
+
+            //     // var multiLine = [];
+            //     // var oneLine1 = '';
+            //     // var oneLine2 = '';
+            //     // var oneLine3 = '';
+
+            //     for (i = 0; i < 8; i++) {
+            //         var dataset = data['datasets'][i];
+            //         // if ((dataset.data).length) multiLine.push((dataset['data'][tooltipItem['index']] / 1).toFixed(2) + ' MH/s');
+            //         // if ((dataset.data).length) {
+            //         //     if (i < 3) {
+            //         //         oneLine1 = oneLine1 + 'GPU' + i + ': ' + (dataset['data'][tooltipItem['index']] / 1).toFixed(2) + ' MH/s - ';
+            //         //     }
+            //         //     if (i > 2 && i < 6) {
+            //         //         oneLine2 = oneLine2 + (dataset['data'][tooltipItem['index']] / 1).toFixed(2) + ' MH/s - ';
+            //         //     }
+            //         //     else {
+            //         //         oneLine3 = oneLine3 + (dataset['data'][tooltipItem['index']] / 1).toFixed(2) + ' MH/s - ';
+            //         //     }
+            //         // } 
+            //     }
+
+            //     // bodyLines.forEach(function(body, i) {
+            //     //     var colors = tooltip.labelColors[i];
+            //     //     var style = 'background:' + colors.backgroundColor;
+            //     //     style += '; border-color:' + colors.borderColor;
+            //     //     style += '; border-width: 2px';
+            //     //     var span = '<span class="chartjs-tooltip-key" style="' + style + '"></span>';
+            //     //     innerHtml += '<div><span>' + span + body + '</span></div>';
+            //     // });
+
+            //     // multiLine.push(oneLine1, oneLine2, oneLine3);
+            //     // multiLine.push((dataset['data'][tooltipItem['index']] / 1).toFixed(2) + ' MH/s');
+
+            //     // var label = data.datasets[tooltipItem.datasetIndex].label;
+            //     // return multiLine;
+            //     // return oneLine;
+
+            //     var label = (dataset['data'][tooltipItem['index']] / 1).toFixed(2) + ' MH/s';
+            //     return label;
             // },
-            label: function(tooltipItem, data) {
-                var datasetCurrent = data['datasets'][0];
-                // var datasetReported = data['datasets'][1];
-                // var datasetAverage = data['datasets'][2];
-
-                // var multiLine = [(datasetCurrent['data'][tooltipItem['index']] / 1000000).toFixed(2) + ' MH/s'];
-                // multiLine.push((datasetAverage['data'][tooltipItem['index']] / 1000000).toFixed(2) + ' MH/s (Avg.)');
-                // multiLine.push((datasetReported['data'][tooltipItem['index']] / 1000000).toFixed(2) + ' MH/s (Reported)');
-
-                var multiLine = [];
-
-                if ((datasetCurrent.data).length) multiLine.push((datasetCurrent['data'][tooltipItem['index']] / 1).toFixed(2) + ' MH/s');
-                // if ((datasetReported.data).length) multiLine.push((datasetAverage['data'][tooltipItem['index']] / 1).toFixed(2) + ' MH/s (Avg.)');
-                // if ((datasetAverage.data).length) multiLine.push((datasetReported['data'][tooltipItem['index']] / 1).toFixed(2) + ' MH/s (Reported)');
-
-                return multiLine;
-            },
         },
+        mode: 'x-axis',
         xPadding: 15,
         yPadding: 15,
         cornerRadius: 0,
@@ -406,16 +481,17 @@ var optionsHashrate = {
         // borderColor: 'rgba(0,0,0,.1)',
         // backgroundColor: '#FFF',
         // backgroundColor: 'rgba(255,255,255,.9)',
-        backgroundColor: 'rgba(30,30,30,.8)',
+        backgroundColor: 'rgba(255,255,255,.9)',
         titleFontSize: 16,
         // titleFontColor: 'rgba(80, 130, 200, 1)',
-        titleFontColor: '#FFF',
+        titleFontColor: '#444',
         // bodyFontColor: '#000',
-        bodyFontColor: '#FFF',
-        bodyFontSize: 14,
+        bodyFontColor: '#444',
+        bodyFontSize: 15,
         displayColors: false,
-        // yAlign: 'bottom',
-        // xAlign: 'center',
+        position: 'custom',
+        // yAlign: 'center',
+        xAlign: 'right',
     }
 };
 
