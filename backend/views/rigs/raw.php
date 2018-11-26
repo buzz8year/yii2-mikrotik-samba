@@ -12,5 +12,12 @@ $this->title = $model->hostname;
 // echo $model->lastJournal->response_html;
 print_r($raw);
 
+
+
+$this->registerJs('setTimeout(function(){ location.reload(); }, 10000);');
+
+
 ?>
+
+
 
