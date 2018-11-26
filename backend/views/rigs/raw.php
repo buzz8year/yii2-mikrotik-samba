@@ -13,11 +13,12 @@ $this->title = $model->hostname;
 print_r($raw);
 
 
-
-$this->registerJs('setTimeout(function(){ location.reload(); }, 10000);');
-
-
 ?>
+
+
+<script type="text/javascript">
+setTimeout(function(){ location.reload(); }, 10000);
+</script>
 
 
 
