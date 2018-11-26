@@ -34,11 +34,35 @@ var colorArray = [
 
 
 
+function rigExpand(data) {
+
+        // console.log(data);
+
+        $('#rig-first .chart-container').html('<div class="pull-left chart-container" style="height: 160px; width: 70vw"> <canvas id="chart-first"></canvas> </div>');
+
+        $('#rig-first .span-hostname').html(data['hostname']);
+        $('#rig-first .span-ip').html(data['ip']);
+
+        if (data['temps']) {
+            html = [];
+            for (var i = data['temps'].length - 1; i >= 0; i--) {
+                html += '<small class="span-temp ' + (parseInt(data['temps'][i]['temp']) > 60 || !parseInt(data['temps'][i]['temp']) ? 'text-danger' : '') + '">' + data['temps'][i]['temp'] + '/' + data['temps'][i]['fanspeed'] + '</small>' + (i % 4 == 0 ? '<br/>' : '');
+            }
+            $('#rig-first .div-temp').html(html);
+        }
+
+        rigFirstHashrate(data['dayRate']);
+}
 
 
-function rigHashrate(data, kee) {
 
-    var ctx = document.getElementById('chart-hashrate-' + kee).getContext('2d');
+function rigFirstHashrate(data) {
+
+    console.log(data);
+
+    // rigExpand();
+
+    var ctx = document.getElementById('chart-first').getContext('2d');
     var gradient = ctx.createLinearGradient(0, 50, 100, 300);
     var gradientBG = ctx.createLinearGradient(0, 50, 100, 300);
 
@@ -251,62 +275,6 @@ function rigHashrate(data, kee) {
 
 
 
-// function rigShares(data) {
-
-//     if (data.validShares) {
-//         var ctx = document.getElementById('chart-shares').getContext('2d');
-//         var gradient = ctx.createLinearGradient(0, 150, 250, 300);
-//         var gradientBG = ctx.createLinearGradient(0, 150, 250, 200);
-
-//         gradient.addColorStop(0, 'rgba(60, 160, 240, .9)');   
-//         gradient.addColorStop(1, 'rgba(80, 90, 160, .9');
-
-//         gradientBG.addColorStop(0, 'rgba(60, 160, 240, .7)');   
-//         gradientBG.addColorStop(1, 'rgba(80, 100, 190, .7)');
-
-//         var mixedChart = new Chart(ctx, {
-//             type: 'bar',
-//             data: {
-//                 datasets: [
-//                     // {
-//                     //     label: 'Stale',
-//                     //     // yAxisID: 'B',
-//                     //     data: data.staleShares,
-//                     //     backgroundColor: 'transparent',
-//                     //     borderWidth: 3,
-//                     // },
-//                     {
-//                         label: 'Valid',
-//                         // yAxisID: 'B',
-//                         // data: data.validShares.slice(data.validShares.length - 25, data.validShares.length),
-//                         data: data.validShares.slice(data.validShares.length * 0.75, data.validShares.length),
-//                         // data: data.validShares,
-//                         // backgroundColor: 'transparent',
-//                         borderWidth: 0,
-//                         borderColor: 'rgba(90, 100, 155, 0)',
-//                         backgroundColor: mq.matches ? gradientBG : gradient,
-//                         hoverBackgroundColor: 'rgba(80, 90, 190, .6)',
-//                         // backgroundColor: 'rgba(30, 150, 210, .8)',
-//                     },
-//                 ],
-//                 // labels: data.time.slice(data.time.length - 25, data.time.length),
-//                 // labels: data.time.slice(data.time.length / 2, data.time.length),
-//                 labels: mq.matches ? data.time.slice(data.time.length - 32, data.time.length) : data.time.slice(data.time.length * 0.75, data.time.length),
-//                 // labels: data.time,
-//             },
-//             options: optionsShares,
-
-//         });
-
-//         $('.count-shares').html(mixedChart.data.labels.length);
-//         $('.count-shares').parent().fadeIn();
-//     }
-// }
-
-
-
-
-
 
 
 
@@ -497,249 +465,9 @@ var optionsHashrate = {
 
 
 
-var optionsShares = {
-
-    legend: {
-        display: false,
-        position: 'bottom',
-    },
-    animation: {
-        duration: 0
-    },
-    maintainAspectRatio: false,
-    // chartArea: {
-    //     backgroundColor: '#5ad'
-    // },
-    plugins: {
-        filler: {
-            propagate: true,
-        }
-    },
-    elements: {
-        line: {
-            tension: 0,
-        }
-    },
-    layout: {
-        padding: {
-            // left: 22,
-            // right: 22,
-            // bottom: 22,
-            top: 22,
-        }
-    },
-    scales: {
-        yAxes: [
-            {
-                // display: false,
-                gridLines: {
-                    // display: false
-                },
-                ticks: {
-                    display: false,
-                    fontSize: 12,
-                    min: 0,
-                },
-                afterFit: function(scaleInstance) {
-                    if (mq.matches) {
-                        scaleInstance.width = 0;
-                    } else {
-                        // scaleInstance.width = 63;
-                        scaleInstance.width = 30;
-                    }
-                },
-                gridLines: {
-                    display: true,
-                    color: '#eee',
-                    drawBorder: false,
-                    zeroLineColor: 'transparent',
-                },
-            }
-        ],
-        xAxes: [
-            {
-                display: false,
-                // gridLines: {
-                //     display: false,
-                // },
-                // ticks: {
-                //     display: false
-                // }
-            }
-        ]
-    },
-    tooltips: {
-        callbacks: {
-            title: function(tooltipItem, data) {
-                return data['labels'][tooltipItem[0]['index']];
-            },
-            // label: function(tooltipItem, data) {
-            //     var dataset = data['datasets'][0];
-            //     return Math.round(dataset['data'][tooltipItem['index']] / 1000000) + ' MH/s';
-            //     // return data['datasets'][0]['data'][tooltipItem['index']];
-            // },
-        },
-        xPadding: 15,
-        yPadding: 15,
-        cornerRadius: 0,
-        // multiKeyBackground: '#000',
-        titleFontStyle: 'normal',
-        // borderWidth: 5,
-        // borderColor: 'rgba(0,0,0,.1)',
-        // backgroundColor: '#FFF',
-        // backgroundColor: 'rgba(255,255,255,.9)',
-        backgroundColor: 'rgba(30,30,30,.8)',
-        titleFontSize: 16,
-        // titleFontColor: 'rgba(80, 130, 200, 1)',
-        titleFontColor: '#FFF',
-        // bodyFontColor: '#000',
-        bodyFontColor: '#FFF',
-        bodyFontSize: 14,
-        displayColors: false,
-        // yAlign: 'bottom',
-        // xAlign: 'center',
-    }
-};
 
 
 
 
 
 
-
-
-function rigAccruals(data) {
-
-    if (data) {
-        var ctx = document.getElementById('chart-accruals').getContext('2d');
-        var gradient = ctx.createLinearGradient(0, 150, 250, 400);
-        var gradientBG = ctx.createLinearGradient(0, 150, 250, 400);
-
-        gradient.addColorStop(0, 'rgba(60, 160, 240, .95)');   
-        gradient.addColorStop(1, 'rgba(80, 90, 150, .95)');
-
-        gradientBG.addColorStop(0, 'rgba(60, 160, 240, .5)');   
-        gradientBG.addColorStop(1, 'rgba(80, 100, 190, .5)');
-
-        var chartAccruals = new Chart(ctx, {
-            type: 'line',
-            data: {
-                datasets: [
-                    {
-                        label: 'Accruals',
-                        data: data.accruals,
-                        borderWidth: 1.2,
-                        borderColor: gradient,
-                        backgroundColor : gradientBG,
-                        pointRadius: 6,
-                        pointHoverRadius: 6,
-                        pointBackgroundColor: '#fff',
-                        pointHoverBackgroundColor: gradient,
-                        pointBorderWidth: 1.2,
-                        pointBorderColor: gradient,
-                        pointHoverBorderColor: gradient,
-                    },
-                ],
-                labels: data.time
-            },
-            options: optionsAccruals,
-
-        });
-
-        // chartAccruals.config.options.scales.yAxes[0].ticks.min = Math.min.apply(null, data.accruals) * 0.996;
-        // chartAccruals.config.options.scales.yAxes[0].ticks.max = Math.max.apply(null, data.accruals);
-        // chartAccruals.update();
-    }
-}
-
-
-var optionsAccruals = {
-
-    legend: {
-        display: false,
-        position: 'bottom',
-    },
-    animation: {
-        // duration: 0
-    },
-    maintainAspectRatio: false,
-    plugins: {
-        filler: {
-            propagate: true,
-        }
-    },
-    elements: {
-        line: {
-            tension: 0,
-        }
-    },
-    layout: {
-        padding: {
-            // left: 22,
-            right: 8,
-            // bottom: 22,
-            top: 80,
-        }
-    },
-    scales: {
-        yAxes: [
-            {
-                // display: false,
-                gridLines: {
-                    // display: false
-                },
-                ticks: {
-                    display: false,
-                    fontSize: 12,
-                    min: 0,
-                    // min: 0.0075,
-                },
-                afterFit: function(scaleInstance) {
-                    // scaleInstance.width = 55;
-                },
-                gridLines: {
-                    display: true,
-                    color: '#eee',
-                    drawBorder: false,
-                    zeroLineColor: 'transparent',
-                },
-            }
-        ],
-        xAxes: [
-            {
-                display: false,
-                gridLines: {
-                    display: false,
-                },
-                ticks: {
-                    // display: false
-                }
-            }
-        ]
-    },
-    tooltips: {
-        callbacks: {
-            title: function(tooltipItem, data) {
-                return data['labels'][tooltipItem[0]['index']];
-            },
-            // label: function(tooltipItem, data) {
-            //     var dataset = data['datasets'][0];
-            //     return Math.round(dataset['data'][tooltipItem['index']] / 1000000) + ' MH/s';
-            //     // return data['datasets'][0]['data'][tooltipItem['index']];
-            // },
-        },
-        xPadding: 15,
-        yPadding: 15,
-        cornerRadius: 0,
-        titleFontStyle: 'normal',
-        backgroundColor: 'rgba(30,30,30,.8)',
-        titleFontSize: 16,
-        titleFontColor: '#FFF',
-        // bodyFontColor: '#000',
-        bodyFontColor: '#FFF',
-        bodyFontSize: 14,
-        displayColors: false,
-        yAlign: 'bottom',
-        // xAlign: 'center',
-    }
-};

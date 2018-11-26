@@ -24,23 +24,50 @@ class RigsController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
+                    'mutual' => ['POST'],
+                    'info' => ['POST'],
                 ],
             ],
         ];
+    }
+
+    // public function beforeAction($action) {
+    //     $this->enableCsrfValidation = false;
+    //     return parent::beforeAction($action);
+    // }
+
+    public function actionMutual()
+    {
+        if ($post = Yii::$app->request->post()) {
+            if ($post['type'] == 'json') {
+                $data = Rigs::mutualData();
+                return json_encode($data);
+            }
+        }
     }
 
     /**
      * Lists all Rigs models.
      * @return mixed
      */
-    public function actionIndex()
+    public function actionIndex(int $id = 1)
     {
         $searchModel = new RigsSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        $cache = Yii::$app->cache->get('rigsLastData');
+
+        if ($cache) {
+            $dataProvider = $cache;
+        } else {
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+            Yii::$app->cache->set('rigsLastData', $dataProvider, 600);
+        }
+
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'modelFirst' => $this->findModel($id),
         ]);
     }
 
@@ -109,6 +136,44 @@ class RigsController extends Controller
         return $this->redirect(['index']);
     }
 
+
+
+    public function actionRaw($id)
+    {
+        $this->layout = false;
+        $model = $this->findModel($id);
+        $data = [];
+        exec('cat /opt/raw-rig.sh ' . $id, $data);
+        
+        return $this->render('raw', [
+            'model' => $this->findModel($id),
+            'raw' => $data,
+        ]);
+    }
+
+
+    public function actionInfo(int $id = 1)
+    {
+        if (($post = Yii::$app->request->post()) && $post['id']) {
+            if (($model = Rigs::findOne($post['id'])) !== null) {
+                $data = [
+                    'ip' => $model->ip,
+                    'runtime' => 'Runtime: ' . (int)($model->lastJournal->runtime / 60) . ' h ' . ($model->lastJournal->runtime % 60) . ' min',
+                    'hostname' => $model->hostname,
+                    'dayRate' => $model->dayRate,
+                    'temps' => $model->lastJournal->tempData,
+                ];
+                return json_encode($data, true);
+            }
+        }
+
+        throw new NotFoundHttpException('The requested model does not exist.');
+    }
+
+
+
+
+
     /**
      * Finds the Rigs model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
@@ -124,4 +189,7 @@ class RigsController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+
+
+
 }

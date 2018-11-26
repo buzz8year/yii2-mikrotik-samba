@@ -104,6 +104,59 @@ class Rigs extends \yii\db\ActiveRecord
             if ($key == (144 * $days)) break; // Getting all records within a day (1 record every 10 min) 
         }
 
-        return json_encode($data);
+        return $data;
+        // return json_encode($data);
     }
+
+
+
+
+
+    public static function mutualData(int $days = 1)
+    {   
+        $data = [
+            'time' => [],
+            'rate' => [],
+            'rejected' => 0,
+            'shares' => 0,
+            'gpus' => 0,
+            'up' => 0,
+        ];
+
+        $polls = Poll::find()->all();
+
+        foreach ($polls as $key => $poll) {
+
+            $journals = JournalRig::find()->where(['poll_id' => $poll->id])->groupBy(['rig_id'])->distinct()->all();
+
+            $rate = 0;
+
+            foreach ($journals as $key => $journal) {
+
+                $exp = [];
+                $exp['rate'] = explode(';', $journal->rate_shares);
+                $exp['pci'] = explode(';', $journal->pci_bus);
+
+                $rate += $exp['rate'][0] / 1000;
+
+                $data['up']++;
+                $data['gpus'] += sizeof($exp['pci']);
+
+                $data['shares'] += $exp['rate'][1];
+                $data['rejected'] += $exp['rate'][2];
+
+                unset($exp);
+            }
+
+            $data['time'][] = date("H:i", substr($poll->poll_time, 0, 10));
+            $data['rate'][] = round($rate / 1000, 2);
+
+            unset($rate);
+        }
+
+        return $data;
+    }
+
+
+
 }

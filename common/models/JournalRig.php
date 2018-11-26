@@ -94,7 +94,7 @@ class JournalRig extends \yii\db\ActiveRecord
     public function getTotalHashrate()
     {
         $exp = explode(";", $this->rate_shares);
-        return $exp[0] / 1000;
+        return number_format($exp[0] / 1000, 2);
     }
 
     public function getTempData()
