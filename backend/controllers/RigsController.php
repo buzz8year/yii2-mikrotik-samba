@@ -142,9 +142,9 @@ class RigsController extends Controller
     {
         $this->layout = false;
         $model = $this->findModel($id);
-        $data = [];
-        exec('cat /opt/raw-rig.sh ' . $id, $data);
-        
+        $data = shell_exec('curl --max-time 2 http://' . $model["ip"] . ':3333 2>&1');
+        // exec('cat /opt/raw-rig.sh ' . $id, $data);
+
         return $this->render('raw', [
             'model' => $this->findModel($id),
             'raw' => $data,
