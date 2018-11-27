@@ -153,7 +153,7 @@ footer {
     position: absolute;
 }
 .count-unit {
-    margin-left: 6px;
+    margin-left: 14px;
 }
 .link-raw {
     color: rgba(255,255,255,.3);
@@ -175,7 +175,7 @@ footer {
 
     <div id="raw-html">
         <span class="raw-corner">
-            <span>Scrollable <br/>Auto-updating in <span id="count-sec">9</span><span class="count-unit">s</span> </span><br/>
+            <span>Scrollable <br/>Auto-updating in <span id="count-sec">15</span><span class="count-unit">sec.</span> </span><br/>
             <span>
                 <?php echo Html::a('<i class="glyphicon glyphicon-align-left" style="top: 0; font-size: 12px"></i> New tab', 
                     ['rigs/raw', 'id' => $modelFirst->id],
