@@ -54,19 +54,20 @@ $(document).on('click', '.click-rig', function(){
     });
 });
 
-
-function incrementSeconds(sec, el) {
-    sec += 1;
-    el.innerText = sec;
-}
-
 function countSec() {
-    var sec = 0;
     var el = document.getElementById('count-sec');
+    var sec = 10;
+
     
-    setInterval(function() {
-        incrementSeconds(sec, el)
+    var timer = setInterval(function() {
+        sec -= 1;
+        el.innerText = sec;
+        if (sec <= 0) {
+            clearInterval(timer);
+            sec = 10;
+        }
     }, 1000);
+
 }
 
 
@@ -85,6 +86,8 @@ function rawHtml(id) {
         },
         success: function(data){
             $('#div-raw').html(data);
+            $('#count-sec').html(10);
+            countSec();
         },
     });
 }

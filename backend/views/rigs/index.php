@@ -294,6 +294,7 @@ $this->registerJs('
     setInterval(function () {
         rawHtml(' . $modelFirst->id . ');
     }, 10000);
+    countSec();
 '); 
 
 ?>
