@@ -126,7 +126,7 @@ footer {
     padding-left: 60px;
 }
 #raw-html {
-    width: 100vw;
+    width: calc(100vw - 35px);
     height: 300px;
     overflow-x: hidden;
     overflow-y: scroll;
@@ -134,6 +134,11 @@ footer {
     background-color: #3a3a3a;
     font-size: 12px;
     margin: -30px 0 0 -15px;
+    box-sizing: content-box;
+}
+#raw-html::-webkit-scrollbar {
+    background-color: transparent;
+    width: 0;
 }
 .raw-corner {
     position: absolute;
@@ -144,6 +149,9 @@ footer {
 }
 #count-sec {
     position: absolute;
+}
+.count-unit {
+    margin-left: 6px;
 }
 .link-raw {
     color: rgba(255,255,255,.3);
@@ -165,7 +173,7 @@ footer {
 
     <div id="raw-html">
         <span class="raw-corner">
-            <span>Scrollable <br/>Auto-updating in <span id="count-sec">20</span></span><br/>
+            <span>Scrollable <br/>Auto-updating in <span id="count-sec">9</span><span class="count-unit">s</span> </span><br/>
             <span>
                 <?php echo Html::a('<i class="glyphicon glyphicon-align-left" style="top: 0; font-size: 12px"></i> New tab', 
                     ['rigs/raw', 'id' => $modelFirst->id],
@@ -297,7 +305,7 @@ $this->registerJs('
 
     setInterval(function () {
         rawHtml(' . $modelFirst->id . ');
-    }, 20000);
+    }, 10000);
 
     countSec();
 '); 
