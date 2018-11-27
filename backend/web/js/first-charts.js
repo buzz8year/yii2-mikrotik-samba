@@ -66,11 +66,16 @@ function countSec() {
 
         var timer = setInterval(function() {
             sec -= 1;
+            if (sec < 10) {
+                sec = ('0' + sec).slice(-2);
+            }
+
             el.innerText = sec;
             if (sec <= 0) {
                 clearInterval(timer);
                 sec = 15;
             }
+            
         }, 1000);
 
     }
