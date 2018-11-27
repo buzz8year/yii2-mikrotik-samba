@@ -162,7 +162,7 @@ footer {
 
     <div id="raw-html">
         <span class="raw-corner">
-            <span>Scrollable <br/>Auto-updating in 10s</span><br/>
+            <span>Scrollable <br/>Auto-updating in <span id="count-sec">10</span>s</span><br/>
             <span>
                 <?php echo Html::a('<i class="glyphicon glyphicon-align-left" style="top: 0; font-size: 12px"></i> New tab', 
                     ['rigs/raw', 'id' => $modelFirst->id],
@@ -170,7 +170,7 @@ footer {
                 ); ?>
             </span>
         </span>
-        <div>
+        <div id="div-raw">
             <?= $modelFirst->lastJournal->response_html ?>
         </div>
     </div>

@@ -55,11 +55,24 @@ $(document).on('click', '.click-rig', function(){
 });
 
 
+function incrementSeconds(sec, el) {
+    sec += 1;
+    el.innerText = sec;
+}
+
+function countSec() {
+    var sec = 0;
+    var el = document.getElementById('count-sec');
+    
+    setInterval(function() {
+        incrementSeconds(sec, el)
+    }, 1000);
+}
 
 
 function rawHtml(id) {
-    var element = document.getElementById('raw-html');
-    element.scrollTop = element.scrollHeight;
+    var e = document.getElementById('raw-html');
+    e.scrollTop = e.scrollHeight;
 
     $.ajax({
         url: 'index.php?r=rigs/raw&id=' + id,
@@ -71,7 +84,7 @@ function rawHtml(id) {
             console.log(id, data);
         },
         success: function(data){
-            console.log(data);
+            $('#div-raw').html(data);
         },
     });
 }
