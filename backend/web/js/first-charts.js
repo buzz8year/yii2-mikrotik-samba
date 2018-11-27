@@ -152,8 +152,9 @@ function rigExpand(data) {
 
 
         rigFirstHashrate(data['dayRate']);
+        $('#div-raw').html('');
         rawHtml(data['id']);
-        
+
 }
 
 
