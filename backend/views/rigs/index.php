@@ -135,7 +135,11 @@ footer {
     font-size: 12px;
     margin: -30px 0 0 -15px;
     box-sizing: content-box;
+    /*opacity: .6;*/
 }
+/*#raw-html:hover {
+    opacity: 1;
+}*/
 #raw-html::-webkit-scrollbar {
     background: transparent;
 }
