@@ -137,14 +137,16 @@ footer {
     box-sizing: content-box;
 }
 #raw-html::-webkit-scrollbar {
-    background-color: transparent;
-    width: 0;
+    background: transparent;
+}
+#raw-html::-webkit-scrollbar-thumb {
+    background-color: rgba(255,255,255,.05);
 }
 .raw-corner {
     position: absolute;
     right: 0;
-    top: 265px;
-    right: 50px;
+    top: 300px;
+    right: 30px;
     color: rgba(255,255,255,.3);
 }
 #count-sec {
