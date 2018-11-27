@@ -130,7 +130,7 @@ footer {
     height: 300px;
     overflow-x: hidden;
     overflow-y: scroll;
-    padding: 30px 0 30px 20px;
+    padding: 30px 0 5px 20px;
     background-color: #3a3a3a;
     font-size: 12px;
     margin: -30px 0 0 -15px;
@@ -281,8 +281,11 @@ $this->registerJs('mutualHashrate(' . json_encode(Rigs::mutualData()) . ');');
 $this->registerJs('rigFirstHashrate(' . json_encode($modelFirst->dayRate) . ');');
 
 $this->registerJs('
-    setInterval(rawHtml(' . $modelFirst->id . '), 10000);
+    rawHtml(' . $modelFirst->id . ');
+    setInterval(function () {
+        rawHtml(' . $modelFirst->id . ');
+    }, 10000);
 '); 
 
-?> 
+?>
 
