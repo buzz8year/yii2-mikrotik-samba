@@ -99,6 +99,7 @@ function rawHtml(id) {
             $('#div-raw').html(data);
             $('#count-sec').html(9);
             countSec();
+            rawScroll();
         },
     });
 }
