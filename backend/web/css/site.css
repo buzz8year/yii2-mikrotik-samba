@@ -131,5 +131,8 @@ a.desc:after {
     padding: .2em .6em .15em;
     border-radius: 2px;
     font-weight: normal;
-    margin-right: 1px;
+    margin: 0 2px 2px 0;
+    float: left;
+    font-size: 13px;
+    text-shadow: -1px -1px 0 rgba(0,0,0,.1);
 }

@@ -71,17 +71,17 @@ function mutualHashrate(data) {
                 {
                     label: 'Total Rate',
                     data: data.rate,
-                    borderWidth: 3,
+                    borderWidth: 1,
                     pointBorderWidth: 0,
-                    borderColor: colorArray[0] + 'AA',
+                    borderColor: '#f0ad4e',
                     // borderColor: colorArray[0] + 'AA',
                     pointHoverBorderWidth: 0,
                     pointBorderColor: 'transparent',
                     pointBackgroundColor: 'transparent',
                     pointHoverBorderColor: 'transparent',
                     pointHoverBackgroundColor: colorArray[0] + 'AA',
-                    backgroundColor: 'transparent',
-                    // backgroundColor: colorArray[0] + 'AA',
+                    // backgroundColor: 'transparent',
+                    backgroundColor: '#f0ad4e33',
                     pointRadius: 7,
                     pointHoverRadius: 7,
                     borderJoinStyle: 'round',
@@ -121,15 +121,15 @@ var optionsMutual = {
     },
     elements: {
         line: {
-            tension: .5,
+            tension: 0.0,
         }
     },
     layout: {
         padding: {
-            // left: 22,
-            // right: 22,
-            // bottom: 50,
-            // top: 20,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            top: 0,
         }
     },
     scales: {
@@ -144,6 +144,7 @@ var optionsMutual = {
                     //     return label / 1000000;
                     // }
                 },
+
                 // afterFit: function(scaleInstance, data) {
 
                 //     if (mq.matches) {
@@ -155,10 +156,10 @@ var optionsMutual = {
                 // display: false,
                 gridLines: {
                     display: false,
-                    color: 'rgba(0,100,50, .2)',
+                    color: 'rgba(0,100,50, .3)',
                     // drawBorder: mq.matches ? false : true,
                     drawBorder: false,
-                    borderDash: [6, 68.3],
+                    // borderDash: [6, 68.3],
                     zeroLineColor: 'transparent',
                 },
             }
@@ -167,13 +168,15 @@ var optionsMutual = {
             {
                 // display: false,
                 gridLines: {
-                    color: 'rgba(0,120,50, .4)',
+                    color: 'rgba(0,120,50, .3)',
                     zeroLineColor: 'transparent',
-                    borderDash: [3, 30],
+                    // borderDash: [3, 30],
                     drawBorder: false,
                     zeroLineColor: 'transparent',
                     // display: false,
                 },
+
+                position: 'top',
 
                 ticks: {
                     fontSize: 12,

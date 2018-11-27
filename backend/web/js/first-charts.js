@@ -34,6 +34,49 @@ var colorArray = [
 
 
 
+$(document).on('click', '.click-rig', function(){
+    var id = $(this).attr('data-rig');
+    var csrfToken = $('meta[name=\"csrf-token\"]').attr('content');
+
+    $.ajax({
+        url: 'index.php?r=rigs/info',
+        method: 'post',
+        data: {'id': id, '_csrf-backend': csrfToken},
+        dataType: 'json',
+        cache: false,
+        error: function(data){
+            console.log(data);
+        },
+        success: function(data){
+            // console.log(data);
+            rigExpand(data);
+        },
+    });
+});
+
+
+
+
+function rawHtml(id) {
+    var element = document.getElementById('raw-html');
+    element.scrollTop = element.scrollHeight;
+
+    $.ajax({
+        url: 'index.php?r=rigs/raw&id=' + id,
+        method: 'post',
+        data: {'type': 'json', '_csrf-backend': csrfToken},
+        dataType: 'json',
+        cache: false,
+        error: function(data){
+            console.log(id, data);
+        },
+        success: function(data){
+            console.log(data);
+        },
+    });
+}
+
+
 function rigExpand(data) {
 
         // console.log(data);
@@ -50,6 +93,36 @@ function rigExpand(data) {
             }
             $('#rig-first .div-temp').html(html);
         }
+
+        // STATE Label
+        if (data['state']) {
+            $('.label-up').html('State: UP').removeClass('label-danger').addClass('label-success');
+        } 
+        else {
+            $('.label-up').html('State: DOWN').removeClass('label-success').addClass('label-danger');
+        }
+
+        // COUNT Label
+        $('.label-count').html('GPUs: ' + data['count']);
+        if (data['count'] < 8) {
+            $('.label-count').removeClass('label-success').addClass('label-danger');
+        }
+        else {
+            $('.label-count').removeClass('label-danger').addClass('label-success');
+        }
+
+        // HASHRATE Label
+        $('.label-rate').html('Rate: ' + data['rate'] + ' MH/s');
+        if (data['rate'] < 220) {
+            $('.label-rate').removeClass('label-success label-warning').addClass('label-danger');
+        } 
+        else if (data['rate'] > 220 && data['rate'] < 240) {
+            $('.label-rate').removeClass('label-danger label-success').addClass('label-warning');
+        }
+        else {
+            $('.label-rate').removeClass('label-danger label-warning').addClass('label-success');
+        }
+
 
         rigFirstHashrate(data['dayRate']);
 }
@@ -84,13 +157,13 @@ function rigFirstHashrate(data) {
                 {
                     label: 'GPU0',
                     data: data.rate0,
-                    borderWidth: 0,
+                    borderWidth: 2,
                     pointBorderWidth: 0,
                     borderColor: colorArray[0] + 'AA',
                     pointHoverBorderWidth: 0,
                     pointBorderColor: 'transparent',
                     pointHoverBorderColor: 'transparent',
-                    pointHoverBackgroundColor: colorArray[0] + 'AA',
+                    pointHoverBackgroundColor: colorArray[0],
                     backgroundColor: 'transparent',
                     pointRadius: 7,
                     pointHoverRadius: 7,
@@ -99,13 +172,13 @@ function rigFirstHashrate(data) {
                 {
                     label: 'GPU1',
                     data: data.rate1,
-                    borderWidth: 0,
+                    borderWidth: 2,
                     pointBorderWidth: 0,
-                    borderColor: colorArray[1] + 'AA',
+                    borderColor: colorArray[1],
                     pointHoverBorderWidth: 0,
                     pointBorderColor: 'transparent',
                     pointHoverBorderColor: 'transparent',
-                    pointHoverBackgroundColor: colorArray[1] + 'AA',
+                    pointHoverBackgroundColor: colorArray[1],
                     backgroundColor: 'transparent',
                     pointRadius: 7,
                     pointHoverRadius: 7,
@@ -114,13 +187,13 @@ function rigFirstHashrate(data) {
                 {
                     label: 'GPU2',
                     data: data.rate2,
-                    borderWidth: 0,
+                    borderWidth: 2,
                     pointBorderWidth: 0,
-                    borderColor: colorArray[2] + 'AA',
+                    borderColor: colorArray[2],
                     pointHoverBorderWidth: 0,
                     pointBorderColor: 'transparent',
                     pointHoverBorderColor: 'transparent',
-                    pointHoverBackgroundColor: colorArray[2] + 'AA',
+                    pointHoverBackgroundColor: colorArray[2],
                     backgroundColor: 'transparent',
                     pointRadius: 7,
                     pointHoverRadius: 7,
@@ -129,13 +202,13 @@ function rigFirstHashrate(data) {
                 {
                     label: 'GPU3',
                     data: data.rate3,
-                    borderWidth: 0,
+                    borderWidth: 2,
                     pointBorderWidth: 0,
-                    borderColor: colorArray[3] + 'AA',
+                    borderColor: colorArray[3],
                     pointHoverBorderWidth: 0,
                     pointBorderColor: 'transparent',
                     pointHoverBorderColor: 'transparent',
-                    pointHoverBackgroundColor: colorArray[3] + 'AA',
+                    pointHoverBackgroundColor: colorArray[3],
                     backgroundColor: 'transparent',
                     pointRadius: 7,
                     pointHoverRadius: 7,
@@ -144,13 +217,13 @@ function rigFirstHashrate(data) {
                 {
                     label: 'GPU4',
                     data: data.rate4,
-                    borderWidth: 0,
+                    borderWidth: 2,
                     pointBorderWidth: 0,
-                    borderColor: colorArray[4] + 'AA',
+                    borderColor: colorArray[4],
                     pointHoverBorderWidth: 0,
                     pointBorderColor: 'transparent',
                     pointHoverBorderColor: 'transparent',
-                    pointHoverBackgroundColor: colorArray[4] + 'AA',
+                    pointHoverBackgroundColor: colorArray[4],
                     backgroundColor: 'transparent',
                     pointRadius: 7,
                     pointHoverRadius: 7,
@@ -159,13 +232,13 @@ function rigFirstHashrate(data) {
                 {
                     label: 'GPU5',
                     data: data.rate5,
-                    borderWidth: 0,
+                    borderWidth: 2,
                     pointBorderWidth: 0,
-                    borderColor: colorArray[5] + 'AA',
+                    borderColor: colorArray[5],
                     pointHoverBorderWidth: 0,
                     pointBorderColor: 'transparent',
                     pointHoverBorderColor: 'transparent',
-                    pointHoverBackgroundColor: colorArray[5] + 'AA',
+                    pointHoverBackgroundColor: colorArray[5],
                     backgroundColor: 'transparent',
                     pointRadius: 7,
                     pointHoverRadius: 7,
@@ -174,13 +247,13 @@ function rigFirstHashrate(data) {
                 {
                     label: 'GPU6',
                     data: data.rate6,
-                    borderWidth: 0,
+                    borderWidth: 2,
                     pointBorderWidth: 0,
-                    borderColor: colorArray[6] + 'AA',
+                    borderColor: colorArray[6],
                     pointHoverBorderWidth: 0,
                     pointBorderColor: 'transparent',
                     pointHoverBorderColor: 'transparent',
-                    pointHoverBackgroundColor: colorArray[6] + 'AA',
+                    pointHoverBackgroundColor: colorArray[6],
                     backgroundColor: 'transparent',
                     pointRadius: 7,
                     pointHoverRadius: 7,
@@ -189,13 +262,13 @@ function rigFirstHashrate(data) {
                 {
                     label: 'GPU7',
                     data: data.rate7,
-                    borderWidth: 0,
+                    borderWidth: 2,
                     pointBorderWidth: 0,
-                    borderColor: colorArray[7] + 'AA',
+                    borderColor: colorArray[7],
                     pointHoverBorderWidth: 0,
                     pointBorderColor: 'transparent',
                     pointHoverBorderColor: 'transparent',
-                    pointHoverBackgroundColor: colorArray[7] + 'AA',
+                    pointHoverBackgroundColor: colorArray[7],
                     backgroundColor: 'transparent',
                     pointRadius: 7,
                     pointHoverRadius: 7,
@@ -336,10 +409,10 @@ var optionsHashrate = {
                 // display: false,
                 gridLines: {
                     // display: false,
-                    color: '#eaeaea',
+                    color: 'rgba(0,0,0,0.1)',
                     // drawBorder: mq.matches ? false : true,
                     drawBorder: false,
-                    borderDash: [8, 8],
+                    // borderDash: [8, 8],
                     zeroLineColor: 'transparent',
                 },
             }
@@ -348,9 +421,9 @@ var optionsHashrate = {
             {
                 // display: false,
                 gridLines: {
-                    color: 'rgba(0,0,0,0.035)',
+                    color: 'rgba(0,0,0,0.1)',
                     zeroLineColor: 'transparent',
-                    borderDash: [4, 4],
+                    // borderDash: [4, 4],
                     drawBorder: false,
                     // display: false,
                 },

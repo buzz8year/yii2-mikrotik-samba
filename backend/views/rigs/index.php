@@ -18,14 +18,34 @@ $this->title = 'Cumulative Rate ' . $dataProvider->getTotalCount() . ' / 200';
 
 
 <style type="text/css">
+body {
+    background-color: #333;
+    color: #aaa;
+    min-height: 100vh;
+    height: auto;
+}
+footer {
+    background-color: transparent!important;
+    border: none!important;
+    color: #aaa;
+}
+.wrap {
+    padding: 0;
+    margin-bottom: 200px;
+}
 .table {
-    width: calc(100vw - 15px);
+    /*width: calc(100vw - 15px);*/
+    width: 100%;
     margin: 0;
+}
+.table tbody {
+    display: flex;
+    justify-content: center;
+    flex-flow: row wrap;
 }
 .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
     /*padding: 15px;*/
     border: none!important;
-    display: flex!important;
     padding: 0px!important;
 }
 .table > thead > tr > th {
@@ -34,23 +54,31 @@ $this->title = 'Cumulative Rate ' . $dataProvider->getTotalCount() . ' / 200';
 }
 .container {
     width: 100%;
+    padding-bottom: 0!important;
 }
 .table tbody tr {
     padding: 0px!important;
     transition: .1s;
-    display: inline-block;
-    min-width: 200px;
+    display: inline-flex;
+    min-width: 220px;
     /*min-width: 16vw;*/
-    width: auto;
-    float: left;
+    width: 220px;
+    /*float: left;*/
     text-align: center;
     /*height: 180px;*/
+    filter: grayscale(.3);
+    /*margin-bottom: 1px;*/
+}
+.table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: transparent;
+}
+.table tbody tr:hover {
+    /*filter: grayscale(0);*/
 }
 /*.table tbody tr.o {*/
-.table tbody tr:hover {
+.table tbody tr:hover .label {
     /*height: 250px;*/
-    /*filter: grayscale(1);*/
-
+    background-color: #08c!important;
 }
 .table tbody tr > td {
     transition: .1s;
@@ -78,6 +106,41 @@ $this->title = 'Cumulative Rate ' . $dataProvider->getTotalCount() . ' / 200';
     float: left; 
     width: 50%;
 }
+#rig-first {
+    margin: 60px 0 120px;
+    float: left;
+}
+.chart-mutual {
+    position: relative; 
+    bottom: -10px; 
+    left: 0;
+    height: 160px; 
+    width: calc(100vw + 15px); 
+    margin-left: -30px;
+    /*filter: grayscale(1) opacity(.5);*/
+}
+/*.chart-mutual:hover {
+    filter: grayscale(0) opacity(1);
+}*/
+.info-first {
+    padding-left: 60px;
+}
+#raw-html {
+    width: 100vw;
+    height: 300px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    padding: 30px 0 30px 20px;
+    background-color: #3a3a3a;
+    font-size: 12px;
+    margin: -30px 0 0 -15px;
+}
+.raw-corner {
+    position: fixed;
+    right: 0;
+    top: 45px;
+    padding: 15px;
+}
 </style>
 
 
@@ -87,13 +150,19 @@ $this->title = 'Cumulative Rate ' . $dataProvider->getTotalCount() . ' / 200';
     <!-- <h1><?= $this->title ?></h1> -->
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <div class="chart-container" style="height: 160px; width: 70vw"> <canvas id="chart-mutual"></canvas> </div>
+
+    <div id="raw-html">
+        <span class="raw-corner">Scrollable</span>
+        <div>
+            <?= $modelFirst->lastJournal->response_html ?>
+        </div>
+    </div>
 
     <div id="rig-first">
 
         <div class="pull-left chart-container" style="height: 160px; width: 70vw"> <canvas id="chart-first"></canvas> </div>
 
-        <div class="pull-left" style="height: 160px; width: 25vw">
+        <div class="pull-left info-first" style="height: 160px; width: 25vw">
             <span class="span-hostname"><?= $modelFirst->hostname ?></span>
             <small class="span-ip"><?= $modelFirst->ip ?></small>
 
@@ -163,12 +232,15 @@ $this->title = 'Cumulative Rate ' . $dataProvider->getTotalCount() . ' / 200';
                 ],
                 'value'   => function ($model) {
 
-                    $html = ['<div style="cursor: pointer" class="click-rig" data-rig="' . $model->id . '">'];
+                    $html = ['<div style="cursor: pointer" class="pull-left click-rig" data-rig="' . $model->id . '">'];
 
                     if ($model->lastJournal) {
-                        $html[] = '<small class="label label-' . ($model->lastJournal->up ? 'success' : 'danger') . '">' . ($model->lastJournal->up ? 'UP' : 'DOWN') . '</small>';
-                        $html[] = '<small class="label label-' . (count(explode(";", $model->lastJournal->rate_details)) < 8 ? 'danger' : 'success') . '">GPUs: ' . count(explode(";", $model->lastJournal->rate_details)) . '</small>';
-                        $html[] = '<small class="label label-' . ($model->lastJournal->totalHashrate < 220 ? 'danger' : ($model->lastJournal->totalHashrate >= 240 ? 'success' : 'warning')) . '">' . $model->lastJournal->totalHashrate . ' MH/s</small><br/>';
+                        $html[] = '<span class="label label-' . ($model->lastJournal->up ? 'success' : 'danger') . '">' . ($model->lastJournal->up ? 'UP' : 'DOWN') . '</span>';
+                        $html[] = '<span class="label label-' . (count(explode(";", $model->lastJournal->rate_details)) < 8 ? 'danger' : 'success') . '">GPUs: ' . count(explode(";", $model->lastJournal->rate_details)) . '</span>';
+                        $html[] = '<span class="label label-' . ($model->lastJournal->totalHashrate < 220 ? 'danger' : ($model->lastJournal->totalHashrate >= 240 ? 'success' : 'warning')) . '">' . $model->lastJournal->totalHashrate . ' MH/s</span>';
+                    }
+                    else {
+                        $html[] = '<span class="label label-default" style="width: 206px">Error: empty record data</span>';
                     }
 
                     $html[] = '</div>';
@@ -201,32 +273,16 @@ $this->title = 'Cumulative Rate ' . $dataProvider->getTotalCount() . ' / 200';
 
 </div>
 
+
 <?php 
 
 $this->registerJs('mutualHashrate(' . json_encode(Rigs::mutualData()) . ');');
 
 $this->registerJs('rigFirstHashrate(' . json_encode($modelFirst->dayRate) . ');');
 
-$this->registerJs("
-    $(document).on('click', '.click-rig', function(){
-        var id = $(this).attr('data-rig');
-        var csrfToken = $('meta[name=\"csrf-token\"]').attr(\"content\");
-        $.ajax({
-            url: 'index.php?r=rigs/info',
-            method: 'post',
-            data: {'id': id, '_csrf-backend': csrfToken},
-            dataType: 'json',
-            cache: false,
-            error: function(data){
-                console.log(data);
-            },
-            success: function(data){
-                // console.log(data);
-                rigExpand(data);
-            },
-        });
-    });
-"); 
+$this->registerJs('
+    setInterval(rawHtml(' . $modelFirst->id . '), 10000);
+'); 
 
 ?> 
 

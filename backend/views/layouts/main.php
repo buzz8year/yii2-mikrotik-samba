@@ -71,12 +71,14 @@ AppAsset::register($this);
     </div>
 </div>
 
-<footer class="footer">
+<div class="chart-container chart-mutual"> <canvas id="chart-mutual"></canvas> </div>
+
+<!-- <footer class="footer">
     <div class="container">
         <p class="pull-left">&copy; <?= Html::encode(Yii::$app->name) ?> <?= date('Y') ?></p>
 
     </div>
-</footer>
+</footer> -->
 
 <?php $this->endBody() ?>
 </body>

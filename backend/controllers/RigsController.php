@@ -26,6 +26,7 @@ class RigsController extends Controller
                     'delete' => ['POST'],
                     'mutual' => ['POST'],
                     'info' => ['POST'],
+                    'post' => ['POST'],
                 ],
             ],
         ];
@@ -129,7 +130,7 @@ class RigsController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id)
+    public function actionDelete(int $id)
     {
         $this->findModel($id)->delete();
 
@@ -138,12 +139,17 @@ class RigsController extends Controller
 
 
 
-    public function actionRaw($id)
+    public function actionRaw(int $id)
     {
+        session_write_close();
         $this->layout = false;
         $model = $this->findModel($id);
-        $data = shell_exec('curl --max-time 2 http://' . $model["ip"] . ':3333 2>&1');
+        $data = shell_exec('curl --max-time 2 http://' . $model['ip'] . ':3333 2>&1');
         // exec('cat /opt/raw-rig.sh ' . $id, $data);
+
+        if (($post = Yii::$app->request->post()) && $post['type'] === 'json') {
+            return json_encode($data);
+        }
 
         return $this->render('raw', [
             'model' => $this->findModel($id),
@@ -162,6 +168,9 @@ class RigsController extends Controller
                     'hostname' => $model->hostname,
                     'dayRate' => $model->dayRate,
                     'temps' => $model->lastJournal->tempData,
+                    'state' => $model->lastJournal->up,
+                    'count' => count(explode(";", $model->lastJournal->rate_details)),
+                    'rate' => $model->lastJournal->totalHashrate,
                 ];
                 return json_encode($data, true);
             }
