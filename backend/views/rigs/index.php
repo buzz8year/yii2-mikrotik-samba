@@ -139,8 +139,11 @@ footer {
     position: absolute;
     right: 0;
     top: 265px;
-    right: 30px;
+    right: 50px;
     color: rgba(255,255,255,.3);
+}
+#count-sec {
+    position: absolute;
 }
 .link-raw {
     color: rgba(255,255,255,.3);
@@ -162,7 +165,7 @@ footer {
 
     <div id="raw-html">
         <span class="raw-corner">
-            <span>Scrollable <br/>Auto-updating in <span id="count-sec">10</span>s</span><br/>
+            <span>Scrollable <br/>Auto-updating in <span id="count-sec">20</span></span><br/>
             <span>
                 <?php echo Html::a('<i class="glyphicon glyphicon-align-left" style="top: 0; font-size: 12px"></i> New tab', 
                     ['rigs/raw', 'id' => $modelFirst->id],
@@ -290,10 +293,12 @@ $this->registerJs('mutualHashrate(' . json_encode(Rigs::mutualData()) . ');');
 $this->registerJs('rigFirstHashrate(' . json_encode($modelFirst->dayRate) . ');');
 
 $this->registerJs('
-    rawHtml(' . $modelFirst->id . ');
+    rawScroll();
+
     setInterval(function () {
         rawHtml(' . $modelFirst->id . ');
-    }, 10000);
+    }, 20000);
+
     countSec();
 '); 
 

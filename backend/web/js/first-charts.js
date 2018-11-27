@@ -54,26 +54,37 @@ $(document).on('click', '.click-rig', function(){
     });
 });
 
+
+
+
 function countSec() {
     var el = document.getElementById('count-sec');
-    var sec = 10;
+    var sec = el.innerText;
 
     
-    var timer = setInterval(function() {
-        sec -= 1;
-        el.innerText = sec;
-        if (sec <= 0) {
-            clearInterval(timer);
-            sec = 10;
-        }
-    }, 1000);
+    if (sec == 20) {
+
+        var timer = setInterval(function() {
+            sec -= 1;
+            el.innerText = sec;
+            if (sec <= 0) {
+                clearInterval(timer);
+                sec = 20;
+            }
+        }, 1000);
+
+    }
 
 }
 
 
-function rawHtml(id) {
+function rawScroll() {
     var e = document.getElementById('raw-html');
     e.scrollTop = e.scrollHeight;
+}
+
+
+function rawHtml(id) {
 
     $.ajax({
         url: 'index.php?r=rigs/raw&id=' + id,
@@ -86,7 +97,7 @@ function rawHtml(id) {
         },
         success: function(data){
             $('#div-raw').html(data);
-            $('#count-sec').html(10);
+            $('#count-sec').html(20);
             countSec();
         },
     });
