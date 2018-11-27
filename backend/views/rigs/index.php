@@ -307,7 +307,7 @@ $this->registerJs('
 
     setInterval(function () {
         rawHtml(' . $modelFirst->id . ');
-    }, 10000);
+    }, 15000);
 
     countSec();
 '); 

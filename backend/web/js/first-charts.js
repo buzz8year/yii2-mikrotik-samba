@@ -62,14 +62,14 @@ function countSec() {
     var sec = el.innerText;
 
     
-    if (sec == 9) {
+    if (sec == 15) {
 
         var timer = setInterval(function() {
             sec -= 1;
             el.innerText = sec;
             if (sec <= 0) {
                 clearInterval(timer);
-                sec = 9;
+                sec = 15;
             }
         }, 1000);
 
@@ -97,7 +97,7 @@ function rawHtml(id) {
         },
         success: function(data){
             $('#div-raw').html(data);
-            $('#count-sec').html(9);
+            $('#count-sec').html(15);
             countSec();
             rawScroll();
         },
