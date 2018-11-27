@@ -152,6 +152,8 @@ function rigExpand(data) {
 
 
         rigFirstHashrate(data['dayRate']);
+        rawHtml(data['id']);
+        
 }
 
 

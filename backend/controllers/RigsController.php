@@ -163,6 +163,7 @@ class RigsController extends Controller
         if (($post = Yii::$app->request->post()) && $post['id']) {
             if (($model = Rigs::findOne($post['id'])) !== null) {
                 $data = [
+                    'id' => $model->id,
                     'ip' => $model->ip,
                     'runtime' => 'Runtime: ' . (int)($model->lastJournal->runtime / 60) . ' h ' . ($model->lastJournal->runtime % 60) . ' min',
                     'hostname' => $model->hostname,
