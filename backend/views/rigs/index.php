@@ -136,10 +136,19 @@ footer {
     margin: -30px 0 0 -15px;
 }
 .raw-corner {
-    position: fixed;
+    position: absolute;
     right: 0;
-    top: 45px;
-    padding: 15px;
+    top: 265px;
+    right: 30px;
+    color: rgba(255,255,255,.3);
+}
+.link-raw {
+    color: rgba(255,255,255,.3);
+    font-size: 14px;
+    text-decoration: none!important;
+}
+.link-raw:hover, .link-raw:focus  {
+    color: rgba(255,255,255,1);
 }
 </style>
 
@@ -152,7 +161,15 @@ footer {
 
 
     <div id="raw-html">
-        <span class="raw-corner">Scrollable</span>
+        <span class="raw-corner">
+            <span>Scrollable <br/>Auto-updating in 10s</span><br/>
+            <span>
+                <?php echo Html::a('<i class="glyphicon glyphicon-align-left" style="top: 0; font-size: 12px"></i> New tab', 
+                    ['rigs/raw', 'id' => $modelFirst->id],
+                    ['class' => 'link-raw', 'target' => '_blank']
+                ); ?>
+            </span>
+        </span>
         <div>
             <?= $modelFirst->lastJournal->response_html ?>
         </div>
@@ -194,14 +211,6 @@ footer {
             <small class="label label-rate label-<?= ($modelFirst->lastJournal->totalHashrate < 220 ? 'danger' : ($modelFirst->lastJournal->totalHashrate >= 240 ? 'success' : 'warning')) ?>">
                 Rate: <?= $modelFirst->lastJournal->totalHashrate ?> MH/s
             </small><br/>
-
-            <?php echo Html::a('<i class="glyphicon glyphicon-align-left" style="top: 0; font-size: 12px"></i> Raw View', 
-                ['rigs/raw', 'id' => $modelFirst->id], 
-                [
-                    'style' => 'color: #777',
-                    'target' => '_blank'
-                ]
-            ); ?>
 
         </div>
     </div>
