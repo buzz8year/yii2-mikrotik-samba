@@ -538,6 +538,9 @@ var optionsHashrate = {
                 },
 
                 ticks: {
+                    userCallback: function(item, index) {
+                        if (!(index % 4)) return item;
+                    },
                     fontSize: 12,
                     // display: false
                 }
