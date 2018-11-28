@@ -178,7 +178,7 @@ class Rigs extends \yii\db\ActiveRecord
     {
         $data = [];
 
-        $poll = Poll::find()->orderBy('id DESC')->limit(1)->offset(2)->one();
+        $poll = Poll::find()->orderBy('id DESC')->limit(1)->offset(1)->one();
 
         $journals = JournalRig::find()->where(['poll_id' => $poll->id])->groupBy(['rig_id'])->distinct()->all();
 
