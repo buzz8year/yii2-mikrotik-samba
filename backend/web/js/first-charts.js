@@ -36,7 +36,7 @@ var colorArray = [
 
 $(document).on('click', '.click-rig', function(){
     var id = $(this).attr('data-rig');
-    var csrfToken = $('meta[name=\"csrf-token\"]').attr('content');
+    var csrfToken = $('meta[name=\'csrf-token\']').attr('content');
 
     $.ajax({
         url: 'index.php?r=rigs/info',
@@ -118,6 +118,7 @@ function getFirstRig() {
 
 function rigExpand(data) {
 
+
         // console.log(data);
 
         $('#rig-first .chart-container').html('<div class="pull-left chart-container" style="height: 160px; width: 70vw"> <canvas id="chart-first"></canvas> </div>');
@@ -165,17 +166,16 @@ function rigExpand(data) {
 
         rigFirstHashrate(data['dayRate']);
 
-        $('#div-raw').html('');
-
-        rawHtml(data['id']);
-
+        $('#raw-html').attr('data-id', data['id']);
+        // $('#div-raw').html('');
+        // rawHtml(data['id']);
 }
 
 
 
 function rigFirstHashrate(data) {
 
-    console.log(data);
+    // console.log(data);
 
     // rigExpand();
 
