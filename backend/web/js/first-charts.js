@@ -110,6 +110,12 @@ function rawHtml(id) {
 }
 
 
+function getFirstRig() {
+    var e = document.getElementById('raw-html');
+    return $(e).attr('data-id'); 
+}
+
+
 function rigExpand(data) {
 
         // console.log(data);
@@ -160,7 +166,7 @@ function rigExpand(data) {
         rigFirstHashrate(data['dayRate']);
 
         $('#div-raw').html('');
-        
+
         rawHtml(data['id']);
 
 }

@@ -177,18 +177,15 @@ footer {
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
 
-    <div id="raw-html">
+    <div id="raw-html" data-id="<?= $modelFirst->id ?>">
         <span class="raw-corner">
             <span>Scrollable <br/>Auto-updating in <span id="count-sec">15</span><span class="count-unit">s</span> </span><br/>
             <span>
-                <?php echo Html::a('<i class="glyphicon glyphicon-align-left" style="top: 0; font-size: 12px"></i> New tab', 
-                    ['rigs/raw', 'id' => $modelFirst->id],
-                    ['class' => 'link-raw', 'target' => '_blank']
-                ); ?>
+                <a class="link-raw" target="_blank"><i class="glyphicon glyphicon-align-left" style="top: 0; font-size: 12px"></i> New tab</a>
             </span>
         </span>
         <div id="div-raw">
-            <?= $modelFirst->lastJournal->response_html ?>
+            <?php //echo $modelFirst->lastJournal->response_html; ?>
         </div>
     </div>
 
@@ -310,13 +307,15 @@ $this->registerJs('mutualHashrate(' . json_encode(Rigs::mutualData()) . ');');
 $this->registerJs('rigFirstHashrate(' . json_encode($modelFirst->dayRate) . ');');
 
 $this->registerJs('
-    rawScroll();
 
+    rawHtml(getFirstRig());
+    rawScroll();
+    
     setInterval(function () {
-        rawHtml(' . $modelFirst->id . ');
+        rawHtml(getFirstRig());
     }, 15000);
 
-    countSec();
+    // countSec();
 '); 
 
 ?>
