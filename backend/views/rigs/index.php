@@ -231,7 +231,7 @@ footer {
                 GPUs: <?= count(explode(";", $modelFirst->lastJournal->rate_details)) ?>
             </small>
 
-            <small class="label label-rate label-<?= ($modelFirst->lastJournal->totalHashrate < 220 ? 'danger' : ($modelFirst->lastJournal->totalHashrate >= 240 ? 'success' : 'warning')) ?>">
+            <small class="label label-rate label-<?= ($modelFirst->lastJournal->totalHashrate < 210 ? 'danger' : ($modelFirst->lastJournal->totalHashrate >= 230 ? 'success' : 'warning')) ?>">
                 Rate: <?= $modelFirst->lastJournal->totalHashrate ?> MH/s
             </small><br/>
 
