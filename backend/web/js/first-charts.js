@@ -132,6 +132,7 @@ function rigExpand(data) {
 
         $('#raw-html').attr('data-id', data['id']);
         $('#div-raw').html('');
+        countSec();
         rawHtml(data['id']);
 }
 
