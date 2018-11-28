@@ -1,39 +1,3 @@
-Chart.defaults.global.defaultFontFamily = 'pt mono';
-Chart.defaults.global.defaultFontSize = 16;
-
-
-
-
-var mq = window.matchMedia('(min-width : 0) and (max-width : 768px)');
-
-
-Chart.Tooltip.positioners.custom = function(elements, position) {
-    if (!elements.length) {
-        return false;
-    }
-    var offset = 0;
-    return {
-        x: 127,
-        y: -15,
-    }
-}
-
-
-
-var colorArray = [
-    "#0074D9", 
-    "#3D9970", 
-    "AAAAAA", 
-    "#FFDC00", 
-    "#FF4136", 
-    "#85144b",
-    "#F012BE",
-    "#B10DC9",
-];
-
-
-
-
 $(document).on('click', '.click-rig', function(){
     var id = $(this).attr('data-rig');
     var csrfToken = $('meta[name=\'csrf-token\']').attr('content');
@@ -167,9 +131,65 @@ function rigExpand(data) {
         rigFirstHashrate(data['dayRate']);
 
         $('#raw-html').attr('data-id', data['id']);
-        // $('#div-raw').html('');
-        // rawHtml(data['id']);
+        $('#div-raw').html('');
+        rawHtml(data['id']);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Chart.defaults.global.defaultFontFamily = 'pt mono';
+Chart.defaults.global.defaultFontSize = 16;
+
+
+
+
+var mq = window.matchMedia('(min-width : 0) and (max-width : 768px)');
+
+
+Chart.Tooltip.positioners.custom = function(elements, position) {
+    if (!elements.length) {
+        return false;
+    }
+    var offset = 0;
+    return {
+        x: 127,
+        y: -15,
+    }
+}
+
+
+
+var colorArray = [
+    "#0074D9", 
+    "#3D9970", 
+    "AAAAAA", 
+    "#FFDC00", 
+    "#FF4136", 
+    "#85144b",
+    "#F012BE",
+    "#B10DC9",
+];
+
+
 
 
 
