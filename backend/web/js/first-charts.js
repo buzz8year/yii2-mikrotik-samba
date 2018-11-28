@@ -1,3 +1,10 @@
+$(document).ready(function(){
+    var id = $('#raw-html').attr('data-id');
+    $('.click-rig[data-rig=' + id + ']').addClass('selected');
+});
+
+
+
 $(document).on('click', '.click-rig', function(){
     var id = $(this).attr('data-rig');
     var csrfToken = $('meta[name=\'csrf-token\']').attr('content');
