@@ -273,7 +273,7 @@ footer {
                     }
                     else {
                         $html[] = '<span class="label label-default" style="width:50px; direction: rtl">' . $model->ip . '</span>';
-                        $html[] = '<span class="label label-default">Error: empty record</span>';
+                        $html[] = '<span class="label label-default">Error: no response</span>';
                         // $html[] = '<span class="label label-default" style="width: 206px">Error: empty record data</span>';
                     }
 
