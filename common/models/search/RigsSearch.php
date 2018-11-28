@@ -66,7 +66,8 @@ class RigsSearch extends Rigs
         $query->andFilterWhere([
             'id' => $this->id,
             'port' => $this->port,
-            'status' => $this->status,
+            'status' => 1,
+            // 'status' => $this->status,
             'allocation_id' => $this->allocation_id,
             'model_id' => $this->model_id,
             'dtime' => $this->dtime,

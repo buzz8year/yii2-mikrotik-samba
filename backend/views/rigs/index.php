@@ -76,7 +76,7 @@ footer {
     /*filter: grayscale(0);*/
 }
 /*.table tbody tr.o {*/
-.table tbody tr:hover .label {
+.table tbody tr:hover .label, .click-rig.selected .label {
     /*height: 250px;*/
     background-color: #08c!important;
 }

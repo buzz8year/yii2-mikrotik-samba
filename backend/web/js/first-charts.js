@@ -2,6 +2,9 @@ $(document).on('click', '.click-rig', function(){
     var id = $(this).attr('data-rig');
     var csrfToken = $('meta[name=\'csrf-token\']').attr('content');
 
+    $('.selected').removeClass('selected');
+    $(this).addClass('selected');
+
     $.ajax({
         url: 'index.php?r=rigs/info',
         method: 'post',
