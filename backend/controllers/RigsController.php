@@ -144,7 +144,9 @@ class RigsController extends Controller
         session_write_close();
         $this->layout = false;
         $model = $this->findModel($id);
-        $data = shell_exec('curl --max-time 10 http://' . $model['ip'] . ':3333 2>&1');
+        // $data = file_get_contents('http://127.0.0.1:8109');
+        // $data = shell_exec('curl --max-time 10 http://127.0.0.1:8109 2>&1');
+        $data = shell_exec('curl --max-time 5 ' . $model['ip'] . ':3333 2>&1');
         // exec('cat /opt/raw-rig.sh ' . $id, $data);
 
         if (($post = Yii::$app->request->post()) && $post['type'] === 'json') {

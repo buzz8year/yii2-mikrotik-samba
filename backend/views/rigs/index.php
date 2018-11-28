@@ -238,7 +238,7 @@ footer {
     <?php Pjax::begin(); ?>
 
 
-    <?php $dataProvider->pagination->pageSize = 200; ?>
+    <?php $dataProvider->pagination->pageSize = 220; ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,

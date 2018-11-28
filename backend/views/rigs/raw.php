@@ -17,7 +17,7 @@ print_r($raw);
 
 
 <script type="text/javascript">
-setTimeout(function(){ location.reload(); }, 10000);
+setTimeout(function(){ location.reload(); }, 15000);
 </script>
 
 
