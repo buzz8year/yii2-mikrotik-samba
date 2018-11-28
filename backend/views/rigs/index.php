@@ -151,6 +151,7 @@ footer {
     right: 0;
     top: 300px;
     right: 30px;
+    width: 150px;
     color: rgba(255,255,255,.3);
 }
 #count-sec {
@@ -163,6 +164,7 @@ footer {
     color: rgba(255,255,255,.3);
     font-size: 14px;
     text-decoration: none!important;
+    cursor: pointer;
 }
 .link-raw:hover, .link-raw:focus  {
     color: rgba(255,255,255,1);
@@ -179,7 +181,11 @@ footer {
 
     <div id="raw-html" data-id="<?= $modelFirst->id ?>">
         <span class="raw-corner">
-            <span>Scrollable <br/>Auto-updating in <span id="count-sec">15</span><span class="count-unit">s</span> </span><br/>
+            <span>
+                Scrollable <br/>  
+                <span id="count-sec">Auto-updating (15s)</span>
+                <!-- <span class="count-unit">s</span>  -->
+            </span><br/>
             <span>
                 <a class="link-raw" target="_blank"><i class="glyphicon glyphicon-align-left" style="top: 0; font-size: 12px"></i> New tab</a>
             </span>
@@ -310,12 +316,11 @@ $this->registerJs('
 
     rawHtml(getFirstRig());
     rawScroll();
-    
+
     setInterval(function () {
         rawHtml(getFirstRig());
     }, 15000);
 
-    // countSec();
 '); 
 
 ?>

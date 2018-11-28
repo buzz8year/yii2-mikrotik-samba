@@ -20,31 +20,41 @@ $(document).on('click', '.click-rig', function(){
 
 
 
+$(document).on('click', '.link-raw', function(){
+    var id = $('#raw-html').attr('data-id');
+    window.open(
+        'index.php?r=rigs/raw&id=' + id,
+        '_blank'
+    );
+});
 
-function countSec() {
-    var el = document.getElementById('count-sec');
-    var sec = el.innerText;
+
+
+
+// function countSec() {
+//     var el = document.getElementById('count-sec');
+//     var sec = el.innerText;
 
     
-    if (sec == 15) {
+//     if (sec == 15) {
 
-        var timer = setInterval(function() {
-            sec -= 1;
-            if (sec < 10) {
-                sec = ('0' + sec).slice(-2);
-            }
+//         var timer = setInterval(function() {
+//             sec -= 1;
+//             if (sec < 10) {
+//                 sec = ('0' + sec).slice(-2);
+//             }
 
-            el.innerText = sec;
-            if (sec <= 0) {
-                clearInterval(timer);
-                sec = 15;
-            }
+//             el.innerText = sec;
+//             if (sec <= 0) {
+//                 clearInterval(timer);
+//                 sec = 15;
+//             }
             
-        }, 1000);
+//         }, 1000);
 
-    }
+//     }
 
-}
+// }
 
 
 function rawScroll() {
@@ -55,19 +65,27 @@ function rawScroll() {
 
 function rawHtml(id) {
 
+    var sec = $('#count-sec');
+    var html = sec.html();
+
     $.ajax({
         url: 'index.php?r=rigs/raw&id=' + id,
         method: 'post',
         data: {'type': 'json', '_csrf-backend': csrfToken},
         dataType: 'json',
         cache: false,
+        beforeSend: function(){
+            sec.html('Updating...');
+        },
         error: function(data){
             console.log(id, data);
         },
         success: function(data){
             $('#div-raw').html(data);
-            $('#count-sec').html(15);
-            countSec();
+            setTimeout(function(){
+                sec.html(html);
+            }, 1500);
+            // countSec();
             rawScroll();
         },
     });
@@ -132,7 +150,6 @@ function rigExpand(data) {
 
         $('#raw-html').attr('data-id', data['id']);
         $('#div-raw').html('');
-        countSec();
         rawHtml(data['id']);
 }
 
