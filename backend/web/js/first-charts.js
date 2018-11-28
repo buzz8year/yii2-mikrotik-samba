@@ -66,7 +66,8 @@ function rawScroll() {
 function rawHtml(id) {
 
     var sec = $('#count-sec');
-    var html = sec.html();
+    var html = 'Auto-updating (15s)';
+    // var html = sec.html();
 
     $.ajax({
         url: 'index.php?r=rigs/raw&id=' + id,
