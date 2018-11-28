@@ -20,24 +20,17 @@ $.ajax({
 var mq = window.matchMedia('(min-width : 0) and (max-width : 768px)');
 
 
-Chart.Tooltip.positioners.custom = function(elements, position) {
 
-    if (!elements.length) return false;
-
-    // var offset = 0;
-
-    return { x: 200, y: -15 }
-}
 
 
 
 var colorArray = [
     "#3D9970", 
     "#0074D9", 
-    "AAAAAA", 
+    "#AAAAAA", 
     "#FFDC00", 
     "#FF4136", 
-    "#85144b",
+    "#AAAAFF",
     "#F012BE",
     "#B10DC9",
 ];
@@ -188,22 +181,16 @@ var optionsMutual = {
     },
     tooltips: {
         callbacks: {
-            labelColor: function(tooltipItem, chart) {
-                return {
-                    borderColor: 'rgb(255, 0, 0)',
-                    backgroundColor: 'rgb(255, 0, 0)'
-                }
-            },
             title: function(tooltipItem, data) {
                 return data['labels'][tooltipItem[0]['index']];
             },
-            labelTextColor: function(tooltipItem, chart){
-                return colorArray[tooltipItem.datasetIndex];
-            },
+            // labelTextColor: function(tooltipItem, chart){
+            //     return colorArray[tooltipItem.datasetIndex];
+            // },
         },
         mode: 'x-axis',
-        xPadding: 15,
-        yPadding: 15,
+        xPadding: 20,
+        yPadding: 20,
         cornerRadius: 0,
         // multiKeyBackground: '#000',
         titleFontStyle: 'normal',
@@ -211,13 +198,13 @@ var optionsMutual = {
         // borderColor: 'rgba(0,0,0,.1)',
         // backgroundColor: '#FFF',
         // backgroundColor: 'rgba(255,255,255,.9)',
-        backgroundColor: 'rgba(255,255,255,.9)',
-        titleFontSize: 13,
+        backgroundColor: 'rgba(50,50,50,.9)',
+        titleFontSize: 16,
         // titleFontColor: 'rgba(80, 130, 200, 1)',
-        titleFontColor: '#444',
+        titleFontColor: '#fff',
         // bodyFontColor: '#000',
-        bodyFontColor: '#444',
-        bodyFontSize: 13,
+        bodyFontColor: '#fff',
+        bodyFontSize: 16,
         displayColors: false,
         position: 'custom',
         // yAlign: 'center',
@@ -225,3 +212,10 @@ var optionsMutual = {
     }
 };
 
+
+Chart.Tooltip.positioners.custom = function(elements, position) {
+
+    if (!elements.length) return false;
+
+    return { x: 300, y: -15 };
+}

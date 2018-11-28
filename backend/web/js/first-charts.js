@@ -211,14 +211,12 @@ var mq = window.matchMedia('(min-width : 0) and (max-width : 768px)');
 
 
 Chart.Tooltip.positioners.custom = function(elements, position) {
-    if (!elements.length) {
-        return false;
-    }
-    var offset = 0;
-    return {
-        x: 127,
-        y: -15,
-    }
+
+    if (!elements.length) return false;
+
+    // var offset = 0;
+
+    return { x: 400, y: -75 }
 }
 
 
@@ -226,7 +224,7 @@ Chart.Tooltip.positioners.custom = function(elements, position) {
 var colorArray = [
     "#0074D9", 
     "#3D9970", 
-    "AAAAAA", 
+    "#AAAAAA", 
     "#FFDC00", 
     "#FF4136", 
     "#85144b",
@@ -539,7 +537,7 @@ var optionsHashrate = {
 
                 ticks: {
                     userCallback: function(item, index, all) {
-                        if (!(index == 0) && !(index % 4) && !((index + 1) == all.length)) return item;
+                        if (!(index == 0) && !(index % 4) && ((index + 1) < all.length)) return item;
                     },
                     autoSkip: false,
                     maxRotation: 0,
@@ -621,13 +619,13 @@ var optionsHashrate = {
         // borderColor: 'rgba(0,0,0,.1)',
         // backgroundColor: '#FFF',
         // backgroundColor: 'rgba(255,255,255,.9)',
-        backgroundColor: 'rgba(255,255,255,.9)',
+        backgroundColor: 'rgba(60,60,60,.85)',
         titleFontSize: 13,
         // titleFontColor: 'rgba(80, 130, 200, 1)',
-        titleFontColor: '#444',
+        titleFontColor: '#fff',
         // bodyFontColor: '#000',
         bodyFontColor: '#444',
-        bodyFontSize: 13,
+        bodyFontSize: 14,
         displayColors: false,
         position: 'custom',
         // yAlign: 'center',
