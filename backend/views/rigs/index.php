@@ -23,6 +23,7 @@ body {
     color: #aaa;
     min-height: 100vh;
     height: auto;
+    overflow-x: hidden;
 }
 footer {
     background-color: transparent!important;
@@ -115,7 +116,7 @@ footer {
     bottom: -10px; 
     left: 0;
     height: 160px; 
-    width: calc(100vw + 15px); 
+    width: calc(100vw + 35px); 
     margin-left: -30px;
     /*filter: grayscale(1) opacity(.5);*/
 }
