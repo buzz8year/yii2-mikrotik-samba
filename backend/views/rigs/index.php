@@ -116,8 +116,8 @@ footer {
     bottom: -10px; 
     left: 0;
     height: 160px; 
-    width: calc(100vw + 35px); 
-    margin-left: -30px;
+    width: calc(100vw + 70px); 
+    margin-left: -35px;
     /*filter: grayscale(1) opacity(.5);*/
 }
 /*.chart-mutual:hover {
