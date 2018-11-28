@@ -127,31 +127,36 @@ class Rigs extends \yii\db\ActiveRecord
 
         foreach ($polls as $key => $poll) {
 
-            $journals = JournalRig::find()->where(['poll_id' => $poll->id])->groupBy(['rig_id'])->distinct()->all();
+            if (($key + 1) < sizeof($polls)) { // We dont want the last poll, since it can be incomplete, making to assume that total hashrate is down
 
-            $rate = 0;
+                $journals = JournalRig::find()->where(['poll_id' => $poll->id])->groupBy(['rig_id'])->distinct()->all();
 
-            foreach ($journals as $key => $journal) {
+                $rate = 0;
 
-                $exp = [];
-                $exp['rate'] = explode(';', $journal->rate_shares);
-                $exp['pci'] = explode(';', $journal->pci_bus);
+                foreach ($journals as $kee => $journal) {
 
-                $rate += $exp['rate'][0] / 1000;
+                    $exp = [];
+                    $exp['rate'] = explode(';', $journal->rate_shares);
+                    $exp['pci'] = explode(';', $journal->pci_bus);
 
-                $data['up']++;
-                $data['gpus'] += sizeof($exp['pci']);
+                    $rate += $exp['rate'][0] / 1000;
 
-                $data['shares'] += $exp['rate'][1];
-                $data['rejected'] += $exp['rate'][2];
+                    $data['up']++;
+                    $data['gpus'] += sizeof($exp['pci']);
 
-                unset($exp);
+                    $data['shares'] += $exp['rate'][1];
+                    $data['rejected'] += $exp['rate'][2];
+
+                    unset($exp);
+                }
+
+                $data['time'][] = date("H:i", substr($poll->poll_time, 0, 10));
+                $data['rate'][] = round($rate / 1000, 2);
+
+                unset($rate);
+
             }
 
-            $data['time'][] = date("H:i", substr($poll->poll_time, 0, 10));
-            $data['rate'][] = round($rate / 1000, 2);
-
-            unset($rate);
         }
 
         return $data;
