@@ -18,8 +18,8 @@ class RigsSearch extends Rigs
     public function rules()
     {
         return [
-            [['id', 'port', 'status', 'allocation_id', 'model_id', 'dtime'], 'integer'],
-            [['ip', 'mac', 'hostname', 'description', 'data'], 'safe'],
+            [['id', 'port', 'allocation_id', 'model_id', 'dtime'], 'integer'],
+            [['ip', 'mac', 'status', 'hostname', 'description', 'data'], 'safe'],
         ];
     }
 
@@ -62,12 +62,13 @@ class RigsSearch extends Rigs
             return $dataProvider;
         }
 
+        
+
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
             'port' => $this->port,
-            'status' => 1,
-            // 'status' => $this->status,
+            'status' => $this->status == '' ? 1 : $this->status,
             'allocation_id' => $this->allocation_id,
             'model_id' => $this->model_id,
             'dtime' => $this->dtime,

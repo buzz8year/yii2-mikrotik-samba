@@ -109,8 +109,19 @@ class Rigs extends \yii\db\ActiveRecord
     }
 
 
+    public static function countEnabled()
+    {
+        return self::find()
+            ->where(['status' => 1])
+            ->count();
+    }
 
-
+    public static function countDisabled()
+    {
+        return self::find()
+            ->where(['status' => 0])
+            ->count();
+    }
 
     public static function mutualData(int $days = 1)
     {   
@@ -151,7 +162,7 @@ class Rigs extends \yii\db\ActiveRecord
                 }
 
                 $data['time'][] = date("H:i", substr($poll->poll_time, 0, 10));
-                $data['rate'][] = round($rate / 1000, 2);
+                $data['rate'][] = round($rate / 1000, 3);
 
                 unset($rate);
 
@@ -163,5 +174,25 @@ class Rigs extends \yii\db\ActiveRecord
     }
 
 
+    public static function mutualLastRate()
+    {
+        $data = [];
+
+        $poll = Poll::find()->orderBy('id DESC')->limit(1)->offset(2)->one();
+
+        $journals = JournalRig::find()->where(['poll_id' => $poll->id])->groupBy(['rig_id'])->distinct()->all();
+
+        $rate = 0;
+
+        foreach ($journals as $journal) {
+            $exp = explode(';', $journal->rate_shares);
+            $rate += $exp[0] / 1000;
+        }
+
+        $data['date'] = date("d/m/Y H:i", substr($poll->poll_time, 0, 10));
+        $data['rate'] = round($rate / 1000, 3);
+
+        return $data;
+    }
 
 }

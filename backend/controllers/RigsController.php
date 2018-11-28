@@ -70,14 +70,14 @@ class RigsController extends Controller
     {
         $searchModel = new RigsSearch();
 
-        $cache = Yii::$app->cache->get('rigsLastData');
+        // $cache = Yii::$app->cache->get('rigsLastData');
 
-        if ($cache) {
-            $dataProvider = $cache;
-        } else {
+        // if ($cache) {
+        //     $dataProvider = $cache;
+        // } else {
             $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-            Yii::$app->cache->set('rigsLastData', $dataProvider, 600);
-        }
+            // Yii::$app->cache->set('rigsLastData', $dataProvider, 600);
+        // }
 
 
         return $this->render('index', [

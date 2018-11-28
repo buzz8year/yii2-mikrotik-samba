@@ -5,6 +5,12 @@ $(document).ready(function(){
 
 
 
+$(document).on('click', '.show-disabled', function(){
+    $('.search-rig').click();
+});
+
+
+
 $(document).on('click', '.click-rig', function(){
     var id = $(this).attr('data-rig');
     var csrfToken = $('meta[name=\'csrf-token\']').attr('content');
@@ -126,6 +132,16 @@ function rigExpand(data) {
             }
             $('#rig-first .div-temp').html(html);
         }
+
+
+        // STATE Label
+        if (data['runtime']) {
+            $('.span-runtime').html(data['runtime']);
+        } 
+        else {
+            $('.label-up').html('Runtime: --');
+        }
+
 
         // STATE Label
         if (data['state']) {

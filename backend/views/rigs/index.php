@@ -31,7 +31,7 @@ footer {
 }
 .wrap {
     padding: 0;
-    margin-bottom: 200px;
+    margin-bottom: 100px;
 }
 .table {
     /*width: calc(100vw - 15px);*/
@@ -176,7 +176,6 @@ footer {
 <div class="rigs-index">
 
     <!-- <h1><?= $this->title ?></h1> -->
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
 
     <div id="raw-html" data-id="<?= $modelFirst->id ?>">
@@ -199,9 +198,13 @@ footer {
 
         <div class="pull-left chart-container" style="height: 160px; width: 70vw"> <canvas id="chart-first"></canvas> </div>
 
-        <div class="pull-left info-first" style="height: 160px; width: 25vw">
+        <div class="pull-left info-first" style="height: 160px; width: 25vw; margin-top: 5px;">
             <span class="span-hostname"><?= $modelFirst->hostname ?></span>
-            <small class="span-ip"><?= $modelFirst->ip ?></small>
+            <small class="span-ip"><?= $modelFirst->ip ?></small><br/><br/>
+
+            <small class="span-runtime">
+                Runtime: <?= (int)($modelFirst->lastJournal->runtime / 60) . ' h ' . ($modelFirst->lastJournal->runtime % 60) ?> min
+            </small><br/>
 
             <div class="div-temp pull-left" style="width: 100%">
                 <?php
@@ -214,11 +217,7 @@ footer {
                         }
                     }
                 ?>
-            </div><br/>
-
-            <small class="span-runtime">
-                Runtime: <?= (int)($modelFirst->lastJournal->runtime / 60) . ' h ' . ($modelFirst->lastJournal->runtime % 60) ?> min
-            </small><br/>
+            </div><br/><br/><br/>
 
             <small class="label label-up label-<?= ($modelFirst->lastJournal->up ? 'success' : 'danger') ?>">
                 State: <?= ($modelFirst->lastJournal->up ? 'UP' : 'DOWN') ?>
@@ -240,6 +239,7 @@ footer {
 
     <?php Pjax::begin(); ?>
 
+    <?php echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?php $dataProvider->pagination->pageSize = 220; ?>
 
@@ -250,6 +250,8 @@ footer {
         'tableOptions' => [
             'class' => 'table table-striped',
         ],
+        // 'layout'=> "{summary}\n{items}\n{pager}",
+        'layout'=> '{items}',
         'columns' => [
 
             [
@@ -300,6 +302,14 @@ footer {
             //'pci_bus',
         ],
     ]); ?>
+
+    <div class="pull-left text-center container" style="margin-top: 100px">
+        <div><?php echo 'Total: ' . (Rigs::countEnabled() + Rigs::countDisabled()); ?></div>
+        <div><?php echo 'Working: ' . Rigs::countEnabled(); ?></div>
+        <div><?php echo 'Disabled: ' . Rigs::countDisabled(); ?></div><br/><br/>
+        <div><?php echo 'Hashrate: ' . Rigs::mutualLastRate()['rate'] . ' GH/s (' . Rigs::mutualLastRate()['date'] . ')'; ?></div>
+    </div>
+
     <?php Pjax::end(); ?>
 
 
