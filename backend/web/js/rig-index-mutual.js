@@ -71,7 +71,7 @@ function mutualHashrate(data) {
                 {
                     label: 'Total Rate',
                     data: data.rate,
-                    borderWidth: 1,
+                    borderWidth: 2,
                     pointBorderWidth: 0,
                     borderColor: '#f0ad4e',
                     // borderColor: colorArray[0] + 'AA',
@@ -79,7 +79,7 @@ function mutualHashrate(data) {
                     pointBorderColor: 'transparent',
                     pointBackgroundColor: 'transparent',
                     pointHoverBorderColor: 'transparent',
-                    pointHoverBackgroundColor: colorArray[0] + 'AA',
+                    pointHoverBackgroundColor: '#f0ad4e',
                     // backgroundColor: 'transparent',
                     backgroundColor: '#f0ad4e33',
                     pointRadius: 7,
@@ -138,7 +138,7 @@ var optionsMutual = {
                 ticks: {
                     // display: mq.matches ? false : true,
                     fontSize: 12,
-                    fontColor: 'rgba(0,100,50, .2)',
+                    fontColor: '#f0ad4e33',
                     // min: 0,
                     // callback: function(label, index, labels) {
                     //     return label / 1000000;
@@ -156,7 +156,6 @@ var optionsMutual = {
                 // display: false,
                 gridLines: {
                     display: false,
-                    color: 'rgba(0,100,50, .3)',
                     // drawBorder: mq.matches ? false : true,
                     drawBorder: false,
                     // borderDash: [6, 68.3],
@@ -168,7 +167,7 @@ var optionsMutual = {
             {
                 // display: false,
                 gridLines: {
-                    color: 'rgba(0,120,50, .3)',
+                    color: '#ffffff0c',
                     zeroLineColor: 'transparent',
                     // borderDash: [3, 30],
                     drawBorder: false,
@@ -188,11 +187,11 @@ var optionsMutual = {
     tooltips: {
         callbacks: {
             labelColor: function(tooltipItem, chart) {
-                    return {
-                        borderColor: 'rgb(255, 0, 0)',
-                        backgroundColor: 'rgb(255, 0, 0)'
-                    }
-                },
+                return {
+                    borderColor: 'rgb(255, 0, 0)',
+                    backgroundColor: 'rgb(255, 0, 0)'
+                }
+            },
             title: function(tooltipItem, data) {
                 return data['labels'][tooltipItem[0]['index']];
             },
