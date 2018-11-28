@@ -137,8 +137,8 @@ var optionsMutual = {
             {
                 ticks: {
                     // display: mq.matches ? false : true,
+                    display: false,
                     fontSize: 12,
-                    fontColor: '#f0ad4e33',
                     // min: 0,
                     // callback: function(label, index, labels) {
                     //     return label / 1000000;
