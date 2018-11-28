@@ -539,7 +539,7 @@ var optionsHashrate = {
 
                 ticks: {
                     userCallback: function(item, index) {
-                        if (!(index % 4)) return item;
+                        if (!(index == 0) && !(index % 4)) return item;
                     },
                     autoSkip: false,
                     maxRotation: 0,
