@@ -58,9 +58,6 @@ class JournalRigSearch extends JournalRig
         }
 
         // grid filtering conditions
-        $query->andFilterWhere('id % 5 = 1');
-
-        // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
             'rig_id' => $this->rig_id,

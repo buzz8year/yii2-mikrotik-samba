@@ -30,18 +30,19 @@ AppAsset::register($this);
     <?php
     NavBar::begin([
         // 'brandLabel' => Yii::$app->name,
-        'brandLabel' => 'Piemine',
-        'brandUrl' => Yii::$app->homeUrl,
+        'brandLabel' => 'GPU Rigs Monitoring',
+        'brandUrl' => ['/rigs/index'],
+        // 'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
     $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
-        ['label' => 'Pools', 'url' => ['/pools/index']],
-        ['label' => 'Miners', 'url' => ['/miners/index']],
-        ['label' => 'Rigs', 'url' => ['/rigs/index']],
-        ['label' => 'Journal', 'url' => ['/journal-rig/index']],
+        // ['label' => 'Home', 'url' => ['/site/index']],
+        // ['label' => 'Pools', 'url' => ['/pools/index']],
+        // ['label' => 'Miners', 'url' => ['/miners/index']],
+        ['label' => 'Rigs Stats', 'url' => ['/rigs/index']],
+        // ['label' => 'Journal', 'url' => ['/journal-rig/index']],
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];

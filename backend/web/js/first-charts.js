@@ -521,11 +521,11 @@ var optionsHashrate = {
     tooltips: {
         callbacks: {
             labelColor: function(tooltipItem, chart) {
-                    return {
-                        borderColor: 'rgb(255, 0, 0)',
-                        backgroundColor: 'rgb(255, 0, 0)'
-                    }
-                },
+                return {
+                    borderColor: 'rgb(255, 0, 0)',
+                    backgroundColor: 'rgb(255, 0, 0)'
+                }
+            },
             title: function(tooltipItem, data) {
                 // return;
                 return data['labels'][tooltipItem[0]['index']];
