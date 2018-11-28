@@ -71,7 +71,6 @@ function mutualHashrate(data) {
                 {
                     label: 'Total Rate',
                     data: data.rate,
-                    borderWidth: 2,
                     pointBorderWidth: 0,
                     borderColor: '#f0ad4e',
                     // borderColor: colorArray[0] + 'AA',
@@ -81,7 +80,7 @@ function mutualHashrate(data) {
                     pointHoverBorderColor: 'transparent',
                     pointHoverBackgroundColor: '#f0ad4e',
                     // backgroundColor: 'transparent',
-                    backgroundColor: '#f0ad4e33',
+                    backgroundColor: '#f0ad4e11',
                     pointRadius: 7,
                     pointHoverRadius: 7,
                     borderJoinStyle: 'round',
