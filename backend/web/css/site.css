@@ -139,4 +139,6 @@ a.desc:after {
 
 .navbar-inverse .navbar-nav > li > a {
     font-size: 14px;
+    padding-top: 16px!important;
+    padding-bottom: 14px!important;
 }
