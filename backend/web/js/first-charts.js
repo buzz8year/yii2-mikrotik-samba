@@ -162,13 +162,13 @@ function rigExpand(data) {
 
         // HASHRATE Label
         $('.label-rate').html('Rate: ' + data['rate'] + ' MH/s');
-        if (data['rate'] < 220) {
+        if (data['rate'] < 210) {
             $('.label-rate').removeClass('label-success label-warning').addClass('label-danger');
         } 
         else if (data['rate'] > 210 && data['rate'] < 230) {
             $('.label-rate').removeClass('label-danger label-success').addClass('label-warning');
         }
-        else {
+        else if (data['rate'] > 230) {
             $('.label-rate').removeClass('label-danger label-warning').addClass('label-success');
         }
 
