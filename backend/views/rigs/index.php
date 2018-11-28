@@ -267,8 +267,9 @@ footer {
                         $html[] = '<span class="label label-' . ($model->lastJournal->totalHashrate < 220 ? 'danger' : ($model->lastJournal->totalHashrate >= 240 ? 'success' : 'warning')) . '">' . $model->lastJournal->totalHashrate . ' MH/s</span>';
                     }
                     else {
+                        $html[] = '<span class="label label-default" style="width:50px; direction: rtl">' . $model->ip . '</span>';
+                        $html[] = '<span class="label label-default">Error: empty record</span>';
                         // $html[] = '<span class="label label-default" style="width: 206px">Error: empty record data</span>';
-                        $html[] = '<span class="label label-default">Error: empty record data</span>';
                     }
 
                     $html[] = '</div>';

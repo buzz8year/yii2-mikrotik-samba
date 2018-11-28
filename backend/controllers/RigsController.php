@@ -165,14 +165,17 @@ class RigsController extends Controller
                 $data = [
                     'id' => $model->id,
                     'ip' => $model->ip,
-                    'runtime' => 'Runtime: ' . (int)($model->lastJournal->runtime / 60) . ' h ' . ($model->lastJournal->runtime % 60) . ' min',
-                    'hostname' => $model->hostname,
                     'dayRate' => $model->dayRate,
-                    'temps' => $model->lastJournal->tempData,
-                    'state' => $model->lastJournal->up,
-                    'count' => count(explode(";", $model->lastJournal->rate_details)),
-                    'rate' => $model->lastJournal->totalHashrate,
+                    'hostname' => $model->hostname,
                 ];
+
+                if ($model->lastJournal) {
+                    $data['state'] = $model->lastJournal->up;
+                    $data['temps'] = $model->lastJournal->tempData;
+                    $data['rate'] = $model->lastJournal->totalHashrate;
+                    $data['count'] = count(explode(";", $model->lastJournal->rate_details));
+                    $data['runtime'] = 'Runtime: ' . (int)($model->lastJournal->runtime / 60) . ' h ' . ($model->lastJournal->runtime % 60) . ' min';
+                }
                 return json_encode($data, true);
             }
         }
