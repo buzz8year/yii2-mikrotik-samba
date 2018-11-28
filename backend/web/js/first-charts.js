@@ -541,6 +541,9 @@ var optionsHashrate = {
                     userCallback: function(item, index) {
                         if (!(index % 4)) return item;
                     },
+                    autoSkip: false,
+                    maxRotation: 0,
+                    minRotation: 0,
                     fontSize: 12,
                     // display: false
                 }
