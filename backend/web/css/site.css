@@ -142,3 +142,6 @@ a.desc:after {
     padding-top: 16px!important;
     padding-bottom: 14px!important;
 }
+.nav li > form > button.logout {
+    padding: 16px 15px 14px;
+}
