@@ -88,7 +88,7 @@ class Rigs extends \yii\db\ActiveRecord
         $data = [];
 
         foreach ($this->journalRigs as $key => $journal) {
-            // if ($key == 0 || $key  144) {
+            // if ($key == 0 || $key == 144) {
             //     $data['time'][] = date("Y-m-d H:i:s", substr($journal->dtime, 0, 10));
             // }
             // else {

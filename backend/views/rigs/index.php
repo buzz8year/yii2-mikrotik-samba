@@ -261,12 +261,14 @@ footer {
                     $html = ['<div style="cursor: pointer" class="pull-left click-rig" data-rig="' . $model->id . '">'];
 
                     if ($model->lastJournal) {
+                        $html[] = '<span class="label label-default" style="width:50px; direction: rtl">' . $model->ip . '</span>';
                         $html[] = '<span class="label label-' . ($model->lastJournal->up ? 'success' : 'danger') . '">' . ($model->lastJournal->up ? 'UP' : 'DOWN') . '</span>';
-                        $html[] = '<span class="label label-' . (count(explode(";", $model->lastJournal->rate_details)) < 8 ? 'danger' : 'success') . '">GPUs: ' . count(explode(";", $model->lastJournal->rate_details)) . '</span>';
+                        $html[] = '<span class="label label-' . (count(explode(";", $model->lastJournal->rate_details)) < 8 ? 'danger' : 'success') . '">' . count(explode(";", $model->lastJournal->rate_details)) . '</span>';
                         $html[] = '<span class="label label-' . ($model->lastJournal->totalHashrate < 220 ? 'danger' : ($model->lastJournal->totalHashrate >= 240 ? 'success' : 'warning')) . '">' . $model->lastJournal->totalHashrate . ' MH/s</span>';
                     }
                     else {
-                        $html[] = '<span class="label label-default" style="width: 206px">Error: empty record data</span>';
+                        // $html[] = '<span class="label label-default" style="width: 206px">Error: empty record data</span>';
+                        $html[] = '<span class="label label-default">Error: empty record data</span>';
                     }
 
                     $html[] = '</div>';

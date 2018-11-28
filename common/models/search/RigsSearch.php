@@ -47,6 +47,11 @@ class RigsSearch extends Rigs
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort' => [
+                'defaultOrder' => [
+                    'ip' => SORT_ASC
+                ]
+            ]
         ]);
 
         $this->load($params);
