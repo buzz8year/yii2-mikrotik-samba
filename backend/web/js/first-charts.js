@@ -165,7 +165,7 @@ function rigExpand(data) {
         if (data['rate'] < 220) {
             $('.label-rate').removeClass('label-success label-warning').addClass('label-danger');
         } 
-        else if (data['rate'] > 220 && data['rate'] < 240) {
+        else if (data['rate'] > 210 && data['rate'] < 230) {
             $('.label-rate').removeClass('label-danger label-success').addClass('label-warning');
         }
         else {
