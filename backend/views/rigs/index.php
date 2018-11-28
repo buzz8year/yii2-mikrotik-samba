@@ -141,11 +141,14 @@ footer {
 /*#raw-html:hover {
     opacity: 1;
 }*/
+::-webkit-scrollbar {
+    background: rgba(255,255,255,.02);
+}
+::-webkit-scrollbar-thumb {
+    background-color: rgba(255,255,255,.05);
+}
 #raw-html::-webkit-scrollbar {
     background: transparent;
-}
-#raw-html::-webkit-scrollbar-thumb {
-    background-color: rgba(255,255,255,.05);
 }
 .raw-corner {
     position: absolute;
