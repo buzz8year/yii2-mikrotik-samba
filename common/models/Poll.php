@@ -62,4 +62,9 @@ class Poll extends \yii\db\ActiveRecord
     {
         return self::find()->max('id');
     }
+
+    public static function getLast()
+    {
+        return self::find()->orderBy(['id' => SORT_DESC])->one();
+    }
 }

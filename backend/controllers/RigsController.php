@@ -4,6 +4,7 @@ namespace backend\controllers;
 
 use Yii;
 use common\models\Rigs;
+use common\models\Poll;
 use common\models\search\RigsSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -84,6 +85,7 @@ class RigsController extends Controller
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
             'modelFirst' => $this->findModel($id),
+            'pollLast' => Poll::getLast(),
         ]);
     }
 

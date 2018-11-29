@@ -313,8 +313,8 @@ footer {
     ]); ?>
 
     <div class="pull-left text-center container" style="margin-top: 100px">
-        <div><?php echo 'Total: ' . (Rigs::countEnabled() + Rigs::countDisabled()); ?></div>
-        <div><?php echo 'Responding: ' . Rigs::countEnabled(); ?></div>
+        <div><?php echo 'Total: ' . $pollLast->total; ?></div>
+        <div><?php echo 'Responding: ' . ($pollLast->total - $pollLast->fails); ?></div>
         <div><?php echo 'Disabled: ' . Rigs::countDisabled(); ?></div><br/><br/>
         <div><?php echo 'Hashrate: ' . Rigs::mutualLastRate()['rate'] . ' GH/s (' . Rigs::mutualLastRate()['date'] . ')'; ?></div>
     </div>
