@@ -65,6 +65,6 @@ class Poll extends \yii\db\ActiveRecord
 
     public static function getLast()
     {
-        return self::find()->orderBy(['id' => SORT_DESC])->one();
+        return self::find()->where(['>', 'exe_time', 0])->orderBy(['id' => SORT_DESC])->one();
     }
 }
