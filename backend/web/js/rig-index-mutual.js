@@ -172,7 +172,7 @@ var optionsMutual = {
 
                 ticks: {
                     userCallback: function(item, index, all) {
-                        if (!(index == 0) && !(index % 4) && !((index + 1) == all.length)) return item;
+                        if (!(index == 0) && !(index % 8) && !((index + 1) == all.length)) return item;
                     },
                     autoSkip: false,
                     maxRotation: 0,
