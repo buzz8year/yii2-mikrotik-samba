@@ -1,3 +1,11 @@
+rawHtml(getFirstRig());
+rawScroll();
+
+setInterval(function () {
+    rawHtml(getFirstRig());
+}, 15000);
+
+
 $(document).ready(function(){
     var id = $('#raw-html').attr('data-id');
     $('.click-rig[data-rig=' + id + ']').addClass('selected');
@@ -11,9 +19,41 @@ $(document).on('click', '.show-disabled', function(){
 
 
 
+$(document).on('click', '.enable-switch, .enable-change', function(){
+    var s = $('.enable-switch');
+    var state = 0;
+
+    if (s.hasClass('enable-off')) {
+        state = 1;
+    }
+
+    if (confirm('You\'re a moment away from ' + (state ? 'en' : 'dis') + 'abling the rig - proceed?')) {
+        $.ajax({
+            url: 'index.php?r=rigs/state',
+            method: 'post',
+            data: {'id': getFirstRig(), 'state': state, '_csrf-backend': getCsrf()},
+            dataType: 'json',
+            cache: false,
+            error: function(data){
+                console.log(data);
+            },
+            success: function(data){
+                if (data) {
+                    if (data == 1) {
+                        s.removeClass('enable-off').addClass('enable-on');
+                    } else {
+                        s.removeClass('enable-on').addClass('enable-off');
+                    }
+                }
+            },       
+        });
+    }
+});
+
+
+
 $(document).on('click', '.click-rig', function(){
     var id = $(this).attr('data-rig');
-    var csrfToken = $('meta[name=\'csrf-token\']').attr('content');
 
     $('.selected').removeClass('selected');
     $(this).addClass('selected');
@@ -21,7 +61,7 @@ $(document).on('click', '.click-rig', function(){
     $.ajax({
         url: 'index.php?r=rigs/info',
         method: 'post',
-        data: {'id': id, '_csrf-backend': csrfToken},
+        data: {'id': id, '_csrf-backend': getCsrf()},
         dataType: 'json',
         cache: false,
         error: function(data){
@@ -73,6 +113,11 @@ $(document).on('click', '.link-raw', function(){
 // }
 
 
+function getCsrf() {
+    return $('meta[name=\'csrf-token\']').attr('content');
+}
+
+
 function rawScroll() {
     var e = document.getElementById('raw-html');
     e.scrollTop = e.scrollHeight;
@@ -88,7 +133,7 @@ function rawHtml(id) {
     $.ajax({
         url: 'index.php?r=rigs/raw&id=' + id,
         method: 'post',
-        data: {'type': 'json', '_csrf-backend': csrfToken},
+        data: {'type': 'json', '_csrf-backend': getCsrf()},
         dataType: 'json',
         cache: false,
         beforeSend: function(){

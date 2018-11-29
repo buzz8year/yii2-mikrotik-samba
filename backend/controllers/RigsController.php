@@ -30,7 +30,7 @@ class RigsController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['index', 'raw', 'mutual', 'info'],
+                        'actions' => ['index', 'raw', 'mutual', 'info', 'state'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -43,6 +43,7 @@ class RigsController extends Controller
                     'mutual' => ['POST'],
                     'info' => ['POST'],
                     'post' => ['POST'],
+                    'state' => ['POST'],
                 ],
             ],
         ];
@@ -154,6 +155,19 @@ class RigsController extends Controller
         return $this->redirect(['index']);
     }
 
+
+    public function actionState()
+    {
+        if (($post = Yii::$app->request->post()) && isset($post['id']) && isset($post['state'])) {
+
+            $model = $this->findModel($post['id']);
+            $model->status = $post['state'];
+
+            if ($model->save()) {
+                return json_encode($post['state']);
+            }
+        }
+    }
 
 
     public function actionRaw(int $id)

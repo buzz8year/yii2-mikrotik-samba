@@ -13,6 +13,8 @@ use common\models\Poll;
 $this->title = 'Cumulative Rate ' . $dataProvider->getTotalCount() . ' / 200';
 // $this->params['breadcrumbs'][] = $this->title;
 
+$this->registerJs('mutualHashrate(' . json_encode(Rigs::mutualData()) . ');');
+$this->registerJs('rigFirstHashrate(' . json_encode($modelFirst->dayRate) . ');');
 
 ?>
 
@@ -174,6 +176,47 @@ footer {
 .link-raw:hover, .link-raw:focus  {
     color: rgba(255,255,255,1);
 }
+.enable-switch {
+    font-size: 27px;
+    /*top: 5px;*/
+    width: 36px;
+    height: 16px;
+    border-radius: 12px;
+    background: #ccc;
+    background: #d9534fd1;
+    line-height: 21px;
+    margin-left: 25px;
+    color: #aaa;
+    display: inline-block;
+    cursor: pointer;
+    transition: .3s left;
+    position: relative;
+    /*box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);*/
+    /*box-shadow: inset 0 0 0 1px rgba(0,0,0,.03);*/
+}
+.enable-switch:before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: #333;
+    border-radius: 50%;
+    transition: .3s left;
+    /*box-shadow: 0 0 0 1px rgba(0,0,0,.05);*/
+    /*box-shadow: 0 0 0 1px rgba(0,0,0,.15);*/
+    top: 2px;
+    left: 3px;
+}
+.enable-switch.enable-on {
+    background: #5cb85c;
+}
+.enable-switch.enable-on:before {
+    left: 21px;
+}
+.enable-status {
+    margin-bottom: 22px;
+}
 </style>
 
 
@@ -206,6 +249,12 @@ footer {
         <div class="pull-left info-first" style="height: 160px; width: 25vw; margin-top: 5px;">
             <span class="span-hostname"><?= $modelFirst->hostname ?></span>
             <small class="span-ip"><?= $modelFirst->ip ?></small><br/><br/>
+
+
+            <div class="enable-status pull-right">
+                <!-- <span class="enable-change">Enable</span> -->
+                <span class="enable-switch enable-<?= $modelFirst->status ? 'on' : 'off' ?>"></span>
+            </div>
 
             <small class="span-runtime">
                 Runtime: <?= (int)($modelFirst->lastJournal->runtime / 60) . ' h ' . ($modelFirst->lastJournal->runtime % 60) ?> min
@@ -321,24 +370,4 @@ footer {
 
 
 </div>
-
-
-<?php 
-
-$this->registerJs('mutualHashrate(' . json_encode(Rigs::mutualData()) . ');');
-
-$this->registerJs('rigFirstHashrate(' . json_encode($modelFirst->dayRate) . ');');
-
-$this->registerJs('
-
-    rawHtml(getFirstRig());
-    rawScroll();
-
-    setInterval(function () {
-        rawHtml(getFirstRig());
-    }, 15000);
-
-'); 
-
-?>
 
