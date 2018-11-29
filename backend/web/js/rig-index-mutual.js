@@ -65,6 +65,7 @@ function mutualHashrate(data) {
                     label: 'Total Rate',
                     data: data.rate,
                     pointBorderWidth: 0,
+                    borderWidth: 1,
                     borderColor: '#f0ad4e',
                     // borderColor: colorArray[0] + 'AA',
                     pointHoverBorderWidth: 0,
