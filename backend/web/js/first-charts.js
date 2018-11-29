@@ -163,12 +163,20 @@ function getFirstRig() {
 function rigExpand(data) {
 
 
-        // console.log(data);
+        console.log(data);
 
         $('#rig-first .chart-container').html('<div class="pull-left chart-container" style="height: 160px; width: 70vw"> <canvas id="chart-first"></canvas> </div>');
 
         $('#rig-first .span-hostname').html(data['hostname']);
         $('#rig-first .span-ip').html(data['ip']);
+
+        var s = $('.enable-switch');
+
+        if (data['enabled']) {
+            s.removeClass('enable-off').addClass('enable-on');
+        } else {
+            s.removeClass('enable-on').addClass('enable-off');
+        }
 
         if (data['temps']) {
             html = [];

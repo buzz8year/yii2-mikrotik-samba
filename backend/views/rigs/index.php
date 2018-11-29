@@ -252,7 +252,6 @@ footer {
 
 
             <div class="enable-status pull-right">
-                <!-- <span class="enable-change">Enable</span> -->
                 <span class="enable-switch enable-<?= $modelFirst->status ? 'on' : 'off' ?>"></span>
             </div>
 

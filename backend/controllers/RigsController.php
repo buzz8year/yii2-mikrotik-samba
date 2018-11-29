@@ -193,13 +193,14 @@ class RigsController extends Controller
 
     public function actionInfo(int $id = 1)
     {
-        if (($post = Yii::$app->request->post()) && $post['id']) {
+        if (($post = Yii::$app->request->post()) && isset($post['id'])) {
             if (($model = Rigs::findOne($post['id'])) !== null) {
                 $data = [
                     'id' => $model->id,
                     'ip' => $model->ip,
                     'dayRate' => $model->dayRate,
                     'hostname' => $model->hostname,
+                    'enabled' => $model->status,
                 ];
 
                 if ($model->lastJournal) {
