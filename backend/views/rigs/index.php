@@ -199,8 +199,6 @@ footer {
         </div>
     </div>
 
-    <?php echo Poll::getLastId(); ?>
-
     <div id="rig-first">
 
         <div class="pull-left chart-container" style="height: 160px; width: 70vw"> <canvas id="chart-first"></canvas> </div>
@@ -313,7 +311,7 @@ footer {
     ]); ?>
 
     <div class="pull-left text-center container" style="margin-top: 100px">
-        <div><?php echo 'Total: ' . $pollLast->total; ?></div>
+        <div><?php echo 'Total (enabled): ' . $pollLast->total; ?></div>
         <div><?php echo 'Responding: ' . ($pollLast->total - $pollLast->fails); ?></div>
         <div><?php echo 'Disabled: ' . Rigs::countDisabled(); ?></div><br/><br/>
         <div><?php echo 'Hashrate: ' . Rigs::mutualLastRate()['rate'] . ' GH/s (' . Rigs::mutualLastRate()['date'] . ')'; ?></div>

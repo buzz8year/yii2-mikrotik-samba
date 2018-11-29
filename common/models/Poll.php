@@ -60,7 +60,7 @@ class Poll extends \yii\db\ActiveRecord
 
     public static function getLastId()
     {
-        return self::find()->max('id');
+        return self::find()->where(['>', 'exe_time', 0])->max('id');
     }
 
     public static function getLast()
