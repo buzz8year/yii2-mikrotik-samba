@@ -78,8 +78,7 @@ class Rigs extends \yii\db\ActiveRecord
      */
     public function getLastJournal()
     {
-        return $this->hasOne(JournalRig::className(), ['rig_id' => 'id'])
-            ->orderBy(['id' => SORT_DESC]);
+        return $this->hasOne(JournalRig::className(), ['rig_id' => 'id'])->where(['poll_id' => Poll::getLastId()])->orderBy(['id' => SORT_DESC]);
     }
 
 

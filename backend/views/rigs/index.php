@@ -5,6 +5,7 @@ use yii\grid\GridView;
 use yii\widgets\Pjax;
 
 use common\models\Rigs;
+use common\models\Poll;
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\search\RigsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -198,6 +199,8 @@ footer {
         </div>
     </div>
 
+    <?php echo Poll::getLastId(); ?>
+
     <div id="rig-first">
 
         <div class="pull-left chart-container" style="height: 160px; width: 70vw"> <canvas id="chart-first"></canvas> </div>
@@ -279,7 +282,7 @@ footer {
                     }
                     else {
                         $html[] = '<span class="label label-default" style="width:40px; direction: rtl; text-align: right">' . end($exp) . '.</span>';
-                        $html[] = '<span class="label label-default">Error: no response</span>';
+                        $html[] = '<span class="label label-danger" style="width: 160px">Error: no response</span>';
                         // $html[] = '<span class="label label-default" style="width: 206px">Error: empty record data</span>';
                     }
 

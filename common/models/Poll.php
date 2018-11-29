@@ -57,4 +57,9 @@ class Poll extends \yii\db\ActiveRecord
     {
         return $this->hasMany(JournalRig::className(), ['poll_id' => 'id']);
     }
+
+    public static function getLastId()
+    {
+        return self::find()->max('id');
+    }
 }
