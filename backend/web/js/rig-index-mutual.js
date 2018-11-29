@@ -173,6 +173,9 @@ var optionsMutual = {
                     userCallback: function(item, index, all) {
                         if (!(index == 0) && !(index % 4) && !((index + 1) == all.length)) return item;
                     },
+                    autoSkip: false,
+                    maxRotation: 0,
+                    minRotation: 0,
                     fontSize: 12,
                     // display: false
                 }
