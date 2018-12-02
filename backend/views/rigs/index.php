@@ -255,34 +255,38 @@ footer {
                 <span class="enable-switch enable-<?= $modelFirst->status ? 'on' : 'off' ?>"></span>
             </div>
 
-            <small class="span-runtime">
-                Runtime: <?= (int)($modelFirst->lastJournal->runtime / 60) . ' h ' . ($modelFirst->lastJournal->runtime % 60) ?> min
-            </small><br/>
+            <?php if ($modelFirst->lastJournal) : ?>
 
-            <div class="div-temp pull-left" style="width: 100%">
-                <?php
-                    if (sizeof($modelFirst->lastJournal->tempData)) {
-                        foreach ($modelFirst->lastJournal->tempData as $key => $data) {
-                            echo '<small class="span-temp ' . 
-                                ((int)$data['temp'] > 60 || !(int)$data['temp'] ? 'text-danger' : '') . '">' . 
-                                $data['temp'] . '/' . $data['fanspeed'] . '</small>' . 
-                                (($key + 1) % 4 == 0 ? '<br/>' : '');
+                <small class="span-runtime">
+                    Runtime: <?= (int)($modelFirst->lastJournal->runtime / 60) . ' h ' . ($modelFirst->lastJournal->runtime % 60) ?> min
+                </small><br/>
+
+                <div class="div-temp pull-left" style="width: 100%">
+                    <?php
+                        if (sizeof($modelFirst->lastJournal->tempData)) {
+                            foreach ($modelFirst->lastJournal->tempData as $key => $data) {
+                                echo '<small class="span-temp ' . 
+                                    ((int)$data['temp'] > 60 || !(int)$data['temp'] ? 'text-danger' : '') . '">' . 
+                                    $data['temp'] . '/' . $data['fanspeed'] . '</small>' . 
+                                    (($key + 1) % 4 == 0 ? '<br/>' : '');
+                            }
                         }
-                    }
-                ?>
-            </div><br/><br/><br/>
+                    ?>
+                </div><br/><br/><br/>
 
-            <small class="label label-up label-<?= ($modelFirst->lastJournal->up ? 'success' : 'danger') ?>">
-                State: <?= ($modelFirst->lastJournal->up ? 'UP' : 'DOWN') ?>
-            </small>
+                <small class="label label-up label-<?= ($modelFirst->lastJournal->up ? 'success' : 'danger') ?>">
+                    State: <?= ($modelFirst->lastJournal->up ? 'UP' : 'DOWN') ?>
+                </small>
 
-            <small class="label label-count label-<?= (count(explode(";", $modelFirst->lastJournal->rate_details)) < 8 ? 'danger' : 'success') ?>">
-                GPUs: <?= count(explode(";", $modelFirst->lastJournal->rate_details)) ?>
-            </small>
+                <small class="label label-count label-<?= (count(explode(";", $modelFirst->lastJournal->rate_details)) < 8 ? 'danger' : 'success') ?>">
+                    GPUs: <?= count(explode(";", $modelFirst->lastJournal->rate_details)) ?>
+                </small>
 
-            <small class="label label-rate label-<?= ($modelFirst->lastJournal->totalHashrate < 210 ? 'danger' : ($modelFirst->lastJournal->totalHashrate >= 230 ? 'success' : 'warning')) ?>">
-                Rate: <?= $modelFirst->lastJournal->totalHashrate ?> MH/s
-            </small><br/>
+                <small class="label label-rate label-<?= ($modelFirst->lastJournal->totalHashrate < 210 ? 'danger' : ($modelFirst->lastJournal->totalHashrate >= 230 ? 'success' : 'warning')) ?>">
+                    Rate: <?= $modelFirst->lastJournal->totalHashrate ?> MH/s
+                </small><br/>
+
+            <?php endif; ?>
 
         </div>
     </div>
