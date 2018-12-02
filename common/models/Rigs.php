@@ -135,7 +135,7 @@ class Rigs extends \yii\db\ActiveRecord
 
         $polls = Poll::find()->orderBy(['id' => SORT_DESC])->limit(144)->all();
 
-        foreach ($polls as $key => $poll) {
+        foreach (array_reverse($polls) as $key => $poll) {
 
             if (($key + 1) < sizeof($polls)) { // We dont want the last poll, since it can be incomplete, making to assume that total hashrate is down
 
@@ -169,7 +169,7 @@ class Rigs extends \yii\db\ActiveRecord
 
         }
 
-        return array_reverse($data);
+        return $data;
     }
 
 
