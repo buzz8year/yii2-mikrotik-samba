@@ -341,8 +341,8 @@ footer {
                     if ($model->lastJournal) {
                         $html[] = '<span class="label label-default" style="width:40px; direction: rtl; text-align: right">' . end($exp) . '.</span>';
                         $html[] = '<span class="label label-' . ($model->lastJournal->up ? 'success' : 'danger') . '">' . ($model->lastJournal->up ? 'UP' : 'DOWN') . '</span>';
-                        $html[] = '<span class="label label-' . (count(explode(";", $model->lastJournal->rate_details)) < 8 ? 'danger' : 'success') . '">' . count(explode(";", $model->lastJournal->rate_details)) . '</span>';
-                        $html[] = '<span class="label label-' . ($model->lastJournal->totalHashrate < 210 ? 'danger' : ($model->lastJournal->totalHashrate >= 230 ? 'success' : 'warning')) . '">' . $model->lastJournal->totalHashrate . ' MH/s</span>';
+                        $html[] = '<span class="label label-' . (count(explode(";", $model->lastJournal->rate_details)) < 8 ? 'warning' : 'success') . '">' . count(explode(";", $model->lastJournal->rate_details)) . '</span>';
+                        $html[] = '<span class="label label-' . ($model->lastJournal->totalHashrate < 210 ? 'warning' : ($model->lastJournal->totalHashrate >= 230 ? 'success' : 'warning')) . '">' . $model->lastJournal->totalHashrate . ' MH/s</span>';
                     }
                     else {
                         $html[] = '<span class="label label-default" style="width:40px; direction: rtl; text-align: right">' . end($exp) . '.</span>';
