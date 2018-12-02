@@ -292,7 +292,7 @@ footer {
 
                 <div class="div-temp pull-left" style="width: 100%">
                     <?php for ($i = 0; $i < 8; $i++) {
-                            echo '<small class="span-temp text-danger">--&#176;C</small>' . (($i + 1) % 4 == 0 ? '<br/>' : '');
+                            echo '<small class="span-temp text-danger">--&#176;C/--%</small>' . (($i + 1) % 4 == 0 ? '<br/>' : '');
                     } ?>
                 </div><br/><br/><br/>
 

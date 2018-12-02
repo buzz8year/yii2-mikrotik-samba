@@ -110,7 +110,7 @@ class JournalRig extends \yii\db\ActiveRecord
             else {
                 $data[($key - 1) / 2] = [
                     'temp' => $exp[$key - 1] . '&#176;C',
-                    'fanspeed' => ($value ?? '--') . '%',
+                    'fanspeed' => ($value > 0 ? $value : '--') . '%',
                 ];
             }
         }
