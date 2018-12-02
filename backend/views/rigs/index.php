@@ -286,6 +286,20 @@ footer {
                     Rate: <?= $modelFirst->lastJournal->totalHashrate ?> MH/s
                 </small><br/>
 
+            <?php else : ?>
+
+                <small class="span-runtime"> Runtime: -- min </small><br/>
+
+                <div class="div-temp pull-left" style="width: 100%">
+                    <?php for ($I = 0; $i < 8; $i++) {
+                            echo '<small class="span-temp text-danger">--&#176;C</small>' . (($i + 1) % 4 == 0 ? '<br/>' : '');
+                    } ?>
+                </div><br/><br/><br/>
+
+                <small class="label label-up label-danger"> State: DOWN </small>
+                <small class="label label-count label-danger"> GPUs: -- </small>
+                <small class="label label-rate label-danger"> Rate: -- MH/s </small><br/>
+
             <?php endif; ?>
 
         </div>
