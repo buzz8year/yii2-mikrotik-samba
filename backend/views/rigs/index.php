@@ -291,7 +291,7 @@ footer {
                 <small class="span-runtime"> Runtime: -- min </small><br/>
 
                 <div class="div-temp pull-left" style="width: 100%">
-                    <?php for ($I = 0; $i < 8; $i++) {
+                    <?php for ($i = 0; $i < 8; $i++) {
                             echo '<small class="span-temp text-danger">--&#176;C</small>' . (($i + 1) % 4 == 0 ? '<br/>' : '');
                     } ?>
                 </div><br/><br/><br/>
