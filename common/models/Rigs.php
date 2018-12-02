@@ -169,7 +169,7 @@ class Rigs extends \yii\db\ActiveRecord
 
         }
 
-        return $data;
+        return array_reverse($data);
     }
 
 
