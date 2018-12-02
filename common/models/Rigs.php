@@ -133,7 +133,7 @@ class Rigs extends \yii\db\ActiveRecord
             'up' => 0,
         ];
 
-        $polls = Poll::find()->all();
+        $polls = Poll::find()->orderBy(['id' => SORT_DESC])->limit(144)all();
 
         foreach ($polls as $key => $poll) {
 
