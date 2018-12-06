@@ -30,7 +30,7 @@ class RigsController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['index', 'raw', 'mutual', 'info', 'state'],
+                        'actions' => ['index', 'raw', 'mutual', 'info', 'state', 'reboot'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -44,6 +44,7 @@ class RigsController extends Controller
                     'info' => ['POST'],
                     'post' => ['POST'],
                     'state' => ['POST'],
+                    'reboot' => ['POST'],
                 ],
             ],
         ];
