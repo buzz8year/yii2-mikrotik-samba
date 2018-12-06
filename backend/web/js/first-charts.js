@@ -246,7 +246,9 @@ function getFirstRig() {
 function rigExpand(data) {
 
 
-        console.log(data);
+        // console.log(data);
+
+        $('#act-reboot').addClass('enable-reboot-mute');
 
         $('#rig-first .chart-container').html('<div class="pull-left chart-container" style="height: 160px; width: 70vw"> <canvas id="chart-first"></canvas> </div>');
 

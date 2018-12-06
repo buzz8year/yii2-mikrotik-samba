@@ -195,11 +195,16 @@ class RigsController extends Controller
             }
 
             $data = array(
-                'error' => '',
                 'response' => $exec,
                 'state' => $post['state'],
                 'abort' => $post['abort'],
             );
+
+            if (substr(' succe', $exec)) {
+                $data['error'] = 0;
+            } else {
+                $data['error'] = 1;
+            }
 
             // if () {
                 return json_encode($data);
