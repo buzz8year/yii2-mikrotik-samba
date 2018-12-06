@@ -170,6 +170,21 @@ class RigsController extends Controller
     }
 
 
+    public function actionReboot()
+    {
+        if (($post = Yii::$app->request->post()) && isset($post['id']) && isset($post['state'])) {
+
+            $model = $this->findModel($post['id']);
+
+            $data = shell_exec('net rpc shutdown -r --ipaddress ' . $model['ip'] . ' --user master%1000000$ 2>&1');
+
+            // if () {
+                return json_encode($post['state']);
+            // }
+        }
+    }
+
+
     public function actionRaw(int $id)
     {
         session_write_close();

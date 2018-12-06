@@ -19,7 +19,8 @@ $(document).on('click', '.show-disabled', function(){
 
 
 
-$(document).on('click', '.enable-switch, .enable-change', function(){
+// $(document).on('click', '.enable-switch, .enable-change', function(){
+$(document).on('click', '#act-switch', function(){
     var s = $('.enable-switch');
     var state = 0;
 
@@ -30,6 +31,39 @@ $(document).on('click', '.enable-switch, .enable-change', function(){
     if (confirm('You\'re a moment away from ' + (state ? 'en' : 'dis') + 'abling the rig - proceed?')) {
         $.ajax({
             url: 'index.php?r=rigs/state',
+            method: 'post',
+            data: {'id': getFirstRig(), 'state': state, '_csrf-backend': getCsrf()},
+            dataType: 'json',
+            cache: false,
+            error: function(data){
+                console.log(data);
+            },
+            success: function(data){
+                if (data) {
+                    if (data == 1) {
+                        s.removeClass('enable-off').addClass('enable-on');
+                    } else {
+                        s.removeClass('enable-on').addClass('enable-off');
+                    }
+                }
+            },       
+        });
+    }
+});
+
+
+
+$(document).on('click', '#act-reboot', function(){
+    var s = $('.enable-switch');
+    var state = 0;
+
+    if (s.hasClass('enable-off')) {
+        state = 1;
+    }
+
+    if (confirm('If the rig is working & i-net connection is ok, then this action will succeed. ATTENTION! You\'re a moment away from REBOOTING the rig - PROCEED?')) {
+        $.ajax({
+            url: 'index.php?r=rigs/reboot',
             method: 'post',
             data: {'id': getFirstRig(), 'state': state, '_csrf-backend': getCsrf()},
             dataType: 'json',

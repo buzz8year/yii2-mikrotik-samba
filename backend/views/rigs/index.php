@@ -217,6 +217,9 @@ footer {
 .enable-status {
     margin-bottom: 22px;
 }
+.enable-reboot .enable-switch.enable-on {
+    background: #ccb85c;
+}
 </style>
 
 
@@ -252,7 +255,11 @@ footer {
 
 
             <div class="enable-status pull-right">
-                <span class="enable-switch enable-<?= $modelFirst->status ? 'on' : 'off' ?>"></span>
+                <span id="act-switch" class="enable-switch enable-<?= $modelFirst->status ? 'on' : 'off' ?>"></span>
+            </div>
+
+            <div class="enable-status enable-reboot pull-right">
+                <span class="enable-switch enable-on" id="act-reboot"></span>
             </div>
 
             <?php if ($modelFirst->lastJournal) : ?>
