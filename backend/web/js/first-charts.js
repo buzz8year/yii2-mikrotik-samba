@@ -223,6 +223,8 @@ function rawHtml(id) {
         success: function(data){
             if (data.indexOf('curl') >= 0) {
                 $('#act-reboot').addClass('enable-reboot-mute');
+            } else {
+                $('#act-reboot').removeClass('enable-reboot-mute');
             }
             $('#div-raw').html(data);
             setTimeout(function(){
