@@ -176,7 +176,8 @@ class RigsController extends Controller
 
             $model = $this->findModel($post['id']);
 
-            $data = shell_exec('net rpc shutdown -r --ipaddress ' . $model['ip'] . ' --user master%1000000$ 2>&1');
+            // $data = shell_exec('net rpc shutdown -r --ipaddress ' . $model['ip'] . ' --user master%1000000$ 2>&1');
+            $data = shell_exec('cd /opt/remote && ./reboot-rig.sh ' . $model['ip']);
 
             // if () {
                 return json_encode($post['state']);
