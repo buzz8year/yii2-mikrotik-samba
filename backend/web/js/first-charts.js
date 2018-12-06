@@ -9,6 +9,10 @@ setInterval(function () {
 $(document).ready(function(){
     var id = $('#raw-html').attr('data-id');
     $('.click-rig[data-rig=' + id + ']').addClass('selected');
+
+    setTimeout(function(){
+        $('.enable-reboot').addClass('enable-on');
+    }, 5000);
 });
 
 
@@ -39,6 +43,7 @@ $(document).on('click', '#act-switch', function(){
                 console.log(data);
             },
             success: function(data){
+                console.log(data);
                 if (data) {
                     if (data == 1) {
                         s.removeClass('enable-off').addClass('enable-on');
@@ -53,34 +58,30 @@ $(document).on('click', '#act-switch', function(){
 
 
 
-$(document).on('click', '#act-reboot', function(){
-    var s = $('.enable-switch');
+$(document).on('click', '#act-reboot:not(.enable-mute)', function(){
+
+    var el = $('.enable-reboot');
     var state = 0;
 
-    if (s.hasClass('enable-off')) {
+    if (el.hasClass('enable-off')) {
         state = 1;
     }
 
-    if (confirm('If the rig is working & i-net connection is ok, then this action will succeed. ATTENTION! You\'re a moment away from REBOOTING the rig - PROCEED?')) {
-        $.ajax({
-            url: 'index.php?r=rigs/reboot',
-            method: 'post',
-            data: {'id': getFirstRig(), 'state': state, '_csrf-backend': getCsrf()},
-            dataType: 'json',
-            cache: false,
-            error: function(data){
-                console.log(data);
-            },
-            success: function(data){
-                if (data) {
-                    if (data == 1) {
-                        s.removeClass('enable-off').addClass('enable-on');
-                    } else {
-                        s.removeClass('enable-on').addClass('enable-off');
-                    }
-                }
-            },       
-        });
+    if (el.hasClass('enable-off')) {
+        if (el.hasClass('enable-canceled')) {
+
+        } else {
+            if (confirm('Abort rebooting ?')) {
+                    rebootAjax(el, state);
+            }
+        }
+
+    } else {
+        if (confirm('If the rig is working & net connection is ok, then this action will succeed. \
+            ATTENTION! You\'re a moment away from REBOOTING the rig - PROCEED? \
+            You will have 10 sec to cancel.')) {
+                rebootAjax(el, state);
+        }
     }
 });
 
@@ -145,6 +146,49 @@ $(document).on('click', '.link-raw', function(){
 //     }
 
 // }
+
+
+function rebootAjax(el, state) {
+    $.ajax({
+        url: 'index.php?r=rigs/reboot',
+        method: 'post',
+        data: {'id': getFirstRig(), 'state': state, 'abort': state, '_csrf-backend': getCsrf()},
+        dataType: 'json',
+        cache: false,
+        error: function(data){
+            console.log(data);
+        },
+        success: function(data){
+            console.log(data);
+
+            if (data) {
+
+                if (data['state'] == 1) {
+
+                    if (data['abort'] == 1) {
+
+                        el.addClass('enable-canceled');
+                        setTimeout(function() {
+                            el.removeClass('enable-canceled enable-off enable-mute');
+                            el.addClass('enable-on');
+                        }, 3000);
+
+                    } else {
+
+                        // el.removeClass('enable-off').addClass('enable-on');
+                    }
+
+                } else {
+
+                    el.removeClass('enable-on').addClass('enable-off');
+                    // setTimeout(function() {
+                    //     el.addClass('enable-mute');
+                    // }, 3000);
+                }
+            }
+        },       
+    });
+}
 
 
 function getCsrf() {

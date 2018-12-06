@@ -217,8 +217,61 @@ footer {
 .enable-status {
     margin-bottom: 22px;
 }
-.enable-reboot .enable-switch.enable-on {
+.enable-reboot.enable-off {
+    background: #aaa;
+}
+.enable-reboot {
+    height: 16px;
+    min-width: 50px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    line-height: 1;
+    cursor: pointer;
+    border-radius: 2px;
+    background: #444;
+}
+.enable-reboot.enable-on:before {
+    color: #111;
+    font-size: 12px;
+    content: 'Reboot';
+    font-family: 'pt mono';
+    line-height: 1.4;
+    padding: 0 3px;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+}
+.enable-reboot.enable-off:before {
+    color: #111;
+    font-size: 12px;
+    content: 'Cancel';
+    font-family: 'pt mono';
+    line-height: 1.4;
+    padding: 0 3px;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+}
+.enable-reboot.enable-off.enable-canceled:before {
+    content: 'Canceled';
+}
+.enable-reboot.enable-off.enable-mute:before {
+    content: 'Command sent';
+}
+.enable-reboot.enable-on {
     background: #ccb85c;
+}
+.enable-reboot:before {
+    background: transparent;
+}
+.info-first {
+    width: 25vw; 
+    height: 160px; 
+    margin-top: 5px;
+    position: relative;
 }
 </style>
 
@@ -249,7 +302,7 @@ footer {
 
         <div class="pull-left chart-container" style="height: 160px; width: 70vw"> <canvas id="chart-first"></canvas> </div>
 
-        <div class="pull-left info-first" style="height: 160px; width: 25vw; margin-top: 5px;">
+        <div class="pull-left info-first">
             <span class="span-hostname"><?= $modelFirst->hostname ?></span>
             <small class="span-ip"><?= $modelFirst->ip ?></small><br/><br/>
 
@@ -258,9 +311,7 @@ footer {
                 <span id="act-switch" class="enable-switch enable-<?= $modelFirst->status ? 'on' : 'off' ?>"></span>
             </div>
 
-            <div class="enable-status enable-reboot pull-right">
-                <span class="enable-switch enable-on" id="act-reboot"></span>
-            </div>
+            <div class="enable-status pull-right"> <span id="act-reboot" class="enable-reboot"></span> </div>
 
             <?php if ($modelFirst->lastJournal) : ?>
 

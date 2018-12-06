@@ -175,13 +175,34 @@ class RigsController extends Controller
     {
         if (($post = Yii::$app->request->post()) && isset($post['id']) && isset($post['state'])) {
 
+            // if (isset($post['dead']) && $post['dead'] > 10) {
+            //     return json_encode($data = array(
+            //         'error' => 'dead',
+            //         'response' => $exec,
+            //         'state' => $post['state'],
+            //         'abort' => $post['abort'],
+            //     ));
+            // }
+
             $model = $this->findModel($post['id']);
 
             // $data = shell_exec('net rpc shutdown -r --ipaddress ' . $model['ip'] . ' --user master%1000000$ 2>&1');
-            $data = shell_exec('cd /opt/remote && ./reboot-rig.sh ' . $model['ip']);
+
+            if (isset($post['abort'])) {
+                $exec = shell_exec('cd /opt/remote && ./abort-reboot-rig.sh ' . $model['ip'] . ' 2>&1; echo $?');
+            } else {
+                $exec = shell_exec('cd /opt/remote && ./reboot-rig.sh ' . $model['ip'] . ' 2>&1; echo $?');
+            }
+
+            $data = array(
+                'error' => '',
+                'response' => $exec,
+                'state' => $post['state'],
+                'abort' => $post['abort'],
+            );
 
             // if () {
-                return json_encode($post['state']);
+                return json_encode($data);
             // }
         }
     }
