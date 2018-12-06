@@ -231,6 +231,18 @@ footer {
     border-radius: 2px;
     background: #555;
 }
+.enable-reboot:before {
+    color: #ddd;
+    font-size: 12px;
+    content: 'Connection';
+    font-family: 'pt mono';
+    line-height: 1.4;
+    padding: 0 5px;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+}
 .enable-reboot.enable-on:before {
     color: #111;
     font-size: 12px;
