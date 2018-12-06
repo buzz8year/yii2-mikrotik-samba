@@ -224,11 +224,11 @@ function rawHtml(id) {
             console.log(id, data);
         },
         success: function(data){
-            if (data.indexOf('curl') >= 0) {
-                $('#act-reboot').addClass('enable-reboot-mute');
-            } else {
-                $('#act-reboot').removeClass('enable-reboot-mute');
-            }
+            // if (data.indexOf('curl') >= 0) {
+            //     $('#act-reboot').addClass('enable-reboot-mute');
+            // } else {
+            //     $('#act-reboot').removeClass('enable-reboot-mute');
+            // }
             $('#div-raw').html(data);
             setTimeout(function(){
                 sec.html(html);
