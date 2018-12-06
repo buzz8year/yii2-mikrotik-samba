@@ -189,9 +189,9 @@ class RigsController extends Controller
             // $data = shell_exec('net rpc shutdown -r --ipaddress ' . $model['ip'] . ' --user master%1000000$ 2>&1');
 
             if (isset($post['abort'])) {
-                $exec = shell_exec('cd /opt/remote && ./abort-reboot-rig.sh ' . $model['ip']);
+                $exec = shell_exec('cd /opt/remote && ./abort-reboot-rig.sh ' . $model['ip'] . '  2>&1');
             } else {
-                $exec = shell_exec('cd /opt/remote && ./reboot-rig.sh ' . $model['ip']);
+                $exec = shell_exec('cd /opt/remote && ./reboot-rig.sh ' . $model['ip'] . '  2>&1');
             }
 
             $data = array(

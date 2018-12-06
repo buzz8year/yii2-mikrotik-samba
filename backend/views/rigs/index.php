@@ -217,8 +217,8 @@ footer {
 .enable-status {
     margin-bottom: 22px;
 }
-.enable-reboot.enable-off {
-    background: #aaa;
+.enable-reboot.enable-off, .enable-reboot.enable-reboot-mute {
+    background: #555;
 }
 .enable-reboot {
     height: 16px;
@@ -229,7 +229,7 @@ footer {
     line-height: 1;
     cursor: pointer;
     border-radius: 2px;
-    background: #444;
+    background: #555;
 }
 .enable-reboot.enable-on:before {
     color: #111;
@@ -237,19 +237,19 @@ footer {
     content: 'Reboot';
     font-family: 'pt mono';
     line-height: 1.4;
-    padding: 0 3px;
+    padding: 0 5px;
     height: 100%;
     width: 100%;
     left: 0;
     top: 0;
 }
 .enable-reboot.enable-off:before {
-    color: #111;
+    color: #ddd;
     font-size: 12px;
     content: 'Cancel';
     font-family: 'pt mono';
     line-height: 1.4;
-    padding: 0 3px;
+    padding: 0 5px;
     height: 100%;
     width: 100%;
     left: 0;
@@ -258,10 +258,13 @@ footer {
 .enable-reboot.enable-off.enable-canceled:before {
     content: 'Canceled';
 }
-.enable-reboot.enable-off.enable-mute:before {
-    content: 'Command sent';
+.enable-reboot.enable-reboot-mute:before {
+    content: 'No response';
+    color: #ddd;
+    font-size: 12px;
+    padding: 0 5px;
 }
-.enable-reboot.enable-on {
+.enable-reboot.enable-on:not(.enable-reboot-mute) {
     background: #ccb85c;
 }
 .enable-reboot:before {

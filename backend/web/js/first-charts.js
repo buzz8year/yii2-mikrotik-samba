@@ -12,7 +12,7 @@ $(document).ready(function(){
 
     setTimeout(function(){
         $('.enable-reboot').addClass('enable-on');
-    }, 5000);
+    }, 2000);
 });
 
 
@@ -58,7 +58,7 @@ $(document).on('click', '#act-switch', function(){
 
 
 
-$(document).on('click', '#act-reboot:not(.enable-mute)', function(){
+$(document).on('click', '#act-reboot:not(.enable-reboot-mute)', function(){
 
     var el = $('.enable-reboot');
     var state = 0;
@@ -169,7 +169,7 @@ function rebootAjax(el, state) {
 
                         el.addClass('enable-canceled');
                         setTimeout(function() {
-                            el.removeClass('enable-canceled enable-off enable-mute');
+                            el.removeClass('enable-canceled enable-off enable-reboot-mute');
                             el.addClass('enable-on');
                         }, 3000);
 
@@ -182,7 +182,7 @@ function rebootAjax(el, state) {
 
                     el.removeClass('enable-on').addClass('enable-off');
                     // setTimeout(function() {
-                    //     el.addClass('enable-mute');
+                    //     el.addClass('enable-reboot-mute');
                     // }, 3000);
                 }
             }
@@ -221,6 +221,9 @@ function rawHtml(id) {
             console.log(id, data);
         },
         success: function(data){
+            if (data.indexOf('curl') >= 0) {
+                $('#act-reboot').addClass('enable-reboot-mute');
+            }
             $('#div-raw').html(data);
             setTimeout(function(){
                 sec.html(html);
