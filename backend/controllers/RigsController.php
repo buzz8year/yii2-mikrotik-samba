@@ -200,7 +200,7 @@ class RigsController extends Controller
                 'abort' => $post['abort'],
             );
 
-            if (substr(' succe', $exec)) {
+            if (strpos($exec, ' succe') !== false) {
                 $data['error'] = 0;
             } else {
                 $data['error'] = 1;

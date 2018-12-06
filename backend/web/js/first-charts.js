@@ -161,7 +161,7 @@ function rebootAjax(el, state) {
         success: function(data){
             console.log(data);
 
-            if (data) {
+            if (data && data['error'] == 0) {
 
                 if (data['state'] == 1) {
 
@@ -185,6 +185,9 @@ function rebootAjax(el, state) {
                     //     el.addClass('enable-reboot-mute');
                     // }, 3000);
                 }
+            }
+            else {
+                el.removeClass('enable-reboot-mute');
             }
         },       
     });
