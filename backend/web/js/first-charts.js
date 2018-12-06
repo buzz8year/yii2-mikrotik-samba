@@ -187,7 +187,7 @@ function rebootAjax(el, state) {
                 }
             }
             else {
-                el.removeClass('enable-reboot-mute');
+                el.addClass('enable-reboot-mute');
             }
         },       
     });
