@@ -296,6 +296,10 @@ footer {
     width: 126px;
     overflow: hidden;
 }
+.chart-mutual {
+    margin: 0;
+    width: 100vw;
+}
 @media(max-width:767px) {
     .chart-container {
         height: 160px; 
