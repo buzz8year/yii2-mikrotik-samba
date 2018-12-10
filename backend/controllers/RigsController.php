@@ -69,7 +69,7 @@ class RigsController extends Controller
      * Lists all Rigs models.
      * @return mixed
      */
-    public function actionIndex(int $id = 1)
+    public function actionIndex(int $id = 1, int $sort = 0)
     {
         $searchModel = new RigsSearch();
 
