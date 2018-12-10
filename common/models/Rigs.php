@@ -38,8 +38,8 @@ class Rigs extends \yii\db\ActiveRecord
     {
         return [
             [['port', 'status', 'allocation_id', 'model_id', 'dtime'], 'integer'],
-            [['description', 'data'], 'string'],
-            [['ip', 'mac'], 'string', 'max' => 64],
+            [['description', 'data', 'shelf'], 'string'],
+            [['ip', 'mac', 'shelf'], 'string', 'max' => 64],
             [['hostname'], 'string', 'max' => 150],
         ];
     }
@@ -54,6 +54,7 @@ class Rigs extends \yii\db\ActiveRecord
             'ip' => 'Ip',
             'port' => 'Port',
             'mac' => 'Mac',
+            'shelf' => 'Shelf',
             'hostname' => 'Hostname',
             'description' => 'Description',
             'status' => 'Status',
