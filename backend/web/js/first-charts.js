@@ -107,6 +107,9 @@ $(document).on('click', '.click-rig', function(){
             rigExpand(data);
         },
     });
+
+    $('html, body').animate({ scrollTop: 0 }, 'slow', function () {
+    });
 });
 
 
@@ -253,7 +256,7 @@ function rigExpand(data) {
 
         $('#act-reboot').removeClass('enable-reboot-mute enable-off enable-canceled').addClass('enable-on');
 
-        $('#rig-first .chart-container').html('<div class="pull-left chart-container" style="height: 160px; width: 70vw"> <canvas id="chart-first"></canvas> </div>');
+        $('#rig-first .chart-container').html('<div class="pull-left chart-container"> <canvas id="chart-first"></canvas> </div>');
 
         $('#rig-first .span-hostname').html(data['hostname']);
         $('#rig-first .span-ip').html(data['ip']);

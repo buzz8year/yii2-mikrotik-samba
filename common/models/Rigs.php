@@ -162,6 +162,7 @@ class Rigs extends \yii\db\ActiveRecord
 
                 $data['time'][] = date("H:i", substr($poll->poll_time, 0, 10));
                 $data['rate'][] = round($rate / 1000, 3);
+                $data['count'][] = sizeof($journals);
 
                 unset($rate);
 

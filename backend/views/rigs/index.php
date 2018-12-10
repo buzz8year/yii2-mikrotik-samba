@@ -80,7 +80,7 @@ footer {
     /*filter: grayscale(0);*/
 }
 /*.table tbody tr.o {*/
-.table tbody tr:hover .label, .click-rig.selected .label {
+.table tbody tr:hover .label, .click-rig.selected .label:first-of-type {
     /*height: 250px;*/
     background-color: #08c!important;
 }
@@ -288,6 +288,41 @@ footer {
     margin-top: 5px;
     position: relative;
 }
+.chart-container {
+    height: 160px; 
+    width: 70vw;
+}
+.no-response {
+    width: 160px;
+}
+@media(max-width:767px) {
+    .chart-container {
+        height: 160px; 
+        width: 100vw;
+    }
+    .info-first {
+        width: 90vw; 
+        padding-left: 0;
+    }
+    .no-response {
+        width: 101px;
+        overflow: hidden;
+    }
+    .table tbody tr {
+        min-width: 45px;
+        width: 45px;
+        margin-bottom: 1px
+    }
+    .gpu-count {
+        width: 26px;
+    }
+    .gpu-state {
+        padding: 1.2em 1.05em 1.2em;
+    }
+    .click-rig .label-default, .gpu-count, .gpu-rate, .no-response {
+        display: none;
+    }
+}
 </style>
 
 
@@ -315,7 +350,7 @@ footer {
 
     <div id="rig-first">
 
-        <div class="pull-left chart-container" style="height: 160px; width: 70vw"> <canvas id="chart-first"></canvas> </div>
+        <div class="pull-left chart-container"> <canvas id="chart-first"></canvas> </div>
 
         <div class="pull-left info-first">
             <span class="span-hostname"><?= $modelFirst->hostname ?></span>
@@ -413,13 +448,15 @@ footer {
 
                     if ($model->lastJournal) {
                         $html[] = '<span class="label label-default" style="width:40px; direction: rtl; text-align: right">' . end($exp) . '.</span>';
-                        $html[] = '<span class="label label-' . ($model->lastJournal->up ? 'success' : 'danger') . '">' . ($model->lastJournal->up ? 'UP' : 'DOWN') . '</span>';
-                        $html[] = '<span class="label label-' . (count(explode(";", $model->lastJournal->rate_details)) < 8 ? 'warning' : 'success') . '">' . count(explode(";", $model->lastJournal->rate_details)) . '</span>';
-                        $html[] = '<span class="label label-' . ($model->lastJournal->totalHashrate < 210 ? 'warning' : ($model->lastJournal->totalHashrate >= 230 ? 'success' : 'warning')) . '">' . $model->lastJournal->totalHashrate . ' MH/s</span>';
+                        $html[] = '<span class="label gpu-state label-' . ($model->lastJournal->up ? 'success' : 'danger') . '">' . ($model->lastJournal->up ? 'UP' : 'DOWN') . '</span>';
+                        $html[] = '<span class="label gpu-count label-' . (count(explode(";", $model->lastJournal->rate_details)) < 8 ? 'warning' : 'success') . '">' . count(explode(";", $model->lastJournal->rate_details)) . '</span>';
+                        $html[] = '<span class="label gpu-rate  label-' . ($model->lastJournal->totalHashrate < 210 ? 'warning' : ($model->lastJournal->totalHashrate >= 230 ? 'success' : 'warning')) . '">' . $model->lastJournal->totalHashrate . ' MH/s</span>';
                     }
                     else {
                         $html[] = '<span class="label label-default" style="width:40px; direction: rtl; text-align: right">' . end($exp) . '.</span>';
-                        $html[] = '<span class="label label-danger" style="width: 160px">Error: no response</span>';
+                        $html[] = '<span class="label gpu-state label-danger xs-vissible">DW</span>';
+                        $html[] = '<span class="label gpu-count label-danger xs-vissible">0</span>';
+                        $html[] = '<span class="label label-danger no-response">Error: no response</span>';
                         // $html[] = '<span class="label label-default" style="width: 206px">Error: empty record data</span>';
                     }
 
