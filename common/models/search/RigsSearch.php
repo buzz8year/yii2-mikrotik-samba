@@ -19,7 +19,7 @@ class RigsSearch extends Rigs
     {
         return [
             [['id', 'port', 'allocation_id', 'model_id', 'dtime'], 'integer'],
-            [['ip', 'mac', 'status', 'hostname', 'description', 'data'], 'safe'],
+            [['ip', 'mac', 'shelf', 'status', 'hostname', 'description', 'data'], 'safe'],
         ];
     }
 

@@ -82,12 +82,12 @@ class RigsController extends Controller
             // Yii::$app->cache->set('rigsLastData', $dataProvider, 600);
         // }
 
-        foreach ($dataProvider->models as $model) {
-            if (isset($model->shelf)) {
-                $model->shelf = preg_replace('/[^0-9]/', '', $model->hostname);
-                $model->save();
-            }
-        }
+        // foreach ($dataProvider->models as $model) {
+        //     if (isset($model->shelf)) {
+        //         $model->shelf = preg_replace('/[^0-9]/', '', $model->hostname);
+        //         $model->save();
+        //     }
+        // }
 
 
         return $this->render('index', [
