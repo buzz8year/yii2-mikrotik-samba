@@ -114,15 +114,7 @@ footer {
     margin: 60px 0 120px;
     float: left;
 }
-.chart-mutual {
-    position: relative; 
-    bottom: -10px; 
-    left: 0;
-    height: 160px; 
-    width: calc(100vw + 70px); 
-    margin-left: -35px;
-    /*filter: grayscale(1) opacity(.5);*/
-}
+
 /*.chart-mutual:hover {
     filter: grayscale(0) opacity(1);
 }*/
@@ -297,8 +289,13 @@ footer {
     overflow: hidden;
 }
 .chart-mutual {
-    margin: 0;
-    width: 100vw;
+    position: relative; 
+    bottom: -10px; 
+    left: 0;
+    height: 160px; 
+    width: calc(100vw + 70px); 
+    margin-left: -35px;
+    /*filter: grayscale(1) opacity(.5);*/
 }
 @media(max-width:767px) {
     .chart-container {
