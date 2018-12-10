@@ -319,6 +319,9 @@ footer {
     .gpu-state {
         padding: 1.2em 1.05em 1.2em;
     }
+    .gpu-rate {
+        margin-right: 75vw;
+    }
     .click-rig .label-default, .gpu-count, .gpu-rate, .no-response {
         display: none;
     }
