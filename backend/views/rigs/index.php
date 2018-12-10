@@ -298,7 +298,7 @@ footer {
 @media(max-width:767px) {
     .chart-container {
         height: 160px; 
-        width: 100vw;
+        width: 102vw;
     }
     .info-first {
         width: 90vw; 
@@ -321,6 +321,9 @@ footer {
     }
     .click-rig .label-default, .gpu-count, .gpu-rate, .no-response {
         display: none;
+    }
+    #raw-html {
+        width: 100vw;
     }
 }
 </style>
