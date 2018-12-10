@@ -71,6 +71,14 @@ class RigsController extends Controller
      */
     public function actionIndex(int $id = 1, int $sort = 0)
     {
+
+        foreach (Rigs::find()->all() as $model) {
+            if (isset($model->shelf)) {
+                $model->shelf = preg_replace('/[^0-9]/', '', $model->hostname);
+                $model->save();
+            }
+        }
+
         $searchModel = new RigsSearch();
 
         // $cache = Yii::$app->cache->get('rigsLastData');
@@ -82,12 +90,7 @@ class RigsController extends Controller
             // Yii::$app->cache->set('rigsLastData', $dataProvider, 600);
         // }
 
-        // foreach ($dataProvider->models as $model) {
-        //     if (isset($model->shelf)) {
-        //         $model->shelf = preg_replace('/[^0-9]/', '', $model->hostname);
-        //         $model->save();
-        //     }
-        // }
+
 
 
         return $this->render('index', [
