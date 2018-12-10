@@ -49,7 +49,7 @@ class RigsSearch extends Rigs
             'query' => $query,
             'sort' => [
                 'defaultOrder' => [
-                    'hostname' => SORT_ASC
+                    'shelf' => SORT_ASC
                 ]
             ]
         ]);
