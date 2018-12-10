@@ -85,7 +85,7 @@ class RigsController extends Controller
         foreach ($dataProvider->models as $model) {
             if (isset($model->shelf)) {
                 $model->shelf = preg_replace('/[^0-9]/', '', $model->hostname);
-                $models->save();
+                $model->save();
             }
         }
 
