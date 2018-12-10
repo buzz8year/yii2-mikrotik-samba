@@ -452,19 +452,18 @@ footer {
                 ],
                 'value'   => function ($model) {
 
-                    $exp = explode('.', $model->ip);
+                    // $exp = explode('.', $model->ip);
 
                     $html = ['<div style="cursor: pointer" class="pull-left click-rig" data-rig="' . $model->id . '">'];
 
                     if ($model->lastJournal) {
                         // $html[] = '<span class="label label-default" style="width:40px; direction: rtl; text-align: right">' . end($exp) . '.</span>';
-                        $html[] = '<span class="label gpu-state label-' . ($model->lastJournal->up ? 'success' : 'danger') . '">' . $model->shelf . '</span>';
+                        $html[] = '<span class="label gpu-state label-default">#' . $model->shelf . '</span>';
                         $html[] = '<span class="label gpu-count label-' . (count(explode(";", $model->lastJournal->rate_details)) < 8 ? 'warning' : 'success') . '">' . count(explode(";", $model->lastJournal->rate_details)) . '</span>';
                         $html[] = '<span class="label gpu-rate  label-' . ($model->lastJournal->totalHashrate < 210 ? 'warning' : ($model->lastJournal->totalHashrate >= 230 ? 'success' : 'warning')) . '">' . $model->lastJournal->totalHashrate . ' MH/s</span>';
                     }
                     else {
-                        $html[] = '<span class="label label-default" style="width:40px; direction: rtl; text-align: right">' . end($exp) . '.</span>';
-                        $html[] = '<span class="label gpu-state label-danger visible-xs">DW</span>';
+                        $html[] = '<span class="label gpu-state label-default">' . $model->shelf. '.</span>';
                         $html[] = '<span class="label gpu-count label-danger visible-xs">0</span>';
                         $html[] = '<span class="label label-danger no-response">Error: no response</span>';
                         // $html[] = '<span class="label label-default" style="width: 206px">Error: empty record data</span>';
