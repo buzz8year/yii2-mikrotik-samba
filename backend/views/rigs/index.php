@@ -293,7 +293,8 @@ footer {
     width: 70vw;
 }
 .no-response {
-    width: 160px;
+    width: 125px;
+    overflow: hidden;
 }
 @media(max-width:767px) {
     .chart-container {
@@ -317,9 +318,6 @@ footer {
         width: 45px;
         margin-bottom: 1px
     }
-    .gpu-count {
-        width: 26px;
-    }
     .gpu-state {
         padding: 1.2em 0.7em 1.2em;
         min-width: 43px;
@@ -329,7 +327,7 @@ footer {
         margin-right: 75vw;
     }
     .click-rig .label-default, .gpu-count, .gpu-rate, .no-response {
-        display: none;
+        display: none!important;
     }
     #raw-html {
         width: 100vw;
@@ -466,8 +464,8 @@ footer {
                     }
                     else {
                         $html[] = '<span class="label label-default" style="width:40px; direction: rtl; text-align: right">' . end($exp) . '.</span>';
-                        $html[] = '<span class="label gpu-state label-danger xs-vissible">DW</span>';
-                        $html[] = '<span class="label gpu-count label-danger xs-vissible">0</span>';
+                        $html[] = '<span class="label gpu-state label-danger visible-xs">DW</span>';
+                        $html[] = '<span class="label gpu-count label-danger visible-xs">0</span>';
                         $html[] = '<span class="label label-danger no-response">Error: no response</span>';
                         // $html[] = '<span class="label label-default" style="width: 206px">Error: empty record data</span>';
                     }
