@@ -304,7 +304,7 @@ footer {
     }
     .chart-mutual {
         margin: 0;
-        width: 105vw;
+        /*width: 105vw;*/
     }
     .info-first {
         width: 90vw; 
@@ -327,7 +327,7 @@ footer {
     .label-rate {
         margin-right: 75vw;
     }
-    .click-rig .label-default, .gpu-count, .gpu-rate, .no-response {
+    .gpu-count, .gpu-rate, .no-response {
         display: none!important;
     }
     #raw-html {
@@ -464,7 +464,7 @@ footer {
                         $html[] = '<span class="label gpu-rate  label-' . ($model->lastJournal->totalHashrate < 210 ? 'warning' : ($model->lastJournal->totalHashrate >= 230 ? 'success' : 'warning')) . '">' . $model->lastJournal->totalHashrate . ' MH/s</span>';
                     }
                     else {
-                        $html[] = '<span class="label gpu-state label-default">' . ($model->shelf ? $model->shelf : '---') . '</span>';
+                        $html[] = '<span class="label gpu-state label-' . ($model->status ? 'default' : 'danger') . '">' . ($model->shelf ? $model->shelf : '---') . '</span>';
                         $html[] = '<span class="label gpu-count label-danger visible-xs">0</span>';
                         $html[] = '<span class="label label-danger no-response">Error: no response</span>';
                         // $html[] = '<span class="label label-default" style="width: 206px">Error: empty record data</span>';
