@@ -64,10 +64,12 @@ function mutualHashrate(data) {
            (i + 1) % 2 === 0 && data.rate.splice(i, 1);
            (i + 1) % 3 === 0 && data.rate.splice(i, 1);
            (i + 1) % 5 === 0 && data.rate.splice(i, 1);
+           (i + 1) % 7 === 0 && data.rate.splice(i, 1);
 
            (i + 1) % 2 === 0 && data.time.splice(i, 1);
            (i + 1) % 3 === 0 && data.time.splice(i, 1);
            (i + 1) % 5 === 0 && data.time.splice(i, 1);
+           (i + 1) % 7 === 0 && data.time.splice(i, 1);
         }
     }
 
