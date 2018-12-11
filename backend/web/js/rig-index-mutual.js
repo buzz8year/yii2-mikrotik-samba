@@ -61,11 +61,11 @@ function mutualHashrate(data) {
         var k = data.time.length;
 
         while (i--) {
-           (i + 1) % 3 === 0 && data.rate.splice(i, 1);
+           (i + 1) % 2 === 0 && data.rate.splice(i, 1);
         }
 
         while (k--) {
-           (k + 1) % 3 === 0 && data.time.splice(k, 1);
+           (k + 1) % 2 === 0 && data.time.splice(k, 1);
         }
     }
 
