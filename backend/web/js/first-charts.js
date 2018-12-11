@@ -6,6 +6,8 @@ setInterval(function () {
 }, 15000);
 
 
+
+
 $(document).ready(function(){
     var id = $('#raw-html').attr('data-id');
     $('.click-rig[data-rig=' + id + ']').addClass('selected');
@@ -335,6 +337,7 @@ function rigExpand(data) {
 
 
 
+var mq = window.matchMedia('(min-width : 0) and (max-width : 768px)');
 
 
 
@@ -378,6 +381,16 @@ var colorArray = [
 
 
 
+function spliceRate(data) {
+    if (mq.matches) {
+        var i = data.length;
+
+        while (i--) {
+           (i + 1) % 2 === 0 && data.splice(i, 1);
+        }
+    }
+    return data;
+}
 
 
 function rigFirstHashrate(data) {
@@ -407,7 +420,7 @@ function rigFirstHashrate(data) {
             datasets: [
                 {
                     label: 'GPU0',
-                    data: data.rate0,
+                    data: spliceRate(data.rate0),
                     borderWidth: 2,
                     pointBorderWidth: 0,
                     borderColor: colorArray[0] + 'AA',
@@ -422,7 +435,7 @@ function rigFirstHashrate(data) {
                 },
                 {
                     label: 'GPU1',
-                    data: data.rate1,
+                    data: spliceRate(data.rate1),
                     borderWidth: 2,
                     pointBorderWidth: 0,
                     borderColor: colorArray[1],
@@ -437,7 +450,7 @@ function rigFirstHashrate(data) {
                 },
                 {
                     label: 'GPU2',
-                    data: data.rate2,
+                    data: spliceRate(data.rate2),
                     borderWidth: 2,
                     pointBorderWidth: 0,
                     borderColor: colorArray[2],
@@ -452,7 +465,7 @@ function rigFirstHashrate(data) {
                 },
                 {
                     label: 'GPU3',
-                    data: data.rate3,
+                    data: spliceRate(data.rate3),
                     borderWidth: 2,
                     pointBorderWidth: 0,
                     borderColor: colorArray[3],
@@ -467,7 +480,7 @@ function rigFirstHashrate(data) {
                 },
                 {
                     label: 'GPU4',
-                    data: data.rate4,
+                    data: spliceRate(data.rate4),
                     borderWidth: 2,
                     pointBorderWidth: 0,
                     borderColor: colorArray[4],
@@ -482,7 +495,7 @@ function rigFirstHashrate(data) {
                 },
                 {
                     label: 'GPU5',
-                    data: data.rate5,
+                    data: spliceRate(data.rate5),
                     borderWidth: 2,
                     pointBorderWidth: 0,
                     borderColor: colorArray[5],
@@ -497,7 +510,7 @@ function rigFirstHashrate(data) {
                 },
                 {
                     label: 'GPU6',
-                    data: data.rate6,
+                    data: spliceRate(data.rate6),
                     borderWidth: 2,
                     pointBorderWidth: 0,
                     borderColor: colorArray[6],
@@ -512,7 +525,7 @@ function rigFirstHashrate(data) {
                 },
                 {
                     label: 'GPU7',
-                    data: data.rate7,
+                    data: spliceRate(data.rate7),
                     borderWidth: 2,
                     pointBorderWidth: 0,
                     borderColor: colorArray[7],
@@ -577,7 +590,7 @@ function rigFirstHashrate(data) {
 
             ],
             // labels: data.time ? (mq.matches ? data.time.slice(data.time.length - 50, data.time.length) : data.time.slice(data.time.length / 2, data.time.length)) : [],
-            labels: data.time,
+            labels: spliceRate(data.time),
             // labels: data.time.slice(data.time.length - 40, data.time.length),
         },
         options: optionsHashrate,
