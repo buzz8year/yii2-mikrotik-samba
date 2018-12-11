@@ -303,8 +303,9 @@ footer {
         width: 102vw;
     }
     .chart-mutual {
-        margin: 0;
-        /*width: 105vw;*/
+        height: 160px;
+        width: 120vw;
+        margin-left: -40px;
     }
     .info-first {
         width: 90vw; 
