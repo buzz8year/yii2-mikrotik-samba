@@ -65,7 +65,7 @@ function mutualHashrate(data) {
         }
 
         while (k--) {
-           (k + 1) % 3 === 0 && data.rate.splice(k, 1);
+           (k + 1) % 3 === 0 && data.time.splice(k, 1);
         }
     }
 
