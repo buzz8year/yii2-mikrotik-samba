@@ -56,7 +56,7 @@ function mutualHashrate(data) {
     gradientBG.addColorStop(0, 'rgba(60, 160, 240, .3)');   
     gradientBG.addColorStop(1, 'rgba(80, 100, 190, .3)');
 
-    if (mq.matches) {
+    if (!mq.matches) {
         var i = data.rate.length;
         var k = data.time.length;
 
