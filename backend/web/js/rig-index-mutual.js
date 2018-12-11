@@ -56,6 +56,19 @@ function mutualHashrate(data) {
     gradientBG.addColorStop(0, 'rgba(60, 160, 240, .3)');   
     gradientBG.addColorStop(1, 'rgba(80, 100, 190, .3)');
 
+    if (mq.matches) {
+        var i = data.rate.length;
+        var k = data.time.length;
+
+        while (i--) {
+           (i + 1) % 3 === 0 && data.rate.splice(i, 1);
+        }
+
+        while (k--) {
+           (k + 1) % 3 === 0 && data.rate.splice(k, 1);
+        }
+    }
+
     var config = {
 
         type: 'line',
