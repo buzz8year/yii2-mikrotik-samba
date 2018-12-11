@@ -321,9 +321,9 @@ footer {
         margin-bottom: 1px
     }
     .gpu-state {
-        padding: 1.2em 0.7em 1.2em;
-        min-width: 43px;
-        width: 43px;
+        padding: .7em 0.7em .7em;
+        min-width: 42px;
+        width: 42px;
     }
     .label-rate {
         margin-right: 75vw;
