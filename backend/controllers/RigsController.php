@@ -75,7 +75,7 @@ class RigsController extends Controller
         foreach (Rigs::find()->all() as $model) {
             if (isset($model->shelf)) {
                 $shelf = preg_replace('/[^0-9]/', '', $model->hostname);
-                if (sizeof($shelf) == 3 && (int)$shelf > 0) {
+                if (count($shelf) > 0 && (int)$shelf > 100 && (int)$shelf < 400) {
                     $model->shelf = $shelf;
                 } else {
                     $model->shelf = '---';
