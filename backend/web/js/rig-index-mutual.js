@@ -9,7 +9,7 @@ $.ajax({
     dataType: 'json',
     cache: false,
     success: function(data) {
-        console.log(data);
+        // console.log(data);
     },
     error: function (errormessage) {
         console.log(errormessage);
@@ -51,7 +51,16 @@ function spliceMutual(data) {
     return data;
 }
 
+
+
+
+var mutualData = {};
+
 function mutualHashrate(data) {
+
+    data.count = spliceMutual(data.count);
+
+    mutualData = data;
 
     console.log(data);
 
@@ -197,15 +206,21 @@ var optionsMutual = {
     tooltips: {
         callbacks: {
             title: function(tooltipItem, data) {
-                return data['labels'][tooltipItem[0]['index']];
+                return mutualData.date + ' at ' + data['labels'][tooltipItem[0]['index']];
+                // return data['labels'][tooltipItem[0]['index']];
             },
             // labelTextColor: function(tooltipItem, chart){
             //     return colorArray[tooltipItem.datasetIndex];
             // },
+            label: function(tooltipItem, data) {
+                console.log(mutualData);
+                console.log(tooltipItem);
+                return tooltipItem['yLabel'] + ' GH/s by ' + mutualData.count[tooltipItem['index']] + ' w.';
+            },
         },
         mode: 'x-axis',
-        xPadding: 20,
-        yPadding: 20,
+        xPadding: 5,
+        yPadding: 5,
         cornerRadius: 0,
         // multiKeyBackground: '#000',
         titleFontStyle: 'normal',

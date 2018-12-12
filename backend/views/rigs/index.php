@@ -290,12 +290,15 @@ footer {
 }
 .chart-mutual {
     position: relative; 
-    bottom: -10px; 
+    bottom: 0; 
     left: 0;
     height: 160px; 
     width: calc(100vw + 70px); 
     margin-left: -35px;
     /*filter: grayscale(1) opacity(.5);*/
+}
+.link-raw > .glyphicon {
+    top: 0; font-size: 12px
 }
 @media(max-width:767px) {
     .chart-container {
@@ -310,6 +313,7 @@ footer {
     .info-first {
         width: 90vw; 
         padding-left: 0;
+        margin-top: 50px;
     }
     .no-response {
         width: 101px;
@@ -331,8 +335,29 @@ footer {
     .gpu-count, .gpu-rate, .no-response {
         display: none!important;
     }
+    #rig-first {
+        margin: 30px 0 120px;
+    }
     #raw-html {
         width: 100vw;
+        height: 150px;
+    }
+    .raw-corner {
+        width: calc(100% - 30px);
+        top: 200px;
+        right: 15px;
+    }
+    .wrap-info-corner {
+        float: left;
+    }
+    .info-scrollable, .info-scrollable + br, .wrap-info-corner + br {
+        display: none;
+    }
+    .wrap-link-corner {
+        float: right;
+    }
+    .link-raw {
+        font-size: 12px;
     }
 }
 </style>
@@ -346,13 +371,13 @@ footer {
 
     <div id="raw-html" data-id="<?= $modelFirst->id ?>">
         <span class="raw-corner">
-            <span>
-                Scrollable <br/>  
+            <span class="wrap-info-corner">
+                <span class="info-scrollable">Scrollable</span><br/>  
                 <span id="count-sec">Auto-updating (15s)</span>
                 <!-- <span class="count-unit">s</span>  -->
             </span><br/>
-            <span>
-                <a class="link-raw" target="_blank"><i class="glyphicon glyphicon-align-left" style="top: 0; font-size: 12px"></i> New tab</a>
+            <span class="wrap-link-corner">
+                <a class="link-raw" target="_blank"><i class="glyphicon glyphicon-align-left"></i> New tab</a>
             </span>
         </span>
         <div id="div-raw">

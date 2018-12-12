@@ -659,6 +659,9 @@ var optionsHashrate = {
                     // display: mq.matches ? false : true,
                     fontSize: 12,
                     fontColor: '#ccc',
+                    userCallback: function(item, index, all) {
+                        if (!(index == 0) && ((index + 1) < all.length)) return item;
+                    },
                     // min: 0,
                     // callback: function(label, index, labels) {
                     //     return label / 1000000;

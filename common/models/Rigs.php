@@ -128,6 +128,7 @@ class Rigs extends \yii\db\ActiveRecord
         $data = [
             'time' => [],
             'rate' => [],
+            'count' => [],
             'rejected' => 0,
             'shares' => 0,
             'gpus' => 0,
@@ -162,11 +163,15 @@ class Rigs extends \yii\db\ActiveRecord
                 }
 
                 $data['time'][] = date("H:i", substr($poll->poll_time, 0, 10));
-                $data['rate'][] = round($rate / 1000, 3);
+                $data['rate'][] = round($rate / 1000, 2);
                 $data['count'][] = sizeof($journals);
 
                 unset($rate);
 
+            }
+
+            if ($key == 0) {
+                $data['date'] = date("Y/m/d", substr($poll->poll_time, 0, 10));
             }
 
         }
