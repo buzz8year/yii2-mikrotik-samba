@@ -284,7 +284,7 @@ footer {
     width: 100%;
     height: 30px;
 }
-@media(max-width:767px) {
+@media(max-width:768px) {
     .wrap {
         padding-left: 0;
         padding-right: 0;
