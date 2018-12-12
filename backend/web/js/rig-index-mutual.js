@@ -38,7 +38,18 @@ var colorArray = [
 
 
 
+function spliceMutual(data) {
+    if (mq.matches) {
+        var i = data.length;
 
+        while (i--) {
+           (i + 1) % 2 === 0 && data.splice(i, 1);
+           (i + 1) % 3 === 0 && data.splice(i, 1);
+        }
+
+    }
+    return data;
+}
 
 function mutualHashrate(data) {
 
@@ -56,23 +67,6 @@ function mutualHashrate(data) {
     gradientBG.addColorStop(0, 'rgba(60, 160, 240, .3)');   
     gradientBG.addColorStop(1, 'rgba(80, 100, 190, .3)');
 
-    if (!mq.matches) {
-        var i = data.rate.length;
-        var k = data.time.length;
-
-        while (i--) {
-           (i + 1) % 2 === 0 && data.rate.splice(i, 1);
-           (i + 1) % 3 === 0 && data.rate.splice(i, 1);
-           (i + 1) % 5 === 0 && data.rate.splice(i, 1);
-           (i + 1) % 7 === 0 && data.rate.splice(i, 1);
-
-           (i + 1) % 2 === 0 && data.time.splice(i, 1);
-           (i + 1) % 3 === 0 && data.time.splice(i, 1);
-           (i + 1) % 5 === 0 && data.time.splice(i, 1);
-           (i + 1) % 7 === 0 && data.time.splice(i, 1);
-        }
-    }
-
     var config = {
 
         type: 'line',
@@ -80,7 +74,7 @@ function mutualHashrate(data) {
             datasets: [
                 {
                     label: 'Total Rate',
-                    data: data.rate,
+                    data: spliceMutual(data.rate),
                     pointBorderWidth: 0,
                     borderWidth: 1,
                     borderColor: '#f0ad4e',
@@ -98,7 +92,7 @@ function mutualHashrate(data) {
                 },
 
             ],
-            labels: data.time,
+            labels: spliceMutual(data.time),
         },
         options: optionsMutual,
     };
