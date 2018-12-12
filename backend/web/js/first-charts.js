@@ -15,6 +15,15 @@ $(document).ready(function(){
     setTimeout(function(){
         $('.enable-reboot').addClass('enable-on');
     }, 2000);
+
+    var sep = '<div class="separator"></div>';
+
+    $('table tr').each(function(){
+        shelf = parseInt($(this).find('.gpu-state').html());
+        if (shelf === 101 || shelf === 201 || shelf === 301) {
+            $(this).before($(sep));
+        }
+    });
 });
 
 

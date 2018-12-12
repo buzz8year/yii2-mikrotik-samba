@@ -44,8 +44,10 @@ footer {
 }
 .table tbody {
     display: flex;
-    justify-content: center;
+    justify-content: left;
     flex-flow: row wrap;
+    margin-left: 9.5vw;
+    width: 90.5vw;
 }
 .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
     /*padding: 15px;*/
@@ -294,6 +296,10 @@ footer {
 .navbar-inverse, .navbar-inverse .navbar-toggle {
     border-color: transparent;
 }
+.separator {
+    width: 100%;
+    height: 30px;
+}
 @media(max-width:767px) {
     .wrap {
         padding-left: 0;
@@ -360,6 +366,11 @@ footer {
     }
     .link-raw {
         font-size: 12px;
+    }
+    .table tbody {
+        justify-content: center;
+        width: 100%;
+        margin: 0;
     }
 }
 </style>

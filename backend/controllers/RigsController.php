@@ -72,17 +72,17 @@ class RigsController extends Controller
     public function actionIndex(int $id = 1, int $sort = 0)
     {
 
-        foreach (Rigs::find()->all() as $model) {
-            if (isset($model->shelf)) {
-                $shelf = preg_replace('/[^0-9]/', '', $model->hostname);
-                if (count($shelf) > 0 && (int)$shelf > 100 && (int)$shelf < 400) {
-                    $model->shelf = $shelf;
-                } else {
-                    $model->shelf = '---';
-                }
-                $model->save();
-            }
-        }
+        // foreach (Rigs::find()->all() as $model) {
+        //     if (isset($model->shelf)) {
+        //         $shelf = preg_replace('/[^0-9]/', '', $model->hostname);
+        //         if (count((string)$shelf) > 0 && (int)$shelf > 100 && (int)$shelf < 400) {
+        //             $model->shelf = $shelf;
+        //         } else {
+        //             $model->shelf = '---';
+        //         }
+        //         $model->save();
+        //     }
+        // }
 
         $searchModel = new RigsSearch();
 
