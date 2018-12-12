@@ -335,12 +335,13 @@ footer {
         margin: 30px 0 120px;
     }
     #raw-html {
-        width: 100vw;
+        width: calc(100vw - 20px);
+        padding: 30px 15px 15px;
         height: 150px;
     }
     .raw-corner {
         width: calc(100% - 30px);
-        top: 200px;
+        top: 210px;
         right: 15px;
     }
     .wrap-info-corner {
