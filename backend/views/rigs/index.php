@@ -206,22 +206,22 @@ footer {
     background: #555;
 }
 .enable-reboot {
-    height: 16px;
+    height: 18px;
     min-width: 50px;
     position: absolute;
     right: 0;
-    bottom: 0;
+    bottom: 10px;
     line-height: 1;
     cursor: pointer;
     border-radius: 2px;
     background: #555;
 }
-.enable-reboot:before {
+.enable-reboot:before, .enable-reboot.enable-on:before, .enable-reboot.enable-off:before {
     color: #ddd;
-    font-size: 12px;
+    font-size: 13px;
     content: 'Connection';
     font-family: 'pt mono';
-    line-height: 1.4;
+    line-height: 1.5;
     padding: 0 5px;
     height: 100%;
     width: 100%;
@@ -230,27 +230,11 @@ footer {
 }
 .enable-reboot.enable-on:before {
     color: #111;
-    font-size: 12px;
     content: 'Reboot';
-    font-family: 'pt mono';
-    line-height: 1.4;
-    padding: 0 5px;
-    height: 100%;
-    width: 100%;
-    left: 0;
-    top: 0;
 }
 .enable-reboot.enable-off:before {
     color: #ddd;
-    font-size: 12px;
     content: 'Cancel';
-    font-family: 'pt mono';
-    line-height: 1.4;
-    padding: 0 5px;
-    height: 100%;
-    width: 100%;
-    left: 0;
-    top: 0;
 }
 .enable-reboot.enable-off.enable-canceled:before {
     content: 'Canceled';
