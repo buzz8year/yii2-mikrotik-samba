@@ -342,8 +342,8 @@ footer {
     .raw-corner {
         width: 100%;
         background-color: #3a3a3a;
-        padding: 0 15px 10px;
-        top: 210px;
+        padding: 15px 15px 10px;
+        top: 205px;
         right: 0;
     }
     .wrap-info-corner {
