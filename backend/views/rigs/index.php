@@ -46,7 +46,7 @@ footer {
     display: flex;
     justify-content: left;
     flex-flow: row wrap;
-    margin-left: 9.5vw;
+    margin: 0 auto;
     width: 90.5vw;
 }
 .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
@@ -66,9 +66,9 @@ footer {
     padding: 0px!important;
     transition: .1s;
     display: inline-flex;
-    min-width: 220px;
+    min-width: 180px;
     /*min-width: 16vw;*/
-    width: 220px;
+    width: 180px;
     /*float: left;*/
     text-align: center;
     /*height: 180px;*/

@@ -97,7 +97,7 @@ class Rigs extends \yii\db\ActiveRecord
 
             // $sum = 0;
             foreach ( ($gpus = explode(";", $journal->rate_details)) as $kee => $rate) {
-                $data['rate' . $kee][] = $gpus[$kee] / 1000;
+                $data['rate' . $kee][] = round($gpus[$kee] / 1000, 2);
                 // $sum = $sum + $gpus[$kee];
             }
             // $data['rate' . count($gpus)][] = $sum / 1000;
