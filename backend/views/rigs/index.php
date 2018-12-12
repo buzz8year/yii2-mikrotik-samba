@@ -291,6 +291,9 @@ footer {
 .link-raw > .glyphicon {
     top: 0; font-size: 12px
 }
+.navbar-inverse, .navbar-inverse .navbar-toggle {
+    border-color: transparent;
+}
 @media(max-width:767px) {
     .wrap {
         padding-left: 0;
