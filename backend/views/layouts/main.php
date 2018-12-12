@@ -72,7 +72,9 @@ AppAsset::register($this);
     </div>
 </div>
 
-<div class="chart-container chart-mutual"> <canvas id="chart-mutual"></canvas> </div>
+<div class="wrap-chart-mutual" style="overflow: hidden; widows: 100vw; left: 0; bottom: 0">
+    <div class="chart-container chart-mutual"> <canvas id="chart-mutual"></canvas> </div>
+</div>
 
 <!-- <footer class="footer">
     <div class="container">

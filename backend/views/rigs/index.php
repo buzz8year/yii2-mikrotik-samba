@@ -136,15 +136,6 @@ footer {
 /*#raw-html:hover {
     opacity: 1;
 }*/
-::-webkit-scrollbar {
-    background: rgba(255,255,255,.02);
-}
-::-webkit-scrollbar-thumb {
-    background-color: rgba(255,255,255,.05);
-}
-#raw-html::-webkit-scrollbar {
-    background: transparent;
-}
 .raw-corner {
     position: absolute;
     right: 0;
@@ -301,6 +292,11 @@ footer {
     top: 0; font-size: 12px
 }
 @media(max-width:767px) {
+    .wrap {
+        padding-left: 0;
+        padding-right: 0;
+        overflow-x: hidden;
+    }
     .chart-container {
         height: 160px; 
         width: 102vw;
