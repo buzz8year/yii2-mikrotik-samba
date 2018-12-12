@@ -340,9 +340,11 @@ footer {
         height: 150px;
     }
     .raw-corner {
-        width: calc(100% - 30px);
+        width: 100%;
+        background-color: #3a3a3a;
+        padding: 0 15px 10px;
         top: 210px;
-        right: 15px;
+        right: 0;
     }
     .wrap-info-corner {
         float: left;
