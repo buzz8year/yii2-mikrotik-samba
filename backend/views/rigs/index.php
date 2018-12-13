@@ -24,7 +24,7 @@ $this->registerJs('rigFirstHashrate(' . json_encode($modelFirst->dayRate) . ');'
 
 ::-webkit-scrollbar {
     width: 7px;
-    background-color: rgba(255,255,255,.01); 
+    background-color: transparent; 
 }
 
 ::-webkit-scrollbar-track {
@@ -36,6 +36,20 @@ $this->registerJs('rigFirstHashrate(' . json_encode($modelFirst->dayRate) . ');'
 }
 ::-webkit-scrollbar-thumb:hover {
     background-color: rgba(255,255,255,.2); 
+}
+
+#raw-html::-webkit-scrollbar {
+    width: 12px;
+    background-color: rgba(255,255,255,.0); 
+}
+
+#raw-html::-webkit-scrollbar-track {
+    background-color: transparent; 
+}
+
+#raw-html::-webkit-scrollbar-thumb {
+    background-color: transparent; 
+    box-shadow: inset 0 0 0 2px rgba(255,255,255,.5)
 }
 
 body {
@@ -141,7 +155,7 @@ footer {
     padding-left: 60px;
 }
 #raw-html {
-    width: calc(100vw - 20px);
+    width: calc(100vw - 27px);
     height: 300px;
     overflow-x: hidden;
     overflow-y: scroll;
