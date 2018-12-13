@@ -133,6 +133,7 @@ a.desc:after {
     font-weight: normal;
     margin: 0 2px 2px 0;
     float: left;
+    color: #ddd;
     font-size: 13px;
     text-shadow: -1px -1px 0 rgba(0,0,0,.1);
 }
