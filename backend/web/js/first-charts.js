@@ -1,9 +1,9 @@
-// rawHtml(getFirstRig());
-// rawScroll();
+rawHtml(getFirstRig());
+rawScroll();
 
-// setInterval(function () {
-//     rawHtml(getFirstRig());
-// }, 15000);
+setInterval(function () {
+    rawHtml(getFirstRig());
+}, 15000);
 
 
 
