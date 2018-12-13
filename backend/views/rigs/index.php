@@ -343,7 +343,8 @@ footer {
     }
     .chart-container {
         height: 160px; 
-        width: 102vw;
+        width: calc(100vw + 70px);
+        margin: 30px 0 0 -50px;
     }
     .chart-mutual {
         height: 160px;
@@ -353,7 +354,7 @@ footer {
     .info-first {
         width: 90vw; 
         padding-left: 0;
-        margin-top: 50px;
+        margin-top: 30px;
     }
     .no-response {
         width: 101px;
@@ -387,7 +388,7 @@ footer {
         width: 100%;
         background-color: #3A3A3A;
         padding: 10px 15px 10px;
-        top: 200px;
+        top: 195px;
         right: 0;
     }
     .wrap-info-corner {
