@@ -163,7 +163,7 @@ class Rigs extends \yii\db\ActiveRecord
                     unset($exp);
                 }
 
-                $data['time'][] = gmdate( "H:i", substr($poll->poll_time, 0, 10) + (3600 * (self::TIMEZONE + date("I"))) );
+                $data['time'][] = gmdate( "Y/m/d at H:i", substr($poll->poll_time, 0, 10) + (3600 * (self::TIMEZONE + date("I"))) );
                 $data['rate'][] = round($rate / 1000, 2);
                 $data['count'][] = sizeof($journals);
 
@@ -197,7 +197,7 @@ class Rigs extends \yii\db\ActiveRecord
         }
 
         // $data['date'] = date("d/m/Y H:i", substr($poll->poll_time, 0, 10));
-        $data['date'] = gmdate( "H:i", substr($poll->poll_time, 0, 10) + (3600 * (8 + date("I"))) );
+        $data['date'] = gmdate( "H:i", substr($poll->poll_time, 0, 10) + (3600 * (self::TIMEZONE + date("I"))) );
         $data['rate'] = round($rate / 1000, 3);
 
         return $data;
