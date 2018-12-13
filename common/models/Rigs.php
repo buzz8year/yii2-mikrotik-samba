@@ -23,6 +23,8 @@ use Yii;
  */
 class Rigs extends \yii\db\ActiveRecord
 {
+    const TIMEZONE = +2;
+
     /**
      * {@inheritdoc}
      */
@@ -86,13 +88,11 @@ class Rigs extends \yii\db\ActiveRecord
     public function getDayRate(int $days = 1)
     {
         $data = [];
-        $timezone = +2;
-
         foreach ($this->journalRigs as $key => $journal) {
             // if ($key == 0 || $key == 144) {
             //     $data['time'][] = date("Y-m-d H:i:s", substr($journal->dtime, 0, 10));
             // } else {
-                $data['time'][] = gmdate( "H:i", substr($journal->dtime, 0, 10) + (3600 * ($timezone + date("I"))) );
+                $data['time'][] = gmdate( "H:i", substr($journal->dtime, 0, 10) + (3600 * (self::TIMEZONE + date("I"))) );
             //     $data['time'][] = date("H:i", substr($journal->dtime, 0, 10));
             // }
 
@@ -163,7 +163,7 @@ class Rigs extends \yii\db\ActiveRecord
                     unset($exp);
                 }
 
-                $data['time'][] = date("H:i", substr($poll->poll_time, 0, 10));
+                $data['time'][] = gmdate( "H:i", substr($poll->poll_time, 0, 10) + (3600 * (self::TIMEZONE + date("I"))) );
                 $data['rate'][] = round($rate / 1000, 2);
                 $data['count'][] = sizeof($journals);
 
@@ -196,7 +196,8 @@ class Rigs extends \yii\db\ActiveRecord
             $rate += $exp[0] / 1000;
         }
 
-        $data['date'] = date("d/m/Y H:i", substr($poll->poll_time, 0, 10));
+        // $data['date'] = date("d/m/Y H:i", substr($poll->poll_time, 0, 10));
+        $data['date'] = gmdate( "H:i", substr($poll->poll_time, 0, 10) + (3600 * (self::TIMEZONE + date("I"))) );
         $data['rate'] = round($rate / 1000, 3);
 
         return $data;
