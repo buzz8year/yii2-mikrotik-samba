@@ -86,7 +86,7 @@ class Rigs extends \yii\db\ActiveRecord
     public function getDayRate(int $days = 1)
     {
         $data = [];
-        $timezone = +8;
+        $timezone = +2;
 
         foreach ($this->journalRigs as $key => $journal) {
             // if ($key == 0 || $key == 144) {
