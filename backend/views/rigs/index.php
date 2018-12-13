@@ -160,7 +160,7 @@ footer {
     width: 50%;
 }
 #rig-first {
-    margin: 60px 0 120px;
+    margin: 30px 0 120px;
     float: left;
 }
 
@@ -189,7 +189,7 @@ footer {
     position: absolute;
     right: 0;
     top: 300px;
-    right: 30px;
+    right: 35px;
     width: 150px;
     color: rgba(255,255,255,.3);
 }
@@ -257,7 +257,7 @@ footer {
     min-width: 50px;
     position: absolute;
     right: 0;
-    bottom: 10px;
+    bottom: 50px;
     line-height: 1;
     cursor: pointer;
     border-radius: 2px;
@@ -305,7 +305,9 @@ footer {
     position: relative;
 }
 .chart-container {
-    height: 160px; 
+    position: relative;
+    top: -31px;
+    height: 190px; 
     width: 70vw;
 }
 .no-response {
@@ -316,7 +318,8 @@ footer {
     position: relative; 
     bottom: 0; 
     left: 0;
-    height: 160px; 
+    height: 160px;
+    top: 0; 
     width: calc(100vw + 70px); 
     margin-left: -35px;
     /*filter: grayscale(1) opacity(.5);*/
@@ -466,7 +469,7 @@ footer {
                             }
                         }
                     ?>
-                </div><br/><br/><br/>
+                </div><br/><br/><br/><br/>
 
                 <small class="label label-up label-<?= ($modelFirst->lastJournal->up ? 'success' : 'danger') ?>">
                     State: <?= ($modelFirst->lastJournal->up ? 'UP' : 'DOWN') ?>

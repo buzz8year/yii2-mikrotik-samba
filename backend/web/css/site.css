@@ -136,6 +136,10 @@ a.desc:after {
     font-size: 13px;
     text-shadow: -1px -1px 0 rgba(0,0,0,.1);
 }
+.label:not(.label-default):not(.gpu-state) {
+    color: #222;
+    text-shadow: none;
+}
 
 .navbar-inverse .navbar-nav > li > a {
     font-size: 14px;

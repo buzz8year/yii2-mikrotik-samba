@@ -687,11 +687,12 @@ var optionsHashrate = {
                 // display: false,
                 gridLines: {
                     // display: false,
-                    color: 'rgba(0,0,0,0.1)',
+                    color: '#3f3f3f',
                     // drawBorder: mq.matches ? false : true,
                     drawBorder: false,
-                    // borderDash: [8, 8],
+                    borderDash: [18, 8],
                     zeroLineColor: 'transparent',
+                    display: false,
                 },
             }
         ],
@@ -699,11 +700,10 @@ var optionsHashrate = {
             {
                 // display: false,
                 gridLines: {
-                    color: 'rgba(0,0,0,0.1)',
+                    color: 'rgba(255,255,255,0.04)',
                     zeroLineColor: 'transparent',
-                    // borderDash: [4, 4],
+                    borderDash: [8, 4],
                     drawBorder: false,
-                    // display: false,
                 },
 
                 ticks: {
