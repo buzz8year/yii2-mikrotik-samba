@@ -175,7 +175,7 @@ footer {
     height: 300px;
     overflow-x: hidden;
     overflow-y: scroll;
-    padding: 70px 0 5px 20px;
+    padding: 70px 0 20px 20px;
     background-color: #3a3a3a;
     font-size: 12px;
     margin: -70px 0 0 -15px;
@@ -332,6 +332,10 @@ footer {
     height: 30px;
 }
 @media(max-width:768px) {
+    ::-webkit-scrollbar {
+        width: 0!important;
+        height: 0!important;
+    }
     .wrap {
         padding-left: 0;
         padding-right: 0;
