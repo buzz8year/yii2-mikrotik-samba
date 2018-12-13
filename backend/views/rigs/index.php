@@ -53,7 +53,7 @@ $this->registerJs('rigFirstHashrate(' . json_encode($modelFirst->dayRate) . ');'
 }
 
 #raw-html::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 0 4px #3a3a3a, inset 0 0 0 8px #3b3b3b;
+    box-shadow: inset 0 0 0 4px #3a3a3a, inset 0 0 0 8px #3d3d3d;
 }
 #raw-html::-webkit-scrollbar-track:hover {
     box-shadow: inset 0 0 0 4px #3a3a3a, inset 0 0 0 8px rgba(255,255,255,0);
