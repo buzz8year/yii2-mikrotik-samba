@@ -145,10 +145,10 @@ footer {
     height: 300px;
     overflow-x: hidden;
     overflow-y: scroll;
-    padding: 30px 0 5px 20px;
+    padding: 70px 0 5px 20px;
     background-color: #3a3a3a;
     font-size: 12px;
-    margin: -19px 0 0 -15px;
+    margin: -70px 0 0 -15px;
     box-sizing: content-box;
     /*opacity: .6;*/
 }
