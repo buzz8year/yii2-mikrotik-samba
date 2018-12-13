@@ -93,7 +93,7 @@ class Rigs extends \yii\db\ActiveRecord
             // }
             // else {
                 // $data['time'][] = date("H:i", substr($journal->dtime, 0, 10));
-                $tz = new \DateTimeZone('Asia/Irkutsk');
+                $tz = new \DateTimeZone('Europe/Moscow');
                 $date = new \DateTime(substr($journal->dtime, 0, 10));
 
                 $date->setTimezone($tz);
