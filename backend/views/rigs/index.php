@@ -42,6 +42,11 @@ $this->registerJs('rigFirstHashrate(' . json_encode($modelFirst->dayRate) . ');'
     background-color: rgba(255,255,255,.2); 
 }
 
+::-webkit-scrollbar-corder {
+    width: 0;
+    height: 0;
+}
+
 #raw-html::-webkit-scrollbar {
     width: 14px;
     background-color: rgba(255,255,255,.0); 
