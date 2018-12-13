@@ -366,13 +366,13 @@ Chart.defaults.global.defaultFontSize = 16;
 var mq = window.matchMedia('(min-width : 0) and (max-width : 768px)');
 
 
-Chart.Tooltip.positioners.custom = function(elements, position) {
+Chart.Tooltip.positioners.custom2 = function(elements, position) {
 
     if (!elements.length) return false;
 
     // var offset = 0;
 
-    return { x: 400, y: -75 }
+    return { x: 112, y: -10 }
 }
 
 
@@ -669,7 +669,7 @@ var optionsHashrate = {
                     fontSize: 12,
                     fontColor: '#ccc',
                     userCallback: function(item, index, all) {
-                        if (!(index == 0) && ((index + 1) < all.length) && !mq.matches) return item.toFixed(2);
+                        if (!(index == 0) && ((index + 1) < all.length) && !mq.matches) return item.toFixed(1);
                     },
                     // min: 0,
                     // callback: function(label, index, labels) {
@@ -681,7 +681,7 @@ var optionsHashrate = {
                     if (mq.matches) {
                         scaleInstance.width = 0;
                     } else {
-                        scaleInstance.width = 130;
+                        scaleInstance.width = 40;
                     }
                 },
                 // display: false,
@@ -796,9 +796,9 @@ var optionsHashrate = {
         titleFontColor: '#fff',
         // bodyFontColor: '#000',
         bodyFontColor: '#444',
-        bodyFontSize: 14,
+        bodyFontSize: 13,
         displayColors: false,
-        position: 'custom',
+        position: 'custom2',
         // yAlign: 'center',
         xAlign: 'right',
     }
