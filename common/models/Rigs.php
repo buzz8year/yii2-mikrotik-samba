@@ -86,18 +86,19 @@ class Rigs extends \yii\db\ActiveRecord
     public function getDayRate(int $days = 1)
     {
         $data = [];
+        $timezone = +8;
 
         foreach ($this->journalRigs as $key => $journal) {
             // if ($key == 0 || $key == 144) {
             //     $data['time'][] = date("Y-m-d H:i:s", substr($journal->dtime, 0, 10));
             // }
             // else {
+                $data['time'][] = gmdate("H:i", substr($journal->dtime, 0, 10) + 3600 * ($timezone + date("I")));
                 // $data['time'][] = date("H:i", substr($journal->dtime, 0, 10));
-                $tz = new \DateTimeZone('Europe/Berlin');
-                $date = new \DateTime(substr($journal->dtime, 0, 10));
 
-                $date->setTimezone($tz);
-                $data['time'][] = $date->format("H:i");
+                // $date = new \DateTime(substr($journal->dtime, 0, 10));
+                // $date->setTimezone($timezone);
+                // $data['time'][] = $date->format("H:i");
             // }
 
             // $sum = 0;
