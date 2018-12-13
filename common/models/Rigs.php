@@ -23,7 +23,7 @@ use Yii;
  */
 class Rigs extends \yii\db\ActiveRecord
 {
-    const TIMEZONE = +2;
+    const TIMEZONE = 2;
 
     /**
      * {@inheritdoc}
@@ -197,7 +197,7 @@ class Rigs extends \yii\db\ActiveRecord
         }
 
         // $data['date'] = date("d/m/Y H:i", substr($poll->poll_time, 0, 10));
-        $data['date'] = gmdate( "H:i", substr($poll->poll_time, 0, 10) + (3600 * (self::TIMEZONE + date("I"))) );
+        $data['date'] = gmdate( "H:i", substr($poll->poll_time, 0, 10) + (3600 * (8 + date("I"))) );
         $data['rate'] = round($rate / 1000, 3);
 
         return $data;
