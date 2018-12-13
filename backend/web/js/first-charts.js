@@ -669,21 +669,21 @@ var optionsHashrate = {
                     fontSize: 12,
                     fontColor: '#ccc',
                     userCallback: function(item, index, all) {
-                        if (!(index == 0) && ((index + 1) < all.length)) return item.toFixed(2);
+                        if (!(index == 0) && ((index + 1) < all.length) && !mq.matches) return item.toFixed(2);
                     },
                     // min: 0,
                     // callback: function(label, index, labels) {
                     //     return label / 1000000;
                     // }
                 },
-                // afterFit: function(scaleInstance, data) {
+                afterFit: function(scaleInstance, data) {
 
-                //     if (mq.matches) {
-                //         scaleInstance.width = 0;
-                //     } else {
-                //         scaleInstance.width = 30;
-                //     }
-                // },
+                    if (mq.matches) {
+                        scaleInstance.width = 0;
+                    } else {
+                        scaleInstance.width = 130;
+                    }
+                },
                 // display: false,
                 gridLines: {
                     // display: false,
