@@ -257,7 +257,7 @@ footer {
     min-width: 50px;
     position: absolute;
     right: 0;
-    bottom: 50px;
+    bottom: -42px;
     line-height: 1;
     cursor: pointer;
     border-radius: 2px;
@@ -307,7 +307,7 @@ footer {
 .chart-container {
     position: relative;
     /*top: -31px;*/
-    height: 190px; 
+    height: 210px; 
     width: 70vw;
 }
 .no-response {

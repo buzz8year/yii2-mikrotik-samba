@@ -667,6 +667,7 @@ var optionsHashrate = {
                 ticks: {
                     // display: mq.matches ? false : true,
                     fontSize: 12,
+                    suggestedMax: 29.8,
                     fontColor: '#ccc',
                     userCallback: function(item, index, all) {
                         if (!(index == 0) && ((index + 1) < all.length) && !mq.matches) return item.toFixed(1);
