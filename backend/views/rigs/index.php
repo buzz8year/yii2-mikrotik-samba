@@ -160,7 +160,7 @@ footer {
     width: 50%;
 }
 #rig-first {
-    margin: 30px 0 120px;
+    margin: 0 0 120px;
     float: left;
 }
 
@@ -168,7 +168,7 @@ footer {
     filter: grayscale(0) opacity(1);
 }*/
 .info-first {
-    padding-left: 60px;
+    padding: 30px 0 0 60px;
 }
 #raw-html {
     width: calc(100vw - 27px);
@@ -306,7 +306,7 @@ footer {
 }
 .chart-container {
     position: relative;
-    top: -31px;
+    /*top: -31px;*/
     height: 190px; 
     width: 70vw;
 }
