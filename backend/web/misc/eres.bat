@@ -42,9 +42,6 @@ if not "%file%" == "" (
 )
 
 
-timeout 30
-
-
 :writer string
 
 set line=%1
