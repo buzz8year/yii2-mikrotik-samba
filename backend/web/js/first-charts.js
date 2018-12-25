@@ -13,7 +13,7 @@ $(document).ready(function(){
     $('.click-rig[data-rig=' + id + ']').addClass('selected');
 
     setTimeout(function(){
-        $('.enable-reboot').addClass('enable-on');
+        $('.enable-reboot, .enable-eres').addClass('enable-on');
     }, 2000);
 
     var sep = '<div class="separator"></div>';
@@ -98,6 +98,33 @@ $(document).on('click', '#act-reboot:not(.enable-reboot-mute)', function(){
 
 
 
+$(document).on('click', '#act-eres:not(.enable-eres-mute)', function(){
+
+    var el = $('.enable-eres');
+    var state = 0;
+
+    if (el.hasClass('enable-off')) {
+        state = 1;
+    }
+
+    if (el.hasClass('enable-off')) {
+        if (el.hasClass('enable-canceled')) {
+
+        } else {
+            if (confirm('Abort rebooting ?')) {
+                    eresAjax(el, state);
+            }
+        }
+
+    } else {
+        if (confirm('You\'re a moment away from ADDING "-eres 0" to Claymore .bat file - PROCEED?')) {
+                eresAjax(el, state);
+        }
+    }
+});
+
+
+
 $(document).on('click', '.click-rig', function(){
     var id = $(this).attr('data-rig');
 
@@ -160,6 +187,52 @@ $(document).on('click', '.link-raw', function(){
 //     }
 
 // }
+
+
+function eresAjax(el, state) {
+    $.ajax({
+        url: 'index.php?r=rigs/eres',
+        method: 'post',
+        data: {'id': getFirstRig(), 'state': state, 'abort': state, '_csrf-backend': getCsrf()},
+        dataType: 'json',
+        cache: false,
+        error: function(data){
+            console.log(data);
+        },
+        success: function(data){
+            console.log(data);
+
+            if (data && data['error'] == 0) {
+
+                if (data['state'] == 1) {
+
+                    if (data['abort'] == 1) {
+
+                        el.addClass('enable-canceled');
+                        setTimeout(function() {
+                            el.removeClass('enable-canceled enable-off enable-eres-mute');
+                            el.addClass('enable-on');
+                        }, 3000);
+
+                    } else {
+
+                        // el.removeClass('enable-off').addClass('enable-on');
+                    }
+
+                } else {
+
+                    el.removeClass('enable-on').addClass('enable-off');
+                    // setTimeout(function() {
+                    //     el.addClass('enable-eres-mute');
+                    // }, 3000);
+                }
+            }
+            else {
+                el.addClass('enable-eres-mute');
+            }
+        },       
+    });
+}
 
 
 function rebootAjax(el, state) {

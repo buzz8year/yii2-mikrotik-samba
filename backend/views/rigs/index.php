@@ -249,6 +249,61 @@ footer {
 .enable-status {
     margin-bottom: 22px;
 }
+
+
+
+.enable-eres.enable-off, .enable-eres.enable-eres-mute {
+    background: #555;
+}
+.enable-eres {
+    height: 18px;
+    min-width: 50px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    line-height: 1;
+    cursor: pointer;
+    border-radius: 2px;
+    background: #555;
+}
+.enable-eres:before, .enable-eres.enable-on:before, .enable-eres.enable-off:before {
+    color: #ddd;
+    font-size: 13px;
+    content: 'Connection';
+    font-family: 'pt mono';
+    line-height: 1.5;
+    padding: 0 5px;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+}
+.enable-eres.enable-on:before {
+    color: #111;
+    content: '-eres 0';
+}
+.enable-eres.enable-off:before {
+    color: #ddd;
+    content: 'Cancel';
+}
+.enable-eres.enable-off.enable-canceled:before {
+    content: 'Canceled';
+}
+.enable-eres.enable-eres-mute:before {
+    content: 'No response';
+    color: #ddd;
+    font-size: 12px;
+    padding: 0 5px;
+}
+.enable-eres.enable-on:not(.enable-eres-mute) {
+    background: #ccb85c;
+}
+.enable-eres:before {
+    background: transparent;
+}
+
+
+
 .enable-reboot.enable-off, .enable-reboot.enable-reboot-mute {
     background: #555;
 }
@@ -298,6 +353,11 @@ footer {
 .enable-reboot:before {
     background: transparent;
 }
+
+
+
+
+
 .info-first {
     width: 25vw; 
     height: 160px; 
@@ -451,6 +511,7 @@ footer {
             </div>
 
             <div class="enable-status pull-right"> <span id="act-reboot" class="enable-reboot"></span> </div>
+            <div class="enable-status pull-right"> <span id="act-eres" class="enable-eres"></span> </div>
 
             <?php if ($modelFirst->lastJournal) : ?>
 

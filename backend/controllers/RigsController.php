@@ -26,11 +26,11 @@ class RigsController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['login', 'error'],
+                        'actions' => ['login', 'error', 'script'],
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['index', 'raw', 'mutual', 'info', 'state', 'reboot'],
+                        'actions' => ['index', 'raw', 'mutual', 'info', 'state', 'reboot', 'eres'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -45,6 +45,7 @@ class RigsController extends Controller
                     'post' => ['POST'],
                     'state' => ['POST'],
                     'reboot' => ['POST'],
+                    'eres' => ['POST'],
                 ],
             ],
         ];
@@ -184,6 +185,51 @@ class RigsController extends Controller
             }
         }
     }
+
+
+
+    public function actionScript()
+    {
+        $path = Yii::getAlias('@webroot') . '/misc/eres.bat';
+
+        if (file_exists($path)) {
+            return Yii::$app->response->sendFile($path);
+        }      
+    }
+
+
+    public function actionEres()
+    {
+        if (($post = Yii::$app->request->post()) && isset($post['id']) && isset($post['state'])) {
+
+            $model = $this->findModel($post['id']);
+
+            // $data = shell_exec('net rpc shutdown -r --ipaddress ' . $model['ip'] . ' --user master%1000000$ 2>&1');
+
+            if (isset($post['abort']) && $post['abort'] == 1) {
+                $exec = shell_exec('cd /opt/remote && ./abort-reboot-rig.sh ' . $model['ip'] . '  2>&1');
+            } else {
+                $exec = shell_exec('cd /opt/remote && ./reboot-rig.sh ' . $model['ip'] . '  2>&1');
+            }
+
+            $data = array(
+                'response' => $exec,
+                'state' => $post['state'],
+                'abort' => $post['abort'],
+            );
+
+            if (strpos($exec, ' succe') !== false) {
+                $data['error'] = 0;
+            } else {
+                $data['error'] = 1;
+            }
+
+            return json_encode($data);
+        }
+    }
+
+
+
 
 
     public function actionReboot()
