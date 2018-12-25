@@ -35,8 +35,7 @@ set /a count=0
 
 if not "%file%" == "" (
 	for /f "tokens=* usebackq" %%f in (%file%) do (
-		echo %%f
-		echo !%%f!|>nul findstr /r "epool" && call :writer "%%f" || call :writer "%%f"
+		echo !%%f!|>nul findstr /r epool && call :writer "%%f" || call :writer "%%f"
 		set /a count+=1
 	)
 )
