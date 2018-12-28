@@ -32,6 +32,7 @@ if exist %aloc% (
 )
 
 set /a count=0
+set written=nothing
 
 if not "%file%" == "" (
 	for /f "tokens=* usebackq" %%f in (%file%) do (
@@ -55,6 +56,9 @@ if not "%file%" == "" (
 				) else (
 					echo !line!>>%file%
 				)
+
+				set written=!line!
+
 			)
 
 			set /a count+=1
@@ -71,3 +75,5 @@ if not "%file%" == "" (
 		)
 	)
 )
+
+echo CHANGES APPLIED: %written%
