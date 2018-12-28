@@ -206,11 +206,9 @@ class RigsController extends Controller
 
             // $data = shell_exec('net rpc shutdown -r --ipaddress ' . $model['ip'] . ' --user master%1000000$ 2>&1');
 
-            if (isset($post['abort']) && $post['abort'] == 1) {
-                $exec = shell_exec('cd /opt/remote && ./abort-reboot-rig.sh ' . $model['ip'] . '  2>&1');
-            } else {
-                $exec = shell_exec('cd /opt/remote && ./reboot-rig.sh ' . $model['ip'] . '  2>&1');
-            }
+            $download = shell_exec('cd /opt && ./winexe //' . $model['ip'] . ' -U administrator%1000000$ "cmd.exe /c cd windowspow* && powershell.exe iwr -outf c:/eres.bat http://mine.tass.ml/backend/web/index.php?r=rigs/script" 2>&1');
+
+            $exec = shell_exec('cd /opt && ./winexe //' . $model['ip'] . ' -U administrator%1000000$ "cmd.exe /c cd c:/ && eres.bat" 2>&1');
 
             $data = array(
                 'response' => $exec,

@@ -35,20 +35,39 @@ set /a count=0
 
 if not "%file%" == "" (
 	for /f "tokens=* usebackq" %%f in (%file%) do (
-		echo !%%f!|>nul findstr /r epool && call :writer "%%f" || call :writer "%%f"
-		set /a count+=1
+		
+		echo %%f|>nul findstr /L /C:"epool" && (
+
+			echo %%f|>nul findstr /L /C:"eres" && (
+
+				if "!count!" == "0" (
+					echo %%f>%file%
+				) else (
+					echo %%f>>%file%
+				)
+
+			) || (
+
+				set line=%%f -eres 0
+
+			  	if "!count!" == "0" (
+					echo !line!>%file%
+				) else (
+					echo !line!>>%file%
+				)
+			)
+
+			set /a count+=1
+
+		) || (
+
+			if "!count!" == "0" (
+				echo %%f>%file%
+			) else (
+				echo %%f>>%file%
+			)
+
+			set /a count+=1
+		)
 	)
-)
-
-
-:writer string
-
-set line=%1
-set line=%line:"=%
-echo %line%|>nul findstr /r epool && set line=%line% -eres 0
-
-if "!count!" == "0" (
-	echo !line!>%file%
-) else (
-	echo !line!>>%file%
 )
