@@ -24,7 +24,7 @@ if exist %aloc% (
 				if exist %eloc% (
 					set file=%eloc%
 				) else (
-					echo "FILE NOT FOUND (%eloc%)"
+					echo "FILE(s) NOT FOUND (%eloc%)"
 				)
 			)
 		)
@@ -32,7 +32,7 @@ if exist %aloc% (
 )
 
 set /a count=0
-set written=nothing
+set written=nothing; parameter already set
 
 if not "%file%" == "" (
 	for /f "tokens=* usebackq" %%f in (%file%) do (
