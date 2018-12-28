@@ -24,7 +24,7 @@ if exist %aloc% (
 				if exist %eloc% (
 					set file=%eloc%
 				) else (
-					echo "FILE NOT FOUND (start_billionexpro_ETH.bat)"
+					echo "FILE NOT FOUND (%eloc%)"
 				)
 			)
 		)
