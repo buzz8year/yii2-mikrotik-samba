@@ -200,7 +200,7 @@ class RigsController extends Controller
 
     public function actionEres()
     {
-        if (($post = Yii::$app->request->post()) && isset($post['id']) && isset($post['state'])) {
+        if (($post = Yii::$app->request->post()) && isset($post['id'])) {
 
             $model = $this->findModel($post['id']);
 
@@ -212,14 +212,19 @@ class RigsController extends Controller
 
             $data = array(
                 'response' => $exec,
-                'state' => $post['state'],
-                'abort' => $post['abort'],
             );
 
-            if (strpos($exec, ' succe') !== false) {
-                $data['error'] = 0;
-            } else {
+            if (empty($exec)) {
                 $data['error'] = 1;
+                
+            } else {
+                $data['error'] = 0;
+
+                if (strpos($exec, 'nothing') !== false) {
+                    $data['state'] = 0;
+                } else {
+                    $data['state'] = 1;
+                }
             }
 
             return json_encode($data);

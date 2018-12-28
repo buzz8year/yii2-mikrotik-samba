@@ -199,33 +199,15 @@ function eresAjax(el, state) {
         error: function(data){
             console.log(data);
         },
+        beforeSend: function(){
+            el.removeClass('enable-on').addClass('enable-off');
+        },
         success: function(data){
+            alert(data['response']);
             console.log(data);
 
             if (data && data['error'] == 0) {
-
-                if (data['state'] == 1) {
-
-                    if (data['abort'] == 1) {
-
-                        el.addClass('enable-canceled');
-                        setTimeout(function() {
-                            el.removeClass('enable-canceled enable-off enable-eres-mute');
-                            el.addClass('enable-on');
-                        }, 3000);
-
-                    } else {
-
-                        // el.removeClass('enable-off').addClass('enable-on');
-                    }
-
-                } else {
-
-                    el.removeClass('enable-on').addClass('enable-off');
-                    // setTimeout(function() {
-                    //     el.addClass('enable-eres-mute');
-                    // }, 3000);
-                }
+                el.removeClass('enable-canceled enable-off enable-eres-mute').addClass('enable-on');
             }
             else {
                 el.addClass('enable-eres-mute');

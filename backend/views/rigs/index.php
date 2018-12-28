@@ -284,15 +284,15 @@ footer {
 }
 .enable-eres.enable-off:before {
     color: #ddd;
-    content: 'Cancel';
+    content: 'Processing...';
 }
 .enable-eres.enable-off.enable-canceled:before {
     content: 'Canceled';
 }
 .enable-eres.enable-eres-mute:before {
-    content: 'Command sent';
+    content: 'No response';
     color: #ddd;
-    font-size: 12px;
+    /*font-size: 12px;*/
     padding: 0 5px;
 }
 .enable-eres.enable-on:not(.enable-eres-mute) {
