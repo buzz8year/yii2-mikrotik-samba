@@ -290,7 +290,7 @@ footer {
     content: 'Canceled';
 }
 .enable-eres.enable-eres-mute:before {
-    content: 'No response';
+    content: 'Command sent';
     color: #ddd;
     font-size: 12px;
     padding: 0 5px;
