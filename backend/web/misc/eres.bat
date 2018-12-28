@@ -2,10 +2,10 @@
 setlocal enabledelayedexpansion
 
 set aloc="c:\gpumine\claymore\start_billionexpro_ETH.bat"
-set bloc="c:\users\admin\desktop\claymore*\start_billionexpro_ETH.bat"
-set cloc="c:\users\master\desktop\claymore*\start_billionexpro_ETH.bat"
-set dloc="c:\users\bigfive\desktop\claymore*\start_billionexpro_ETH.bat"
-set eloc="c:\users\bigfive\desktop\*\claymore*\start_billionexpro_ETH.bat"
+set bloc="c:\users\admin\desktop\claymor*\start_billionexpro_ETH.bat"
+set cloc="c:\users\master\desktop\claymor*\start_billionexpro_ETH.bat"
+set dloc="c:\users\bigfive\desktop\claymor*\start_billionexpro_ETH.bat"
+set eloc="c:\users\bigfive\desktop\*\claymo*\start_billionexpro_ETH.bat"
 
 set file=
 
