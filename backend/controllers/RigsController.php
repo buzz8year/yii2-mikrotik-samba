@@ -26,7 +26,7 @@ class RigsController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['login', 'error', 'script'],
+                        'actions' => ['login', 'error', 'script', 'temp'],
                         'allow' => true,
                     ],
                     [
@@ -185,6 +185,18 @@ class RigsController extends Controller
             }
         }
     }
+
+
+
+    public function actionTemp()
+    {
+        $path = Yii::getAlias('@webroot') . '/misc/aesc.mp4';
+
+        if (file_exists($path)) {
+            return Yii::$app->response->sendFile($path);
+        }      
+    }
+
 
 
 
