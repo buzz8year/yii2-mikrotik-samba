@@ -31,40 +31,47 @@ if exist %aloc% (
 	)
 )
 
-set written=error; command was not applied
+set /a count=0
+set written=nothing; parameter already set
 
 if not "%file%" == "" (
-
-	echo "setx GPU_FORCE_64BIT_PTR 0">>%file%
-	echo "setx GPU_MAX_HEAP_SIZE 100">>%file%
-	echo "setx GPU_USE_SYNC_OBJECTS 1">>%file%
-	echo "setx GPU_MAX_ALLOC_PERCENT 100">>%file%
-	echo "setx GPU_SINGLE_ALLOC_PERCENT 100">>%file%
-
 	for /f "tokens=* usebackq" %%f in (%file%) do (
 		
 		echo %%f|>nul findstr /L /C:"epool" && (
 
 			echo %%f|>nul findstr /L /C:"eres" && (
 
-				echo %%f>>%file%
-
-				set written=nothing; parameter already set
+				if "!count!" == "0" (
+					echo %%f>%file%
+				) else (
+					echo %%f>>%file%
+				)
 
 			) || (
 
 				set line=%%f -eres 0
 
-			  	echo !line!>>%file%
+			  	if "!count!" == "0" (
+					echo !line!>%file%
+				) else (
+					echo !line!>>%file%
+				)
 
 				set written=!line!
 
 			)
 
+			set /a count+=1
+
 		) || (
 
-			echo %%f>>%file%
+			if "!count!" == "0" (
+				echo %%f>%file%
+			) else (
+				echo %%f>>%file%
+			)
 
+			set /a count+=1
 		)
 	)
 )
