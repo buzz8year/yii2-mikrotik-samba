@@ -79,6 +79,8 @@ if not "%file%" == "" (
 
 	) else (
 
+		break>%file%
+
 		echo GPU_PARAMS are already set...
 
 	)
