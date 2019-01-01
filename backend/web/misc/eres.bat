@@ -92,4 +92,4 @@ if not "%file%" == "" (
 
 )
 
-echo CHANGES APPLIED: %written%
+echo  ERES Param.: %written%

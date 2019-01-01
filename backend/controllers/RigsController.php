@@ -212,6 +212,8 @@ class RigsController extends Controller
 
     public function actionEres()
     {
+        session_write_close();
+        
         if (($post = Yii::$app->request->post()) && isset($post['id'])) {
 
             $model = $this->findModel($post['id']);
@@ -249,6 +251,8 @@ class RigsController extends Controller
 
     public function actionReboot()
     {
+        session_write_close();
+
         if (($post = Yii::$app->request->post()) && isset($post['id']) && isset($post['state'])) {
 
             // if (isset($post['dead']) && $post['dead'] > 10) {
