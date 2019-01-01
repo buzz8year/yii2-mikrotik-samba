@@ -35,9 +35,13 @@ if exist %aloc% (
 
 if not "%file%" == "" (
 
+	set gpuset=0
+
 	set written=nothing; parameter already set
 
 	for /f "tokens=* usebackq" %%f in (%file%) do (
+
+		echo %%f|>nul findstr /L /C:"GPU_" && set gpuset=1
 		
 		echo %%f|>nul findstr /L /C:"epool" && (
 
@@ -63,12 +67,21 @@ if not "%file%" == "" (
 
 	)
 
+	if "!gpuset!" == "0" (
 
-	>%file% echo setx GPU_FORCE_64BIT_PTR 0
-	>>%file% echo setx GPU_MAX_HEAP_SIZE 100
-	>>%file% echo setx GPU_USE_SYNC_OBJECTS 1
-	>>%file% echo setx GPU_MAX_ALLOC_PERCENT 100
-	>>%file% echo setx GPU_SINGLE_ALLOC_PERCENT 100
+		>%file% echo setx GPU_FORCE_64BIT_PTR 0
+		>>%file% echo setx GPU_MAX_HEAP_SIZE 100
+		>>%file% echo setx GPU_USE_SYNC_OBJECTS 1
+		>>%file% echo setx GPU_MAX_ALLOC_PERCENT 100
+		>>%file% echo setx GPU_SINGLE_ALLOC_PERCENT 100
+
+		echo GPU_PARAMS are written...
+
+	) else (
+
+		echo GPU_PARAMS are already set...
+
+	)
 
 
 	for /f "tokens=* usebackq" %%f in (tmp) do echo %%f>>%file%
