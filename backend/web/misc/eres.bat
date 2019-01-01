@@ -31,15 +31,11 @@ if exist %aloc% (
 	)
 )
 
-set written=error; command was not applied
+
 
 if not "%file%" == "" (
 
-	echo "setx GPU_FORCE_64BIT_PTR 0">>%file%
-	echo "setx GPU_MAX_HEAP_SIZE 100">>%file%
-	echo "setx GPU_USE_SYNC_OBJECTS 1">>%file%
-	echo "setx GPU_MAX_ALLOC_PERCENT 100">>%file%
-	echo "setx GPU_SINGLE_ALLOC_PERCENT 100">>%file%
+	set written=nothing; parameter already set
 
 	for /f "tokens=* usebackq" %%f in (%file%) do (
 		
@@ -47,15 +43,13 @@ if not "%file%" == "" (
 
 			echo %%f|>nul findstr /L /C:"eres" && (
 
-				echo %%f>>%file%
-
-				set written=nothing; parameter already set
+				echo %%f>>tmp
 
 			) || (
 
 				set line=%%f -eres 0
 
-			  	echo !line!>>%file%
+			  	echo !line!>>tmp
 
 				set written=!line!
 
@@ -63,10 +57,24 @@ if not "%file%" == "" (
 
 		) || (
 
-			echo %%f>>%file%
+			echo %%f>>tmp
 
 		)
+
 	)
+
+
+	>%file% echo setx GPU_FORCE_64BIT_PTR 0
+	>>%file% echo setx GPU_MAX_HEAP_SIZE 100
+	>>%file% echo setx GPU_USE_SYNC_OBJECTS 1
+	>>%file% echo setx GPU_MAX_ALLOC_PERCENT 100
+	>>%file% echo setx GPU_SINGLE_ALLOC_PERCENT 100
+
+
+	for /f "tokens=* usebackq" %%f in (tmp) do echo %%f>>%file%
+
+	del tmp
+
 )
 
 echo CHANGES APPLIED: %written%
