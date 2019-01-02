@@ -37,7 +37,7 @@ if not "%file%" == "" (
 
 	set gpuset=0
 
-	set written=nothing; parameter already set
+	set written=parameter already set.
 
 	for /f "tokens=* usebackq" %%f in (%file%) do (
 
