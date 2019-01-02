@@ -117,7 +117,7 @@ $(document).on('click', '#act-eres:not(.enable-eres-mute)', function(){
         }
 
     } else {
-        if (confirm('You\'re a moment away from ADDING "-eres 0" to Claymore .bat file - PROCEED?')) {
+        if (confirm('You\'re a moment away from adding -eres, GPU_ parameters to Claymore .bat file - proceed?')) {
                 eresAjax(el, state);
         }
     }

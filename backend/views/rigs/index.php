@@ -148,6 +148,7 @@ footer {
     padding: 2px 0 2px 2px; 
     margin: 0 16px 5px 0;
     border-radius: 2px;
+    word-break: none;
 }
 .span-ip {
     color: #aaa; 
@@ -443,6 +444,33 @@ footer {
 
 
 
+
+@media(min-width:1020px) {
+    .chart-container {
+        width: 50vw; 
+    }
+    .info-first {
+        width: 45vw; 
+        padding-left: 30px;
+    }
+}
+
+@media(max-width:1020px) {
+    #rig-first .chart-container {
+        width: 110vw; 
+    }
+    .info-first {
+        width: 96vw; 
+        padding-left: 0;
+    }
+    .table tbody tr {
+        width: auto;
+        min-width: 188px;
+    }
+    .table tbody {
+        width: 100vw;
+    }
+}
 @media(max-width:768px) {
     ::-webkit-scrollbar {
         width: 0!important;
