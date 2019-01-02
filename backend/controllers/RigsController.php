@@ -218,23 +218,45 @@ class RigsController extends Controller
     {
         session_write_close();
         
-        if (($post = Yii::$app->request->post()) && isset($post['id'])) {
+        if (($post = Yii::$app->request->post()) && isset($post['id'])  && isset($post['new'])) {
 
             $model = $this->findModel($post['id']);
 
-            $read = shell_read('cd /opt && ./winexe //' . $model['ip'] . ' -U administrator%1000000$ "cmd.exe /c cd c:/gpumine/claymore && more start_bil*"');
+            if ($post['new'] == 1) {
 
-            $data = array(
-                'response' => $read,
-            );
+                $read = shell_exec('cd /opt && ./winexe //' . $model['ip'] . ' -U administrator%1000000$ "cmd.exe /c cd c:/gpumine/claymore && more start_bil*"');
 
-            if (empty($read)) {
-                $data['error'] = 1;
-                
+                $data = array(
+                    'response' => $read,
+                );
+
+                if (empty($read)) {
+                    $data['error'] = 1;
+                    
+                } else {
+                    $data['error'] = 0;
+
+                    $model->data = $read;
+                }
+
             } else {
-                $data['error'] = 0;
 
-                $model->data = $read;
+                if ($model->data) {
+
+                    $data = array(
+                        'error' => 0,
+                        'response' => $model->data,
+                    );
+
+                } else {
+
+                    $data = array(
+                        'error' => 0,
+                        'response' => 'No saved config for this machine - you need to read it remotely first...',
+                    );
+
+                }
+
             }
 
             return json_encode($data);

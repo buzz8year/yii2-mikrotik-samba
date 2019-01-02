@@ -192,18 +192,21 @@ $(document).on('click', '.link-raw', function(){
 
 
 $(document).on('click', '#act-config', function(){
-    var el = $('.enable-eres');
-    configAjax(el);
+    if (confirm('Read remotely form machine?')) {
+        configAjax(1);
+    } else {
+        configAjax(0);
+    }
 });
 
 
 
 
-function configAjax(elate) {
+function configAjax(renew) {
     $.ajax({
         url: 'index.php?r=rigs/config',
         method: 'post',
-        data: {'id': getFirstRig(), '_csrf-backend': getCsrf()},
+        data: {'id': getFirstRig(), 'new': renew, '_csrf-backend': getCsrf()},
         dataType: 'json',
         cache: false,
         error: function(data){

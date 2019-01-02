@@ -410,6 +410,24 @@ footer {
     width: 100%;
     height: 30px;
 }
+
+.modal-backdrop.fade.in {
+    background-color: #fff;
+    opacity: 1;
+}
+.modal-content {
+    box-shadow: none!important;
+    border: none;
+    padding: 45px;
+    color: #000;
+}
+.modal-header {
+    border: none!important;
+    display: none;
+}
+
+
+
 @media(max-width:768px) {
     ::-webkit-scrollbar {
         width: 0!important;
