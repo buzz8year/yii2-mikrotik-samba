@@ -237,6 +237,7 @@ class RigsController extends Controller
                     $data['error'] = 0;
 
                     $model->data = $read;
+                    $model->save();
                 }
 
             } else {
