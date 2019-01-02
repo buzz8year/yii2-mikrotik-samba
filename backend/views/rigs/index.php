@@ -290,7 +290,7 @@ footer {
 }
 .enable-eres.enable-on:hover, .enable-eres.enable-on:hover:before {
     background-color: #ccb85c!important;
-    color: #444;
+    color: #222;
 }
 .enable-eres.enable-off:before {
     color: #ddd;
@@ -382,7 +382,7 @@ footer {
 }
 #act-config:hover {
     background-color: #ccb85c;
-    color: #444;
+    color: #222;
 }
 
 
