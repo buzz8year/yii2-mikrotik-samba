@@ -272,7 +272,7 @@ footer {
     color: #ddd;
     font-size: 13px;
     content: 'Connection';
-    font-family: 'pt mono';
+    /*font-family: 'pt mono';*/
     line-height: 1.5;
     padding: 0 5px;
     height: 100%;
@@ -280,10 +280,17 @@ footer {
     left: 0;
     top: 0;
 }
+.enable-eres.enable-on {
+}
 .enable-eres.enable-on:before {
-    /*color: #111;*/
     color: #ccb85c;
+    /*color: #111;*/
     content: 'Params.';
+    padding: 0 0 0 5px;
+}
+.enable-eres.enable-on:hover, .enable-eres.enable-on:hover:before {
+    background-color: #ccb85c!important;
+    color: #444;
 }
 .enable-eres.enable-off:before {
     color: #ddd;
@@ -327,7 +334,7 @@ footer {
     color: #ddd;
     font-size: 13px;
     content: 'Connection';
-    font-family: 'pt mono';
+    /*font-family: 'pt mono';*/
     line-height: 1.5;
     padding: 0 5px;
     height: 100%;
@@ -368,6 +375,14 @@ footer {
     bottom: 35px;
     font-size: 13px;
     color: #ccb85c;
+    cursor: pointer;
+    padding: 4px 0 3px 5px;
+    border-radius: 3px;
+    line-height: 1;
+}
+#act-config:hover {
+    background-color: #ccb85c;
+    color: #444;
 }
 
 

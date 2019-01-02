@@ -192,7 +192,7 @@ $(document).on('click', '.link-raw', function(){
 
 
 $(document).on('click', '#act-config', function(){
-    if (confirm('Read remotely form machine?')) {
+    if (confirm('Read remotely from machine? Cancel - to see previously saved.')) {
         configAjax(1);
     } else {
         configAjax(0);

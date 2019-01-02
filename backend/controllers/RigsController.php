@@ -253,7 +253,7 @@ class RigsController extends Controller
 
                     $data = array(
                         'error' => 0,
-                        'response' => 'No saved config for this machine - you need to read it remotely first...',
+                        'response' => 'No saved config for this machine yet - you do need to read it remotely.',
                     );
 
                 }
