@@ -445,12 +445,31 @@ footer {
 
 
 
+
 @media(min-width:1020px) {
-    .chart-container {
+    #rig-first .chart-container {
         width: 50vw; 
     }
     .info-first {
         width: 45vw; 
+        padding-left: 30px;
+    }   
+}
+@media(min-width:1280px) {
+    #rig-first .chart-container {
+        width: 60vw; 
+    }
+    .info-first {
+        width: 35vw; 
+        padding-left: 30px;
+    }
+}
+@media(min-width:1660px) {
+    #rig-first .chart-container {
+        width: 70vw; 
+    }
+    .info-first {
+        width: 25vw; 
         padding-left: 30px;
     }
 }
