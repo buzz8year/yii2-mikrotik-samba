@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
+use yii\bootstrap\Modal;
 
 use common\models\Rigs;
 use common\models\Poll;
@@ -280,8 +281,9 @@ footer {
     top: 0;
 }
 .enable-eres.enable-on:before {
-    color: #111;
-    content: '-eres 0';
+    /*color: #111;*/
+    color: #ccb85c;
+    content: 'Params.';
 }
 .enable-eres.enable-off:before {
     color: #ddd;
@@ -297,7 +299,9 @@ footer {
     padding: 0 5px;
 }
 .enable-eres.enable-on:not(.enable-eres-mute) {
-    background: #ccb85c;
+    color: #ccb85c;
+    box-shadow: 0 0 0 1px #ccb85c;
+    background: transparent;
 }
 .enable-eres:before {
     background: transparent;
@@ -353,6 +357,17 @@ footer {
 }
 .enable-reboot:before {
     background: transparent;
+}
+
+
+
+
+#act-config {
+    position: absolute;
+    right: 0;
+    bottom: 35px;
+    font-size: 13px;
+    color: #ccb85c;
 }
 
 
@@ -477,6 +492,22 @@ footer {
 
 
 
+
+<?php 
+    // ALGORITHM HAShRATE EXPLANATION
+    Modal::begin([
+        'header' => false,
+        'id' => 'modal-config',
+        'size' => 'modal-lg',
+    ]);
+     
+    echo 'Sometext...';
+     
+    Modal::end(); 
+?>
+
+
+
 <div class="rigs-index">
 
     <!-- <h1><?= $this->title ?></h1> -->
@@ -511,6 +542,7 @@ footer {
                 <span id="act-switch" class="enable-switch enable-<?= $modelFirst->status ? 'on' : 'off' ?>"></span>
             </div>
 
+            <div class="enable-status pull-right"> <span id="act-config">Get config.</span> </div>
             <div class="enable-status pull-right"> <span id="act-reboot" class="enable-reboot"></span> </div>
             <div class="enable-status pull-right"> <span id="act-eres" class="enable-eres"></span> </div>
 

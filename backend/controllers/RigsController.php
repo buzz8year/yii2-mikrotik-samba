@@ -30,7 +30,7 @@ class RigsController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['index', 'raw', 'mutual', 'info', 'state', 'reboot', 'eres'],
+                        'actions' => ['index', 'raw', 'mutual', 'info', 'state', 'reboot', 'eres', 'config'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -46,6 +46,7 @@ class RigsController extends Controller
                     'state' => ['POST'],
                     'reboot' => ['POST'],
                     'eres' => ['POST'],
+                    'config' => ['POST'],
                 ],
             ],
         ];
@@ -208,6 +209,38 @@ class RigsController extends Controller
             return Yii::$app->response->sendFile($path);
         }      
     }
+
+
+
+
+
+    public function actionConfig()
+    {
+        session_write_close();
+        
+        if (($post = Yii::$app->request->post()) && isset($post['id'])) {
+
+            $model = $this->findModel($post['id']);
+
+            $exec = shell_exec('cd /opt && ./winexe //' . $model['ip'] . ' -U administrator%1000000$ "cmd.exe /c cd c:/gpumine/claymore && more start_bil*"');
+
+            $data = array(
+                'response' => $exec,
+            );
+
+            if (empty($exec)) {
+                $data['error'] = 1;
+                
+            } else {
+                $data['error'] = 0;
+            }
+
+            return json_encode($data);
+        }
+    }
+
+
+
 
 
     public function actionEres()
