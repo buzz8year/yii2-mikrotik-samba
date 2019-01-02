@@ -215,7 +215,7 @@ function configAjax(elate) {
         },
         success: function(data){
             console.log(data);
-            $('#modal-config .modal-body').html(data);
+            $('#modal-config .modal-body').html(data['response']);
             $('#modal-config').modal('show');
         },       
     });
