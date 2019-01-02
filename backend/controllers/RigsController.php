@@ -222,17 +222,19 @@ class RigsController extends Controller
 
             $model = $this->findModel($post['id']);
 
-            $exec = shell_exec('cd /opt && ./winexe //' . $model['ip'] . ' -U administrator%1000000$ "cmd.exe /c cd c:/gpumine/claymore && more start_bil*"');
+            $read = shell_read('cd /opt && ./winexe //' . $model['ip'] . ' -U administrator%1000000$ "cmd.exe /c cd c:/gpumine/claymore && more start_bil*"');
 
             $data = array(
-                'response' => $exec,
+                'response' => $read,
             );
 
-            if (empty($exec)) {
+            if (empty($read)) {
                 $data['error'] = 1;
                 
             } else {
                 $data['error'] = 0;
+
+                $model->data = $read;
             }
 
             return json_encode($data);
