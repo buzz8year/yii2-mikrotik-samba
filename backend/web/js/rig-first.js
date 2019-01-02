@@ -117,7 +117,7 @@ $(document).on('click', '#act-eres:not(.enable-eres-mute)', function(){
         }
 
     } else {
-        if (confirm('You\'re a moment away from adding -eres, GPU_ parameters to Claymore .bat file - proceed?')) {
+        if (confirm('You\'re a moment away from adding -eres, GPU_* parameters to Claymore .bat file - proceed?')) {
                 eresAjax(el, state);
         }
     }
@@ -241,11 +241,13 @@ function eresAjax(el, state) {
             el.removeClass('enable-on').addClass('enable-off');
         },
         success: function(data){
-            alert(data['response']);
+            // alert(data['response']);
             console.log(data);
 
             if (data && data['error'] == 0) {
                 el.removeClass('enable-canceled enable-off enable-eres-mute').addClass('enable-on');
+                $('#modal-config .modal-body').html(data['response']);
+                $('#modal-config').modal('show');
             }
             else {
                 el.addClass('enable-eres-mute');
