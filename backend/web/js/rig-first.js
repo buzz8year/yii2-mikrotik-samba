@@ -213,13 +213,13 @@ function configAjax(renew) {
             console.log(data);
         },
         beforeSend: function(){
-
-            // el.removeClass('enable-on').addClass('enable-off');
+            $('#act-config').addClass('mute');
         },
         success: function(data){
             console.log(data);
             $('#modal-config .modal-body').html(data['response']);
             $('#modal-config').modal('show');
+            $('#act-config').removeClass('mute');
         },       
     });
 }

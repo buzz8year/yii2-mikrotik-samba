@@ -370,7 +370,7 @@ footer {
 
 
 
-#act-config {
+#act-config:before {
     position: absolute;
     right: 0;
     bottom: 35px;
@@ -380,10 +380,14 @@ footer {
     padding: 4px 0 3px 5px;
     border-radius: 3px;
     line-height: 1;
+    content: 'Get config.';
 }
-#act-config:hover {
+#act-config:hover:before {
     background-color: #ccb85c;
     color: #222;
+}
+#act-config.mute:before {
+    content: 'Processing...';
 }
 
 
@@ -622,7 +626,7 @@ footer {
                 <span id="act-switch" class="enable-switch enable-<?= $modelFirst->status ? 'on' : 'off' ?>"></span>
             </div>
 
-            <div class="enable-status pull-right"> <span id="act-config">Get config.</span> </div>
+            <div class="enable-status pull-right"> <span id="act-config"></span> </div>
             <div class="enable-status pull-right"> <span id="act-reboot" class="enable-reboot"></span> </div>
             <div class="enable-status pull-right"> <span id="act-eres" class="enable-eres"></span> </div>
 
