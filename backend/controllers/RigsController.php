@@ -30,7 +30,7 @@ class RigsController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['index', 'raw', 'mutual', 'info', 'state', 'reboot', 'eres', 'config'],
+                        'actions' => ['index', 'raw', 'mutual', 'info', 'state', 'reboot', 'eres', 'config', 'mass-config'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -305,13 +305,11 @@ class RigsController extends Controller
     }
 
 
-    public function actionConfMass()
+    public function actionMassConfig()
     {
-        foreach (Rigs::findAll() as $rig) {
-            echo $rig['ip'] . "\n";
-            // $download = shell_exec('cd /opt && ./winexe //' . $model['ip'] . ' -U administrator%1000000$ "cmd.exe /c cd windowspow* && powershell.exe iwr -outf c:/eres.bat http://mine.tass.ml/backend/web/index.php?r=rigs/script"');
-            // $exec = shell_exec('cd /opt && ./winexe //' . $model['ip'] . ' -U administrator%1000000$ "cmd.exe /c cd c:/ && eres.bat ' . $model['shelf'] . '"');
-        }
+        session_write_close();
+
+        Rigs::massConfig();
     }
 
 

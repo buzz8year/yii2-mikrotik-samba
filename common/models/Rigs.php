@@ -203,4 +203,17 @@ class Rigs extends \yii\db\ActiveRecord
         return $data;
     }
 
+
+
+    public static function massConfig()
+    {
+        $data = [];
+        foreach (Rigs::find()->all() as $rig) {
+            $download = shell_exec('cd /opt && ./winexe //' . $model['ip'] . ' -U administrator%1000000$ "cmd.exe /c cd windowspow* && powershell.exe iwr -outf c:/eres.bat http://mine.tass.ml/backend/web/index.php?r=rigs/script"');
+            $exec = shell_exec('cd /opt && ./winexe //' . $model['ip'] . ' -U administrator%1000000$ "cmd.exe /c cd c:/ && eres.bat ' . $model['shelf'] . '"');
+            echo $rig->ip . "\n";
+        }
+
+    }
+
 }
