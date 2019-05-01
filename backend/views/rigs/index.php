@@ -757,7 +757,7 @@ footer {
         <div><?php echo 'Responding: ' . ($pollLast->total - $pollLast->fails); ?></div>
         <div><?php echo 'Disabled: ' . Rigs::countDisabled(); ?></div><br/><br/>
         <div><?php echo 'Hashrate: ' . Rigs::mutualLastRate()['rate'] . ' GH/s (' . Rigs::mutualLastRate()['date'] . ')'; ?></div>
-        <a href="index.php?r=rigs/mass-config">Mass Configuration</a>
+        <!-- <a href="index.php?r=rigs/mass-config">Mass Configuration</a> -->
     </div>
 
     <?php Pjax::end(); ?>
