@@ -56,7 +56,8 @@ if not "%file%" == "" (
 
 	)
 
-
+	break>%file%
+	
 	for /f "tokens=* usebackq" %%f in (tmp) do echo %%f>>%file%
 
 	del tmp
