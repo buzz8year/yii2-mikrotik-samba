@@ -35,7 +35,7 @@ if exist %aloc% (
 
 if not "%file%" == "" (
 
-	set written=parameter already set.
+	set written=nothing written (test)
 
 	for /f "tokens=* usebackq" %%f in (%file%) do (
 
@@ -60,4 +60,4 @@ if not "%file%" == "" (
 
 )
 
-echo  ERES Param.: %written%
+echo  ERES Param.: %wline%
