@@ -33,6 +33,7 @@ $this->registerJs('
                 $(e).html(data);
 
                 rigFirstHashrate(' . json_encode($modelFirst->dayRate) . ');
+                mutualHashrate(' . json_encode(Rigs::mutualData()) . ');
             },
             error: function(data) {
                 console.log(data);
