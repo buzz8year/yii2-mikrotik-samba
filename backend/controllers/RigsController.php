@@ -30,7 +30,8 @@ class RigsController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['index', 'raw', 'mutual', 'info', 'state', 'reboot', 'eres', 'config', 'mass-config'],
+                        // 'actions' => ['index', 'raw', 'mutual', 'info', 'state', 'reboot', 'eres', 'config', 'mass-config'],
+                        'actions' => ['index', 'raw', 'mutual', 'info', 'state', 'reboot', 'eres', 'config'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -61,7 +62,8 @@ class RigsController extends Controller
     {
         if ($post = Yii::$app->request->post()) {
             if ($post['type'] == 'json') {
-                $data = Rigs::mutualData();
+                // $data = Rigs::mutualData();
+                $data = [];
                 return json_encode($data);
             }
         }
