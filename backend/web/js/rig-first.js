@@ -1,5 +1,5 @@
 rawHtml(getFirstRig());
-rawScroll();
+// rawScroll();
 
 setInterval(function () {
     rawHtml(getFirstRig());
@@ -343,14 +343,14 @@ function rawHtml(id) {
                 sec.html(html);
             }, 1500);
             // countSec();
-            rawScroll();
+            // rawScroll();
         },
     });
 }
 
 
 function getFirstRig() {
-    var e = document.getElementById('raw-html');
+    var e = document.getElementById('raw-id');
     return $(e).attr('data-id'); 
 }
 

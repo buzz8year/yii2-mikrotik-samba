@@ -10,6 +10,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+use yii\helpers\CJSON;
 
 /**
  * RigsController implements the CRUD actions for Rigs model.
@@ -31,7 +32,7 @@ class RigsController extends Controller
                     ],
                     [
                         // 'actions' => ['index', 'raw', 'mutual', 'info', 'state', 'reboot', 'eres', 'config', 'mass-config'],
-                        'actions' => ['index', 'raw', 'mutual', 'info', 'state', 'reboot', 'eres', 'config'],
+                        'actions' => ['index', 'raw', 'mutual', 'info', 'state', 'reboot', 'eres', 'config', 'get-model'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -48,6 +49,7 @@ class RigsController extends Controller
                     'reboot' => ['POST'],
                     'eres' => ['POST'],
                     'config' => ['POST'],
+                    'get-model' => ['POST'],
                 ],
             ],
         ];
@@ -106,8 +108,28 @@ class RigsController extends Controller
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
             'modelFirst' => $this->findModel($id),
+            'modelID' => $id,
             'pollLast' => Poll::getLast(),
         ]);
+
+    }
+
+    /**
+     * Displays a single Rigs model.
+     * @param integer $id
+     * @return mixed
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionGetModel()
+    {
+        if (($post = Yii::$app->request->post()) && isset($post['rig_id'])) {
+            // return $this->renderAjax('_rig', [
+            //     'modelFirst' => $this->findModel($post['rig_id'])
+            // ]);
+
+            return $this->renderAjax('_rig', ['modelFirst' => $this->findModel($post['rig_id'])], false);
+        }
+        
     }
 
     /**

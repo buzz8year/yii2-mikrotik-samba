@@ -17,6 +17,7 @@ class AppAsset extends AssetBundle
         // 'https://fonts.googleapis.com/css?family=Ubuntu+Mono:200,300,400,600',
         'https://fonts.googleapis.com/css?family=PT+Mono:200,300,400,600',
         'css/site.css',
+        'css/rigs.css',
     ];
     
     public $js = [
