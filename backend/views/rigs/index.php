@@ -35,8 +35,8 @@ $this->registerJs('
                     type: \'post\',
                     data: { rig_id: ' . $modelID . ' },
                     success: function(data) {
-                        console.log(' . json_encode($modelFirst->dayRate) . ');
-                        rigFirstHashrate(' . json_encode($modelFirst->dayRate) . ');
+                        var json = JSON.parse(data);
+                        rigFirstHashrate(json);
                         mutualHashrate(' . json_encode(Rigs::mutualData()) . ');
                     },
                     error: function(data) {

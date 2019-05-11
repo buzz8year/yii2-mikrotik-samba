@@ -10,7 +10,6 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
-use yii\helpers\CJSON;
 
 /**
  * RigsController implements the CRUD actions for Rigs model.
@@ -108,7 +107,7 @@ class RigsController extends Controller
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-            'modelFirst' => $this->findModel($id),
+            // 'modelFirst' => $this->findModel($id),
             'modelID' => $id,
             'pollLast' => Poll::getLast(),
         ]);
@@ -128,7 +127,9 @@ class RigsController extends Controller
             //     'modelFirst' => $this->findModel($post['rig_id'])
             // ]);
 
-            return $this->renderAjax('_rig', ['modelFirst' => $this->findModel($post['rig_id'])], false);
+            $model = $this->findModel($post['rig_id']);
+
+            return $this->renderAjax('_rig', ['modelFirst' => $model], false);
         }
         
     }
@@ -143,7 +144,8 @@ class RigsController extends Controller
     public function actionDayRate()
     {
         if (($post = Yii::$app->request->post()) && isset($post['rig_id'])) {
-            return json_encode($this->findModel($post['rig_id'])->dayRate);
+            $model = $this->findModel($post['rig_id']);
+            return json_encode($model->dayRate, true);
         }
         
     }
