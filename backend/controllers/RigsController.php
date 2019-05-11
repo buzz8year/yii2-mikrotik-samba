@@ -32,7 +32,7 @@ class RigsController extends Controller
                     ],
                     [
                         // 'actions' => ['index', 'raw', 'mutual', 'info', 'state', 'reboot', 'eres', 'config', 'mass-config'],
-                        'actions' => ['index', 'raw', 'mutual', 'info', 'state', 'reboot', 'eres', 'config', 'get-model'],
+                        'actions' => ['index', 'raw', 'mutual', 'info', 'state', 'reboot', 'eres', 'config', 'render-first', 'day-rate'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -49,7 +49,8 @@ class RigsController extends Controller
                     'reboot' => ['POST'],
                     'eres' => ['POST'],
                     'config' => ['POST'],
-                    'get-model' => ['POST'],
+                    'render-first' => ['POST'],
+                    'day-rate' => ['POST'],
                 ],
             ],
         ];
@@ -120,7 +121,7 @@ class RigsController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionGetModel()
+    public function actionRenderFirst()
     {
         if (($post = Yii::$app->request->post()) && isset($post['rig_id'])) {
             // return $this->renderAjax('_rig', [
@@ -131,6 +132,22 @@ class RigsController extends Controller
         }
         
     }
+
+
+    /**
+     * Displays a single Rigs model.
+     * @param integer $id
+     * @return mixed
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionDayRate()
+    {
+        if (($post = Yii::$app->request->post()) && isset($post['rig_id'])) {
+            return json_encode($this->findModel($post['rig_id'])->dayRate);
+        }
+        
+    }
+
 
     /**
      * Displays a single Rigs model.

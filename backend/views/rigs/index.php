@@ -23,20 +23,29 @@ $this->title = 'Cumulative Rate ' . $dataProvider->getTotalCount() . ' / 200';
 $this->registerJs('
     $(document).ready(function(){
         $.ajax({
-            url: \'index.php?r=rigs/get-model\',
+            url: \'index.php?r=rigs/render-first\',
             type: \'post\',
             data: { rig_id: ' . $modelID . ' },
             success: function(data) {
-                console.log(4444444);
-                console.log(data);
                 var e = document.getElementById(\'wrap-rig\');
                 $(e).html(data);
 
-                rigFirstHashrate(' . json_encode($modelFirst->dayRate) . ');
-                mutualHashrate(' . json_encode(Rigs::mutualData()) . ');
+                $.ajax({
+                    url: \'index.php?r=rigs/day-rate\',
+                    type: \'post\',
+                    data: { rig_id: ' . $modelID . ' },
+                    success: function(data) {
+                        console.log(' . json_encode($modelFirst->dayRate) . ');
+                        rigFirstHashrate(' . json_encode($modelFirst->dayRate) . ');
+                        mutualHashrate(' . json_encode(Rigs::mutualData()) . ');
+                    },
+                    error: function(data) {
+                        console.log(data);
+                    }
+                });
             },
             error: function(data) {
-                console.log(data);
+                // console.log(data);
             }
         });
     });
