@@ -4,4 +4,4 @@
 
 # yii2-mikrotik-samba
 
-Unix-MikrotikOS-Samba Windows GPU CGMiner batch monitoring & maintenance dashboard. Part of business software kit.
+Unix-MikrotikOS-Samba &larr; Windows-GPU-CGMiner batch monitoring & maintenance app. Part of business software kit.
